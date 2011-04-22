@@ -6,7 +6,7 @@ This makes you can listen the music without stopping.
 
 gFrame support almost mordern browsers.
 
-![Browsers](resource/browser_icons.jpg "Browsers")
+![Browsers](http://floras.github.com/gFrame/resource/browser_icons.jpg "Browsers")
 
 *   IE5.5, IE6, IE7, IE8, IE9, IE10
 *   FIREFOX 4
