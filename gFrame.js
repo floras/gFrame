@@ -44,7 +44,7 @@
 	};
 	gFrame.create = function(id, text, dimension){
 		if (gFrame.main.document.getElementById(id)) return false; 
-		var _default = { top : 100, left : 100, style : "border:3px solid #f00"};
+		var _default = { top : 100, left : 100, width:"", height:"", style : "border:3px solid #f00"};
 		
 		if (dimension) for (var i in dimension) _default[i] = dimension[i];
 		var dimension = _default;
@@ -60,10 +60,10 @@
 		if (dimension.bottom) gLayer.style.bottom = dimension.bottom + "px";
 		else gLayer.style.top = dimension.top + "px";
 
-		if (dimension.width.indexOf("%") > -1) 	gLayer.style.width = dimension.width;
+		if (("" + dimension.width).indexOf("%") > -1) 	gLayer.style.width = dimension.width;
 		else gLayer.style.width  = (dimension.width) ?  dimension.width + "px" : "auto";
 
-		if (dimension.width.indexOf("%") > -1) 	gLayer.style.height = dimension.height;
+		if (("" + dimension.height).indexOf("%") > -1) 	gLayer.style.height = dimension.height;
 		else gLayer.style.height = (dimension.height) ?  dimension.height + "px" : "auto";
 				
 		gLayer.className = 'gLayer';
