@@ -42,6 +42,9 @@
 		debug.innerHTML = "gFrame";
 		debug.style.display = "block";
 	};
+	gFrame.id = function(id) {
+		return gFrame.main.document.getElementById(id);
+	};
 	gFrame.create = function(id, text, dimension){
 		if (gFrame.main.document.getElementById(id)) return false; 
 		var _default = { top : 100, left : 100, width:"", height:"", style : "border:3px solid #f00"};
@@ -69,6 +72,7 @@
 		gLayer.className = 'gLayer';
 		gLayer.innerHTML = text;
 		gFrame.main.document.getElementById('gBody').appendChild(gLayer);
+
 		return undefined //gLayer;
 	};
 	gFrame.remove = function(id) {
@@ -110,10 +114,15 @@
 		if (document.all && !window.localStorage) target.style.setAttribute('cssText', dimension.style);
 		else target.setAttribute('style', dimension.style);
 		return target;
-	}
+	};	
+	gFrame.text = function(id, value) {
+		var target = gFrame.main.document.getElementById(id);
+		target.innerHTML = value;
+		return target;
+	};
 	gFrame.title = function(title) {
 		top.document.title = title;
-	}
+	};
 	// LET'S START
 	document.write(wrap);
 
