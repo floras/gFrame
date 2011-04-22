@@ -95,14 +95,14 @@
 	};
 	gFrame.height = function(id, value) {
 		var target = gFrame.main.document.getElementById(id);
-		if (("" + value).indexOf("%") > -1) gLayer.style.height = value;
-		else gLayer.style.height = value + "px";
+		if (("" + value).indexOf("%") > -1) target.style.height = value;
+		else target.style.height = value + "px";
 		return target
 	};
 	gFrame.width = function(id, value) {
 		var target = gFrame.main.document.getElementById(id);
-		if (("" + value).indexOf("%") > -1) gLayer.style.width = value;
-		else gLayer.style.width = value + "px";
+		if (("" + value).indexOf("%") > -1) target.style.width = value;
+		else target.style.width = value + "px";
 		return target
 	};
 	gFrame.style = function(id, value) {
