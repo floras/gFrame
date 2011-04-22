@@ -35,6 +35,6 @@ Change your page. (Skin or template)
         <script src="http://floras.github.com/gFrame/gFrame.js"> </script> <- insert this.
         .....
         <title> your page </title>
-         <script> gFrame.title(document.title);</script> <- insert this.
+         <script> top.gFrame.title(document.title);</script> <- insert this.
 
 
