@@ -59,10 +59,13 @@
 		else gLayer.style.left = dimension.left + "px";
 		if (dimension.bottom) gLayer.style.bottom = dimension.bottom + "px";
 		else gLayer.style.top = dimension.top + "px";
-		
-		gLayer.style.width  = (dimension.width) ?  dimension.width + "px" : "auto";
-		gLayer.style.height = (dimension.height) ? dimension.height + "px" : "auto";
-		
+
+		if (dimension.width.indexOf("%") > -1) 	gLayer.style.width = dimension.width;
+		else gLayer.style.width  = (dimension.width) ?  dimension.width + "px" : "auto";
+
+		if (dimension.width.indexOf("%") > -1) 	gLayer.style.height = dimension.height;
+		else gLayer.style.height = (dimension.height) ?  dimension.height + "px" : "auto";
+				
 		gLayer.className = 'gLayer';
 		gLayer.innerHTML = text;
 		gFrame.main.document.getElementById('gBody').appendChild(gLayer);
@@ -90,6 +93,24 @@
 		};
 		return target
 	};
+	gFrame.height = function(id, value) {
+		var target = gFrame.main.document.getElementById(id);
+		if (value.indexOf("%") > -1) gLayer.style.height = value;
+		else gLayer.style.height = value + "px";
+		return target
+	};
+	gFrame.width = function(id, value) {
+		var target = gFrame.main.document.getElementById(id);
+		if (value.indexOf("%") > -1) gLayer.style.width = value;
+		else gLayer.style.width = value + "px";
+		return target
+	};
+	gFrame.style = function(id, value) {
+		var target = gFrame.main.document.getElementById(id);		
+		if (document.all && !window.localStorage) target.style.setAttribute('cssText', dimension.style);
+		else target.setAttribute('style', dimension.style);
+		return target;
+	}
 	gFrame.title = function(title) {
 		top.document.title = title;
 	}
