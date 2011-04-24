@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="../gFrame.js"></script>
+	<script type="text/javascript" src="../resource/jquery.js"></script>
+	<title> gFrame (demo)</title>
+
+	<style>
+    body {
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+	  color:#434343;
+    }
+	#title {text-align:center;font-size:24px; border-bottom:1px solid #DEDEDE;padding:10px;margin:0;line-height:10px;
+		min-width:960px;}
+	#pages {position:absolute;right:0;top:0;padding:5px;margin:0}
+	#pages span {position:relative;display:inline-block;font:14px georgia;padding:3px 5px;border:1px solid #DEDEDE;text-align:center;margin-left:-1px;cursor:pointer}
+	#pages span.hover {
+	    z-index:10;
+		border-color:#434343;
+		background:#3A6EA5;
+		color:#EAEAEA;
+	}
+	#titleWrap {position:relative;cursor:pointer; z-index:10;}
+	#titleWrap #host {display:none}
+	#titleWrap.hover #host {display:inline}
+	#ver {position:relative;font:11px georgia; z-index:5;}
+	span.red {color:red}
+	#container {
+		width:960px;
+	}
+	#maker {text-align:right; font:12px georgia;padding:0.25em 2em}
+	</style>
+</head>
+<body>
+<a href="http://github.com/floras/gFrame"><img style="position: absolute; top: 0; left: 0; border: 0;z-index:50;" src="https://d3nwyuy0nl342s.cloudfront.net/img/6429057dfef9e98189338d22e7f6646c6694f032/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+
+	<h1 id="title" style="position:relative;"> 
+		<span id="titleWrap"><span class="red">g</span><span id="host">host </span><span class="red">Frame</span></span><br/>
+		<span id="ver"></span> <div id="pages"><span>HOME</span><span>DEMO1</span><span>DEMO2</span><span>API</span><span>DOWNLOAD</span></div></h1>
+	<div id="container">
+		<div id="maker"> made by <a href="http://50ndd1n6.tistory.com" target="_blank">50ndd1n6</a> </div>
+	</div>
+	<script>
+	$(function(){
+		$("#ver").html(gFrame.ver);
+		$("#pages span").hover(function(){$(this).addClass("hover")}, function(){$(this).removeClass("hover")});
+		$("#titleWrap").hover(function(){$(this).addClass("hover")}, function(){$(this).removeClass("hover")});
+	});
+	</script>
+</body>
+</html>
