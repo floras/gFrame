@@ -325,7 +325,6 @@
 		if (!gFrame.content || top == gFrame.content) return false;
 		var target = gFrame.content;
 		var ready = function(e) {
-			alert('ready');
 			gFrame.title(target.document.title);
 			gFrame.trigger('ready', e);
 		};
