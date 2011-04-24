@@ -58,8 +58,8 @@
 		gFrame.body = gFrame.main.document.body;
 	};
 	gFrame.test = function() {
-		var debug = gFrame.main.document.getElementById('debug');
-		debug.style.display = "block";
+		gFrame('debug').show();
+		return gFrame;
 	};
 	gFrame.id = function(id) {
 		return gFrame.main.document.getElementById(id);
