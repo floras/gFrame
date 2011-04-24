@@ -96,6 +96,7 @@
 	gFrame.hide = function(id) {
 		var target = gFrame.main.document.getElementById(id);
 		if (!target) return undefined;
+		if (target.savePosition) return undefined;
 		target.savePosition = {left: target.style.left, right: target.style.right};
 		gFrame.left(id, "-1000");
 		return gFrame;
@@ -105,13 +106,14 @@
 		if (!target || !target.savePosition) return undefined;
 		target.style.left = target.savePosition.left;
 		target.style.right = target.savePosition.right;
+		target.savePosition = undefined;
 		return gFrame;
 	};
 	gFrame.opacity = function(id, value) {
 		var target = gFrame.main.document.getElementById(id);
 		if (!target) return undefined;
 		if (target.style.opacity !== undefined) target.style.opacity = value;
-		else if (target.filters) target.style.filter = "alpha(opacity="+value*100+");";
+		else if (target.filters) target.style.filter = "alpha(opacity="+value*100+")";
 		return gFrame;
 	};
 	gFrame.toBack = function(id) {
