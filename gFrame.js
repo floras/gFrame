@@ -220,6 +220,7 @@
 	gFrame.title = function(title) {top.document.title = title; return gFrame};
 	gFrame.get = function(id) {
 		var target = gFrame.main.document.getElementById(id);
+		if (!target) return {};
 		return {
 			id      : target.id,
 			element : target,
@@ -262,7 +263,8 @@
 				} else return gFrame.zIndex(this.id);
 			},
 			hide    : function( ) { gFrame.hide  (this.id);       return this}, 
-			show    : function(v) { gFrame.show  (this.id);       return this} 
+			show    : function( ) { gFrame.show  (this.id);       return this},
+			remove  : function( ) { gFrame.remove(this.id);       return this} 
 		};
 	};
 	gFrame.size = function() {

@@ -1,3 +1,9 @@
+v0.1.02pa
+===
+
+*  [New] gFrame.alive property for checking gFrame is alive 
+*  [New] gFrame.block, gFrame.unBlock
+
 v0.1.01pa
 ===
 
