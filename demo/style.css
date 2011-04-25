@@ -86,3 +86,4 @@ button.bWidth {width:270px}
 #pages span.hover a:visited 
 { text-decoration:none; 
 	color: #3C6200;}
+input {display:inline-block}

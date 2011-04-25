@@ -31,7 +31,9 @@
 	</h1>
 	<div id="container">
 		<div id="notice"> gFrame is <span id="gState"> </span><br /><span class="desc"></span></div>
-		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for instantly inserting frame at the current document by javascript. Although many skins(or templates) can be modified, one can't easily make a plain html page for using the frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers and old one(from IE5.5 to IE10). Moreover gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts. gFrame is written in ASCII. It is familiar with the most of charset. <span class="desc">(ASCII, ANSI, UTF-8, ISO8601-X, EUC-KR, EUC-JP, CP949, ...)</span><br/>
+		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for instantly inserting frame at the current document by javascript. Although many skins(or templates) can be modified, one can't easily make a plain html page for using the frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers and old one(from IE5.5 to IE10). Moreover gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts.<br/>
+		<button onclick="gFrame('player').remove();">stop music</button>
+		<button onclick="gFrame.once.remove('player');gFrame.content.music();">play music</button>
 		<h3> USAGE </h3>
 		<div id="imgDesc">
 			<img src="image.png" alt="image description"/>
@@ -80,6 +82,15 @@
 	$(function(){
 		if (gFrame && gFrame.alive) {
 			gFrame('hi', "HI <br/> <button onclick=\"gFrame('hi').remove()\">close</button>", {right:20, top:50, width:"120", height:"60", style: "border:5px solid #f00;backgorund:#fff;font:14px/1.7em georgia;text-align:center;"});
+
+			window.music = function() { 
+				gFrame.once('player', function(){
+					var code = '<embed src="http://www.youtube.com/p/8B2C3091F8C77A5F?hl=en_US&fs=1&autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true"></embed>';
+					gFrame('player', code, {top:10, left:10, width:240, height:185, style:'border:3px solid #f00'}).hide();
+				});
+			};
+			music();
+
 			$("#gState").html('ON').addClass("alive");
 			$("#notice span.desc").html("This document is moved into the frame by gFrame script.");
 		} else {
@@ -91,6 +102,11 @@
 			{top:30, left:30, width: 240, height: 185, style:'border: 3px solid #f00'});
 		});
 	});
+	</script>
+	<script>
+
+//gFrame.main.eval.call(null, test);
+
 	</script>
 </body>
 </html>

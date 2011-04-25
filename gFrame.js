@@ -421,11 +421,6 @@
 		gFrame.eval(code);
 		return gFrame;
 	};
-	gFrame.once.remove = function(id) {
-		var index = once.indexOf(id);
-		if (index > -1) once.remove(index);
-		return gFrame;
-	}
 	gFrame.once.empty = function() { 
 		once.length = 0;
 		return gFrame;
@@ -435,6 +430,11 @@
 	}
 	gFrame.once.size = function() {
 		return once.length;
+	};
+	gFrame.once.remove = function(id) {
+		var target = once.indexOf(id);
+		if (target > -1) once.remove(target);
+		return gFrame;
 	};
 
 	/*
@@ -470,7 +470,11 @@
 		return gFrame;
 	};
 	gFrame.eval = function(code) {
-		try { return gFrame.main.eval.call(null, code);} 
+		 var result
+		try {
+				if (typeof code == "function") var result = code.apply(gFrame.main);
+				else result = gFrame.main.eval.call(null, code);
+				return result} 
 		catch (err)	{return err }		
 	};
 
