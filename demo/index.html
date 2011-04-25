@@ -19,9 +19,17 @@
 	#pages span {position:relative;display:inline-block;font:14px georgia;padding:3px 5px;border:1px solid #DEDEDE;text-align:center;margin-left:-1px;cursor:pointer}
 	#pages span.hover {
 	    z-index:10;
-		border-color:#434343;
-		background:#3A6EA5;
-		color:#EAEAEA;
+		border-color: #434343;
+		background: #3A6EA5;
+		color: #EAEAEA;
+	}
+	#notice { font:bold 14px/22px georgia; width:350px; margin:0 auto;text-align:center;padding:15px;}
+	#notice span.desc {font-weight:normal; font-size:14px}
+	#gState {
+		color: #DA0000;
+	}
+	#gState.alive {
+		color: #649D00;
 	}
 	#titleWrap {position:relative;cursor:pointer; z-index:10;}
 	#titleWrap #host {display:none}
@@ -59,7 +67,8 @@
 		<span id="titleWrap"><span class="red">g</span><span id="host">host </span><span class="red">Frame</span></span><br/>
 		<span id="ver"></span> <div id="pages"><span>HOME</span><span>DEMO1</span><span>DEMO2</span><span>API</span><span>DOWNLOAD</span></div></h1>
 	<div id="container">
-		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for inserting frame document by javascript. Although many skin(or template) of sites can be modified, one can't make a plain html page. If you play the music in the blog without stopping. gFrame helps you. gFrame is available in the mordern browser and old one. From IE5.5 to IE10, gFrame works well. gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts. gFrame is written in ASCII. It is availble with the most of charset. <span class="desc">(ASCII, UTF-8, ISO8601-X, EUC-KR, EUC-JP, CP949, ...)</span><br/>
+		<div id="notice"> gFrame is <span id="gState"> </span><br /><span class="desc"></span></div>
+		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for instantly inserting frame to the document by javascript. Although many skin(or template) of sites can be modified, one can't easily make a plain html page for the frame. If you play the music in the blog without stopping. gFrame helps you. gFrame is available in the mordern browser and old one. From IE5.5 to IE10, gFrame works well. gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts. gFrame is written in ASCII. It is availble with the most of charset. <span class="desc">(ASCII, UTF-8, ISO8601-X, EUC-KR, EUC-JP, CP949, ...)</span><br/>
 		<h3> USAGE </h3>
 		<div id="imgDesc">
 			<img src="image.png" alt="image description"/>
@@ -104,6 +113,13 @@
 	</script>
 	<script>
 	$(function(){
+		if (gFrame && gFrame.alive) {
+			$("#gState").html('ALIVE').addClass("alive");
+			$("#notice span.desc").html("This document is in the frame.");
+		} else {
+			$("#gState").html('DEAD').removeClass('alive');
+			$("#notice span.desc").html("This document is not in the frame.(original document)");
+		};
 		$("#ver").html(gFrame.ver);
 		$("#pages span").hover(function(){$(this).addClass("hover")}, function(){$(this).removeClass("hover")});
 		$("#titleWrap").hover(function(){$(this).addClass("hover")}, function(){$(this).removeClass("hover")});
