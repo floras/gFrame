@@ -135,7 +135,7 @@
 		if (dimension.top) gFrame.top(id, dimension.top);
 		if (dimension.bottom) gFrame.bottom(id, dimension.bottom);
 		if (dimension.left) gFrame.left(id, dimension.left);
-		if (dimension.right) gFrame.left(id, dimension.right);
+		if (dimension.right) gFrame.right(id, dimension.right);
 		return gFrame.get(gLayer.id);
 	};
 	gFrame.remove = function(id) {
@@ -281,7 +281,7 @@
 	};
 	gFrame.get = function(id) {
 		var target = gFrame.main.document.getElementById(id);
-		if (!target) return {};
+		if (!target) return {remove: function(){}};
 		return {
 			id      : target.id,
 			element : target,

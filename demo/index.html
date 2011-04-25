@@ -79,8 +79,9 @@
 	<script>
 	$(function(){
 		if (gFrame && gFrame.alive) {
+			gFrame('hi', "HI <br/> <button onclick=\"gFrame('hi').remove()\">close</button>", {right:20, top:50, width:"120", height:"60", style: "border:5px solid #f00;backgorund:#fff;font:14px/1.7em georgia;text-align:center;"});
 			$("#gState").html('ON').addClass("alive");
-			$("#notice span.desc").html("This document is moved in the frame by gFrame script.");
+			$("#notice span.desc").html("This document is moved into the frame by gFrame script.");
 		} else {
 			$("#gState").html('OFF').removeClass('alive');
 			$("#notice span.desc").html("This document is not in the frame.(original document)");

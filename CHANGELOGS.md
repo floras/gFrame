@@ -2,7 +2,12 @@ v0.1.02pa
 ===
 
 *  [New] gFrame.alive property for checking gFrame is alive 
-*  [New] gFrame.block, gFrame.unBlock
+*  [New] using pushState (HTML5)
+*  [New] gFrame.once
+*  [New] gFrame.memory
+*  [New] added dummy function
+*  [BUG] left -> right 
+
 
 v0.1.01pa
 ===

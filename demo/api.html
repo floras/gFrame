@@ -30,7 +30,6 @@
 		<li> gFrame.main - outter frame window </li>
 		<li> gFrame.content - original document window </li>
 		<li> gFrame.alive </li>
-		<li> gFrame.title(value) </li>
 	</ul>
 	<h4> gFrame : start | stop </h4>
 
@@ -57,6 +56,7 @@
 		<li> gFrame.size()</li>
 		<li> gFrame.list()</li>
 	</ul>
+	Don't worry about creating same id of gLayer. Same id is ignored.
 	<h4> gLayer : dimension </h4>
 	<ul>
 		<li> gLayer.top(val) </li>
@@ -67,6 +67,12 @@
 		<li> gLayer.height(val)</li>
 	</ul>
 	It returns gLayer instance or value.
+	<h4> gLayer : etc </h4>
+	<ul>
+		<li> gLayer.text(value) - innerHTML</li>
+		<li> gLayer.style(value) </li>
+		<li> gLayer.opacity(value) </li>
+	</ul>
 	<h4> gFrame : once </h4>
 	<ul>
 		<li> gFrame.once(id, code or function)</li>
@@ -88,8 +94,6 @@
 	<h4> etc </h4>
 	<ul>
 		<li> gFrame.eval(code or function) - excute code in the gFrame</li>
-		<li> gLayer.style(value) </li>
-		<li> gLayer.opacity(value) </li>
 	</ul>
 	Becareful about using style. It matchs style attribute of element. Don't omit other value.
 	<br />
