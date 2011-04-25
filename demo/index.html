@@ -8,9 +8,11 @@
 	<style>
     body {
       font-family: Helvetica, Arial, FreeSans, san-serif;
+	  font-size: 16px;
 	  line-height: 1.75em;
 	  color:#434343;
     }
+	#container {background: url('gb.png') no-repeat bottom right}
 	#title {text-align:center;font-size:24px; border-bottom:1px solid #DEDEDE;padding:10px;margin:0;line-height:10px;
 		min-width:960px;}
 	#pages {position:absolute;right:0;top:0;padding:5px;margin:0}
@@ -28,6 +30,7 @@
 	span.red {color:red}
 	#container {
 		width:960px;margin:0 auto;
+		margin-top:15px;
 	}
 	#maker {text-align:right; font:12px georgia;padding:0.25em 2em}
 	h3 {border-bottom:1px solid #DEDEDE}
@@ -56,7 +59,6 @@
 		<span id="titleWrap"><span class="red">g</span><span id="host">host </span><span class="red">Frame</span></span><br/>
 		<span id="ver"></span> <div id="pages"><span>HOME</span><span>DEMO1</span><span>DEMO2</span><span>API</span><span>DOWNLOAD</span></div></h1>
 	<div id="container">
-		<div id="maker"> made by <a href="http://50ndd1n6.tistory.com" target="_blank">50ndd1n6</a> </div>
 		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for inserting frame document by javascript. Although many skin(or template) of sites can be modified, one can't make a plain html page. If you play the music in the blog without stopping. gFrame helps you. gFrame is available in the mordern browser and old one. From IE5.5 to IE10, gFrame works well. gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts. gFrame is written in ASCII. It is availble with the most of charset. <span class="desc">(ASCII, UTF-8, ISO8601-X, EUC-KR, EUC-JP, CP949, ...)</span><br/>
 		<h3> USAGE </h3>
 		<div id="imgDesc">
@@ -93,7 +95,7 @@
 		  <li>gFrame.load(function, global)</li>
 		  <li>gFrame.unload(function, global)</li>
 		</ul>
-		If global is true, the function will be triggered anytimes at any page. <br/>
+		If global is true, the function will be triggered always at the any page. <br/>
 		If global is false or undefined, the function works at the current page.
 		
 	</div>
