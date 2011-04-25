@@ -11,7 +11,7 @@
 
 (function() {
 	
-	var ver = "v0.1.01pa";
+	var ver = "v0.1.02pa";
 
 	/**
 	 * from jQuery Cookie plugin
@@ -268,7 +268,17 @@
 		else target.innerHTML = value;
 		return target;
 	};
-	gFrame.title = function(title) {top.document.title = title; return gFrame};
+	gFrame.title = function() {
+		var title = gFrame.content.document.title + " #";
+		if (window.history.replaceState) {					
+			var target =(""+gFrame.content.location.href).split(gFrame.content.location.host);
+			target[1] = target[1].replace(/\/+/, "/");
+			target = target.join(gFrame.content.location.host);
+			top.history.replaceState({foo:'bar'}, title, target);
+			top.document.title = title
+		} else top.document.title = title; 
+		return gFrame
+	};
 	gFrame.get = function(id) {
 		var target = gFrame.main.document.getElementById(id);
 		if (!target) return {};
@@ -374,6 +384,13 @@
 		if (check.length > 0) gFrame.eval(check[0]);
 		return gFrame.memory;
 	};
+	gFrame.size = function() {
+		return memory.length
+	};
+	gFrame.list = function() {
+		var result = memory.filter(function(elem){return elem.id});
+		return result;
+	};
 	gFrame.memory.get = function(id) {
 		var check = memory.filter(function(element, index){
 			if (element[id] == id) return element;
@@ -412,6 +429,9 @@
 	gFrame.once.empty = function() { 
 		once.length = 0;
 		return gFrame;
+	}
+	gFrame.once.list = function() { 
+		return once;
 	}
 	gFrame.once.size = function() {
 		return once.length;
@@ -460,7 +480,7 @@
 		pEvent = {load:[], unload:[], ready:[]};
 		var target = gFrame.content;
 		var ready = function(e) {
-			gFrame.title(target.document.title);
+			gFrame.title();
 			gFrame.trigger('ready', e);
 		};
 		if (target.addEventListener) {

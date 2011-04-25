@@ -3,58 +3,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<script type="text/javascript" src="../gFrame.js"></script>
-	<title> gFrame (demo)</title>
-
-	<style>
-    body {
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-	  font-size: 16px;
-	  line-height: 1.75em;
-	  color:#434343;
-    }
-	#title {text-align:center;font-size:24px; border-bottom:1px solid #DEDEDE;padding:10px;margin:0;line-height:10px;
-		min-width:960px;}
-	#pages {position:absolute;right:0;top:0;padding:5px;margin:0}
-	#pages span {position:relative;display:inline-block;font:14px georgia;padding:3px 5px;border:1px solid #DEDEDE;text-align:center;margin-left:-1px;cursor:pointer}
-	#pages span.hover {
-	    z-index:10;
-		border-color: #434343;
-		background: #3A6EA5;
-		color: #EAEAEA;
-	}
-	#notice { font:bold 14px/22px georgia; width:350px; margin:0 auto;text-align:center;padding:15px;}
-	#notice span.desc {font-weight:normal; font-size:14px}
-	#gState {
-		color: #DA0000;
-	}
-	#gState.alive {
-		color: #649D00;
-	}
-	#titleWrap {position:relative;cursor:pointer; z-index:10;}
-	#titleWrap #host {display:none}
-	#titleWrap.hover #host {display:inline}
-	#ver {position:relative;font:11px georgia; z-index:5;}
-	span.red {color:red}
-	#container {
-		width:960px;margin:0 auto;
-		margin-top:15px;
-	}
-	#maker {text-align:right; font:12px georgia;padding:0.25em 2em}
-	h3 {border-bottom:1px solid #DEDEDE}
-	#imgDesc {text-align:center}
-	div.pre {font-size:14px}
-	span.desc {color:#B6B6B6;font-size:14px;}
-	button { 
-		display:inline-block;vertical-align:middle; 
-		height:1.75em;line-height:1.75em;
-		padding:0 3px;
-		font:14px 'Courier New';
-	}
-	</style>
-	<script type="text/javascript" src="../resource/jquery.js"></script>
-	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+	<title> gFrame </title>
 	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
 	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" /> 
+	<link href="style.css" rel="stylesheet" type="text/css" /> 
+
+	<script type="text/javascript" src="../resource/jquery.js"></script>
+	<script type="text/javascript" src="demo.js"></script>
+	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
 	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
 	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js"></script>
 
@@ -62,22 +18,30 @@
 <body>
 <a href="http://github.com/floras/gFrame" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;z-index:50;" src="https://d3nwyuy0nl342s.cloudfront.net/img/6429057dfef9e98189338d22e7f6646c6694f032/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
 
-	<h1 id="title" style="position:relative;"> 
-		<span id="titleWrap"><span class="red">g</span><span id="host">host </span><span class="red">Frame</span></span><br/>
-		<span id="ver"></span> <div id="pages"><span>HOME</span><span>DEMO1</span><span>DEMO2</span><span>API</span><span>DOWNLOAD</span></div></h1>
+	<h1 id="title" style="position:relative;">
+		<div id="wrapwrap">
+			<span id="titleWrap">
+				<span class="red">g</span><span id="host">host </span><span class="red">Frame</span>
+			</span><br/>
+			<span id="ver"></span> 
+			<div id="pages">
+				<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="">DEMO2</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
+			</div>
+		</div>
+	</h1>
 	<div id="container">
 		<div id="notice"> gFrame is <span id="gState"> </span><br /><span class="desc"></span></div>
-		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for instantly inserting frame to the document by javascript. Although many skin(or template) of sites can be modified, one can't easily make a plain html page for the frame. If you play the music in the blog without stopping. gFrame helps you. gFrame is available in the mordern browser and old one. From IE5.5 to IE10, gFrame works well. gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts. gFrame is written in ASCII. It is availble with the most of charset. <span class="desc">(ASCII, UTF-8, ISO8601-X, EUC-KR, EUC-JP, CP949, ...)</span><br/>
+		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for instantly inserting frame at the current document by javascript. Although many skins(or templates) can be modified, one can't easily make a plain html page for using the frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers and old one(from IE5.5 to IE10). Moreover gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts. gFrame is written in ASCII. It is familiar with the most of charset. <span class="desc">(ASCII, ANSI, UTF-8, ISO8601-X, EUC-KR, EUC-JP, CP949, ...)</span><br/>
 		<h3> USAGE </h3>
 		<div id="imgDesc">
 			<img src="image.png" alt="image description"/>
 		</div>
 		<ul>
 			<li>gFrame instantly makes a frame and inserts original documents in the frame without any modification.</li>
-			<li>You can handle gFrame freely. Just use&nbsp;<button onclick="gFrame.exit()">gFrame.exit()</button>&nbsp;or&nbsp;<button onclick="gFrame.start()">gFrame.start()</button></li>
-			<li>You can get the background window frame&nbsp;(<button onclick="alert(gFrame.main)">gFrame.main</button>) and his document object(<button onclick="alert(gFrame.main.document)">gFrame.main.document</button>)</li>
+			<li>You can start or not with gFrame freely. Just use&nbsp;<button onclick="gFrame.exit()" class="av">gFrame.exit()</button>&nbsp;or&nbsp;<button onclick="gFrame.start()" class="Rav">gFrame.start()</button></li>
+			<li>You can get the background window frame&nbsp;(<button onclick="alert(gFrame.main)" class="av">gFrame.main</button>) and his document object(<button onclick="alert(gFrame.main.document)" class="av">gFrame.main.document</button>)</li>
 		</ul>
-		<h3> SIMPLE EXAMPLE (gLayer) </h3>
+		<h3> SIMPLE EXAMPLE (Creating gLayer) </h3>
 		<div class="pre">
 		<pre class="brush: js">gFrame("exam1", 
 		'&lt;embed src="http://www.youtube.com/p/D6142C77D6649A20?hl=ko_KR&amp;fs=1"
@@ -86,15 +50,15 @@
 		&lt;/embed>', 
 		{top:30, left:30, width: 240, height: 185, style:'border: 3px solid #f00'});</pre></div>
 		gFrame give you simple short-hand function. Sometimes this wrapper function is useful. This fuction is chainable. <br/>
-		<button id="EXAM1-ON">gFrame('exam1','code',options)</button>
-		<button onclick="gFrame('exam1').remove()">gFrame('exam1').remove()</button><br/>
-		<button onclick="gFrame('exam1').hide()">gFrame('exam1').hide()</button>
-		<button onclick="gFrame('exam1').show()">gFrame('exam1').show()</button><br/>
-		<button onclick="gFrame('exam1').toBack()">gFrame('exam1').toBack()</button>
-		<button onclick="gFrame('exam1').toFront()">gFrame('exam1').toFront()</button><br/>
-		<button onclick="gFrame('exam1').opacity('0.3')">gFrame('exam1').opacity(0.3)</button>
-		<button onclick="gFrame('exam1').opacity('0.6')">gFrame('exam1').opacity(0.6)</button>
-		<button onclick="gFrame('exam1').opacity('1')">gFrame('exam1').opacity(1)</button>
+		<button id="EXAM1-ON" class="bWidth av">gFrame('exam1','code',options)</button>
+		<button class="bWidth av" onclick="gFrame('exam1').remove()">gFrame('exam1').remove()</button><br/>
+		<button class="bWidth av" onclick="gFrame('exam1').hide()">gFrame('exam1').hide()</button>
+		<button class="bWidth av" onclick="gFrame('exam1').show()">gFrame('exam1').show()</button><br/>
+		<button class="bWidth av" onclick="gFrame('exam1').toBack()">gFrame('exam1').toBack()</button>
+		<button class="bWidth av" onclick="gFrame('exam1').toFront()">gFrame('exam1').toFront()</button><br/>
+		<button class="bWidth av" onclick="gFrame('exam1').opacity('0.3')">gFrame('exam1').opacity(0.3)</button>
+		<button class="bWidth av" onclick="gFrame('exam1').opacity('0.6')">gFrame('exam1').opacity(0.6)</button>
+		<button class="bWidth av" onclick="gFrame('exam1').opacity('1')">gFrame('exam1').opacity(1)</button>
 		<h3> gFrame EVENTS </h3>
 		gFrame gives you some event handler at the inner frame. There are three types and two modes.<br/>
 		You can add event fuction like this.
@@ -105,7 +69,9 @@
 		</ul>
 		If global is true, the function will be triggered always at the any page. <br/>
 		If global is false or undefined, the function works at the current page.
-		
+		<h3> Checking update</h3>
+		This document could be outdated. You have to delete cache file in the browser or check the github source. 
+		Function key(CRTL+F5) doesn't work.	<br/>	<br/> 
 	</div>
 	<script type="text/javascript">
 	 SyntaxHighlighter.all()
@@ -113,15 +79,12 @@
 	<script>
 	$(function(){
 		if (gFrame && gFrame.alive) {
-			$("#gState").html('ALIVE').addClass("alive");
-			$("#notice span.desc").html("This document is in the frame.");
+			$("#gState").html('ON').addClass("alive");
+			$("#notice span.desc").html("This document is moved in the frame by gFrame script.");
 		} else {
-			$("#gState").html('DEAD').removeClass('alive');
+			$("#gState").html('OFF').removeClass('alive');
 			$("#notice span.desc").html("This document is not in the frame.(original document)");
 		};
-		$("#ver").html(gFrame.ver);
-		$("#pages span").hover(function(){$(this).addClass("hover")}, function(){$(this).removeClass("hover")});
-		$("#titleWrap").hover(function(){$(this).addClass("hover")}, function(){$(this).removeClass("hover")});
 		$("#EXAM1-ON").click(function(){
 			gFrame("exam1", '<embed src="http://www.youtube.com/p/D6142C77D6649A20?hl=ko_KR&amp;fs=1"type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>', 
 			{top:30, left:30, width: 240, height: 185, style:'border: 3px solid #f00'});

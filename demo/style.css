@@ -1,0 +1,88 @@
+
+body {
+  font-family: Helvetica, Arial, FreeSans, san-serif;
+  font-size: 16px;
+  line-height: 1.75em;
+  color:#434343;
+  margin:0;
+  padding:0;
+}
+#notice {
+	font:bold 14px/22px georgia; 
+	width:350px;text-align:center;
+	padding:10px;
+	margin:5px auto;
+}
+#notice span.desc {font-weight:normal; font-size:14px}
+#gState {
+	color: #DA0000;
+}
+#gState.alive {
+	color: #649D00;
+}
+#title {
+	text-align:center;font-size:24px;
+	margin:0;line-height:10px;
+	min-width:960px;		
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px #888;
+	box-shadow: 0 0 5px #888; 
+	border-bottom:1px solid #fff;
+}
+#wrapwrap {
+	padding:15px 0 10px;
+	border-bottom:1px solid #DEDEDE;
+}
+#titleWrap {
+	position:relative;
+	cursor:pointer; z-index:10;
+}
+#titleWrap #host {display:none}
+#titleWrap.hover #host {display:inline}
+#ver {position:relative;font:11px georgia; z-index:5;}
+span.red {color:red}
+#container {
+	width:960px;margin:0 auto;
+	margin-top:15px;
+}
+#maker {text-align:right; font:12px georgia;padding:0.25em 2em}
+h3 {border-bottom:1px solid #DEDEDE;padding: 5px 0 5px 10px;}
+h4 {border-bottom:1px solid #DEDEDE;padding: 5px 10px; font-size:16px}
+#imgDesc {text-align:center}
+div.pre {font-size:14px}
+span.desc {color:#B6B6B6;font-size:14px;}
+button { 
+	display:inline-block;vertical-align:middle; 
+	height:1.75em;line-height:1.75em;
+	padding:0 3px;
+	font:14px 'Courier New';
+}
+button.bWidth {width:270px}
+#download a{
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#home a{
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+/* API DOCUMENTS */
+
+#api ul {font:12px/1.5em 'Courier New'}
+#api #container {font:12px/1.5em georgia}
+
+/*  MENU ITEMS */
+#pages {position:absolute;right:0;top:3px;padding:5px;margin:0}
+#pages a {position:relative;display:inline-block;font:14px georgia;padding:5px 5px;border:1px solid #DEDEDE;text-align:center;margin-left:-1px;cursor:pointer}
+#pages span.hover a{
+	z-index:10;
+	border-color: #CCCCCC;
+	background: #E7FDC5;
+}
+#pages a:link,
+#pages a:visited 
+{	text-decoration:none; color:#434343}
+#pages span.hover a:link,
+#pages span.hover a:visited 
+{ text-decoration:none; 
+	color: #3C6200;}
