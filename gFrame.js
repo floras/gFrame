@@ -71,7 +71,7 @@
 		return gFrame.main.document.getElementById(id);
 	};
 	gFrame.create = function(id, text, dimension){
-		if (gFrame.main.document.getElementById(id)) return false; 
+		if (gFrame.main.document.getElementById(id)) return gFrame.get(id); 
 		var _default = { top : 100, left : 100, width:"", height:"", style : "border:3px solid #f00"};
 		
 		if (dimension) for (var i in dimension) _default[i] = dimension[i];
