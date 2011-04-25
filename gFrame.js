@@ -341,7 +341,6 @@
 		}
 		return items;
 	};
-
 	/*
 	* memory util
 	*/
@@ -392,6 +391,26 @@
 				gFrame.unregister(this.id);
 				return this;
 			}
+		};
+	};
+
+	/*
+	*  once util
+	*/
+	var once = [];
+	gFrame.once = function(id, code) {
+		if (once.indexOf(id) > -1) return gFrame;
+		once.push(id);
+		gFrame.eval(code);
+		return gFrame;
+	};
+	gFrame.once.remove = function(id) {
+		var index = once.indexOf(id);
+		if (index > -1) once.remove(index);
+		return gFrame;
+	}
+	gFrame.once.empty = function() { 
+		once.length = 0;
 		return gFrame;
 	}
 	gFrame.once.size = function() {
