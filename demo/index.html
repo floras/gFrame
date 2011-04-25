@@ -33,6 +33,7 @@
 	h3 {border-bottom:1px solid #DEDEDE}
 	#imgDesc {text-align:center}
 	div.pre {font-size:14px}
+	span.desc {color:#B6B6B6;font-size:14px;}
 	</style>
 	<script type="text/javascript" src="../resource/jquery.js"></script>
 	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
@@ -50,11 +51,13 @@
 		<span id="ver"></span> <div id="pages"><span>HOME</span><span>DEMO1</span><span>DEMO2</span><span>API</span><span>DOWNLOAD</span></div></h1>
 	<div id="container">
 		<div id="maker"> made by <a href="http://50ndd1n6.tistory.com" target="_blank">50ndd1n6</a> </div>
-		gFrame is for inserting frame document by javascript. Although many skin(or template) of sites can be modified, one can't make a plain html page. If you play the music in the blog without stopping. gFrame helps you. gFrame is available in the mordern browser and old one. From IE5.5 to IE10, gFrame works well. gFrame gives you another useful thing. You can handle element(gLayer) without painful. gFrame is written in ASCII. It is availble in the almost charset. (ASCII, UTF-8, ISO8601-X, EUC-KR, EUC-JP, CP949, ...)    
+		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for inserting frame document by javascript. Although many skin(or template) of sites can be modified, one can't make a plain html page. If you play the music in the blog without stopping. gFrame helps you. gFrame is available in the mordern browser and old one. From IE5.5 to IE10, gFrame works well. gFrame gives you another useful thing. You can handle element(gLayer) without painful. gFrame is written in ASCII. It is availble with the most of charset. <span class="desc">(ASCII, UTF-8, ISO8601-X, EUC-KR, EUC-JP, CP949, ...)</span>    
 		<h3> USAGE </h3>
 		<div id="imgDesc">
 			<img src="image.png" alt="image description"/>
 		</div>
+		<button onclick="gFrame.exit()">gFrame.exit()</button>
+		<button onclick="gFrame.start()">gFrame.start()</button><br/>
 		<h3> EXAMPLE (gLayer)</h3>
 		<div class="pre">
 		<pre class="brush: js">gFrame("exam1", 
@@ -68,7 +71,10 @@
 		<button onclick="gFrame('exam1').hide()">gFrame('exam1').hide()</button>
 		<button onclick="gFrame('exam1').show()">gFrame('exam1').show()</button><br/>
 		<button onclick="gFrame('exam1').toBack()">gFrame('exam1').toBack()</button>
-		<button onclick="gFrame('exam1').toFront()">gFrame('exam1').toFront()</button>
+		<button onclick="gFrame('exam1').toFront()">gFrame('exam1').toFront()</button><br/>
+		<button onclick="gFrame('exam1').opacity('0.3')">gFrame('exam1').opacity(0.3)</button>
+		<button onclick="gFrame('exam1').opacity('0.6')">gFrame('exam1').opacity(0.6)</button>
+		<button onclick="gFrame('exam1').opacity('1')">gFrame('exam1').opacity(1)</button>
 	</div>
 	<script type="text/javascript">
 	 SyntaxHighlighter.all()

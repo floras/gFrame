@@ -45,6 +45,7 @@
 		if (code) return gFrame.create(id,code,option);
 		else return gFrame.get(id);
 	};
+	gFrame.start = function() {return gFrame}; // dummy function;
 	gFrame.cookie = cookies;
 	gFrame.ver = "v0.1.01pa";
 	gFrame.loaded = false;
@@ -255,6 +256,9 @@
 			style  : function(v) {
 				if (v !== undefined) { gFrame.style(this.id, v);  return this;
 				} else return gFrame.style(this.id); 
+			},  
+			opacity : function(v) {
+					gFrame.opacity(this.id, v);  return this;
 			},
 			toBack : function()  {gFrame.toBack(this.id);         return this;},
 			toFront : function() {gFrame.toFront(this.id);        return this;},  
