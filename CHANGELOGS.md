@@ -1,12 +1,18 @@
 v0.1.02pa
 ===
 
-*  [New] gFrame.alive property for checking gFrame is alive 
-*  [New] using pushState (HTML5)
-*  [New] gFrame.once
-*  [New] gFrame.memory
-*  [New] added dummy function
+*  [NEW] gFrame.alive property for checking gFrame is alive 
+*  [NEW] using pushState (HTML5)
+*  [NEW] gFSETUP for main window (script, style)
+*  [NEW] gFrame.once
+*  [NEW] added dummy function
 *  [BUG] left -> right 
+*  [BUG] IE6 horizontal scroll fix
+*  [DEL] gFrame.memory 
+*  [DEL] gFrame.onLoad 
+*  [BUG] ALL IE BUG URL FIX WITHOUT TRICK
+*  [DOC] EXAMPLE (BLOGGER)
+
 
 
 v0.1.01pa

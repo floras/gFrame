@@ -25,15 +25,17 @@
 			</span><br/>
 			<span id="ver"></span> 
 			<div id="pages">
-				<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="">DEMO2</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
+				<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
 			</div>
 		</div>
 	</h1>
 	<div id="container">
 		<div id="notice"> gFrame is <span id="gState"> </span><br /><span class="desc"></span></div>
 		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for instantly inserting frame at the current document by javascript. Although many skins(or templates) can be modified, one can't easily make a plain html page for using the frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers and old one(from IE5.5 to IE10). Moreover gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts.<br/>
-		<button onclick="gFrame('player').remove();">stop music</button>
-		<button onclick="gFrame.once.remove('player');gFrame.content.music();">play music</button>
+		<button onclick="gFrame('player').remove();">remove player</button>
+		<button onclick="gFrame.once.remove('player');gFrame.content.music();">create player(autoplay, hidden)</button>
+		<button onclick="gFrame('player').show();">show player</button>
+		<button onclick="gFrame('player').hide();">hide player</button>
 		<h3> USAGE </h3>
 		<div id="imgDesc">
 			<img src="image.png" alt="image description"/>
@@ -71,21 +73,34 @@
 		</ul>
 		If global is true, the function will be triggered always at the any page. <br/>
 		If global is false or undefined, the function works at the current page.
+		<h3> gFSETUP</h3>
+		<div class="pre">
+		<pre class="brush: js;html-script: true">
+		&lt;script/>
+		gFSETUP = {
+			style    : "body{font:12px georiga}...",
+			html     : "&lt;div> HELLO WORLD&lt;/div>",
+			scripts  : ['alert("hi");', function(){alert("hello"}]
+		};
+		&lt;/script>
+		&lt;script type="text/javascript" src="gFrame.js">&lt;/script>
+		</pre>
+		</div>
+		This option is used for gFrame.main window.<br/>	<br/> 
 		<h3> Checking update</h3>
-		This document could be outdated. You have to delete cache file in the browser or check the github source. 
-		Function key(CRTL+F5) doesn't work.	<br/>	<br/> 
+		Sometimes this document is old. It is loaded from your cache file. 
+		<br/>	<br/> <br/>	<br/> 
+
 	</div>
-	<script type="text/javascript">
-	 SyntaxHighlighter.all()
-	</script>
 	<script>
 	$(function(){
 		if (gFrame && gFrame.alive) {
+			
 			gFrame('hi', "HI <br/> <button onclick=\"gFrame('hi').remove()\">close</button>", {right:20, top:50, width:"120", height:"60", style: "border:5px solid #f00;backgorund:#fff;font:14px/1.7em georgia;text-align:center;"});
 
 			window.music = function() { 
 				gFrame.once('player', function(){
-					var code = '<embed src="http://www.youtube.com/p/8B2C3091F8C77A5F?hl=en_US&fs=1&autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true"></embed>';
+					var code = '<embed src="http://www.youtube.com/p/8B2C3091F8C77A5F?hl=en_US&fs=1&autoplay=1&loop=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true"></embed>';
 					gFrame('player', code, {top:10, left:10, width:240, height:185, style:'border:3px solid #f00'}).hide();
 				});
 			};
@@ -102,11 +117,6 @@
 			{top:30, left:30, width: 240, height: 185, style:'border: 3px solid #f00'});
 		});
 	});
-	</script>
-	<script>
-
-//gFrame.main.eval.call(null, test);
-
 	</script>
 </body>
 </html>

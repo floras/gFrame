@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="../gFrame.js"></script>
+	<title> gFrame (EXAMPLE)</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="../gFrame.js"></script>
+	<title> gFrame </title>
+	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
+	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" /> 
+	<link href="style.css" rel="stylesheet" type="text/css" /> 
+	<script type="text/javascript" src="../resource/jquery.js"></script>
+	<script type="text/javascript" src="demo.js"></script>
+	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js"></script>
+</head>
+<body id="api">
+<a href="http://github.com/floras/gFrame" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;z-index:50;" src="https://d3nwyuy0nl342s.cloudfront.net/img/6429057dfef9e98189338d22e7f6646c6694f032/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+
+<h1 id="title" style="position:relative;">
+	<div id="wrapwrap">
+		<span id="titleWrap">
+			<span class="red">g</span><span id="host">host </span><span class="red">Frame</span>
+		</span><br/>
+		<span id="ver"></span> 
+		<div id="pages">				
+				<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
+		</div>
+	</div>
+</h1>
+<div id="container">
+<div style="text-align:center">
+	<img src="icons/blogger.png" />
+	<img src="icons/youtube.png" />
+</div>
+
+<h3>I. Blogger & Youtube playerlist</h3>
+<div class="info">
+There is <a href="http://www.google.com/support/forum/p/blogger/thread?tid=6f629d7c3aad1518&hl=en" target="_blank">a conflict</a> between gFrame and 'followers' gadget in the Blogger.<br/>
+You have to remove that gadget. (Design > Page Elements)
+</div>
+<h4> 1. Insert gFrame script </h4>
+<div><img src="blogger/Blogger_gFrame_code.png" /> </div>
+Add one line. It should be declared at first script after head element. <br/>
+<span class="desc">(Blogger template require script tag to be <a href="http://www.cs.tut.fi/~jkorpela/html/empty.html" target="_blank">empty element</a>. Other sites should be end with &lt;/script>)</span>
+		<div class="pre">
+		<pre class="brush: html">&lt;script src='http://floras.github.com/gFrame/gFrame.js' type='text/javascript'/></pre></div>
+<h4> 2. Create playlist and get the source code from youtube </h4>
+<img src="blogger/makePlaylist.png" alt="create playlist and add video" />
+<img src="blogger/playlist.png" alt="get the source code" /><br/>
+If you don't know where playlist is. <br />
+Log in youtube and click this (<a href="http://www.youtube.com/view_all_playlists" target="_blank">http://www.youtube.com/view_all_playlists</a>)<br/>
+Choose your playlist and copy the source code
+
+<h4> 3. write code</h4>
+<div class="pre">
+<pre class="brush: js">
+window.music = function() { 
+	gFrame.once('player', function(){
+		var code = '&lt;embed src="http://www.youtube.com/p/8B2C3091F8C77A5F?hl=en_US&fs=1&autoplay=1&loop=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true">&lt;/embed>';
+		gFrame('player', code, {top:10, left:10, width:240, height:185, style:'border:3px solid #f00'}).hide();
+	});
+};
+music();
+</pre>
+</div>
+Check the script
+ <ul>
+	<li> If you always use the youtube player, 1~2line and 5~7line would be removed. </li>
+	<li> I use gFrame.once for on/off player </li>
+	<li> Change value of src (www.youtube.com<span style="color:red">/p/8B2C3091F8C77</span>)</li>
+	<li> I want to play the music in the background. So I added '.hide()'</li>
+	<li> If you need opacity at the flash. add 'wmode="transparnent" in the 'embed' element.</li>
+	<li> autoplay : autoplay=1, loop : loop=1 check <a href="http://code.google.com/intl/en/apis/youtube/player_parameters.html" target="_blank">this</a> </li>
+	<li> Check the option : top, left, right, bottom, width, height, style </li>
+	<li> Line 7, Excute the code. If you don't want play immediately, delete this line. </li>
+</ul>
+
+<h4> 4. Insert code into the template</h4>
+
+<div class="pre">
+<pre class="brush: js;html-script: true">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html b:version=&#039;2&#039; class=&#039;v2&#039; expr:dir=&#039;data:blog.languageDirection&#039; xmlns=&#039;http://www.w3.org/1999/xhtml&#039; xmlns:b=&#039;http://www.google.com/2005/gml/b&#039; xmlns:data=&#039;http://www.google.com/2005/gml/data&#039; xmlns:expr=&#039;http://www.google.com/2005/gml/expr&#039;&gt;
+  &lt;head&gt;
+    &lt;script src=&#039;http://floras.github.com/gFrame/gFrame.js&#039; type=&#039;text/javascript&#039;/&gt;
+	&lt;script type=&#039;text/javascript&#039;&gt;
+	//&lt;![CDATA[
+	if(window.gFrame&amp;&amp;gFrame.alive) {
+		window.music = function() {
+			gFrame.once(&#039;player&#039;, function(){
+				var code = &#039;&lt;embed src=&quot;http://www.youtube.com/p/8B2C3091F8C77A5F?hl=en_US&amp;fs=1&amp;autoplay=1&amp;loop=1&quot; type=&quot;application/x-shockwave-flash&quot; width=&quot;100%&quot; height=&quot;100%&quot; allowscriptaccess=&quot;always&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/embed&gt;&#039;;
+				gFrame(&#039;player&#039;, code, {top:10, left:10, width:240, height:185, style:&#039;border:3px solid #f00&#039;}).hide();
+			});
+		};
+		music();
+	}
+	//]]&gt;
+	&lt;/script&gt;
+.......
+</pre>
+</div>
+<h4> 5. Do you need button ?</h4>
+<div class="pre">
+<pre class="brush: js;html-script: true">
+	&lt;button onclick="gFrame.once.remove('player');gFrame.content.music();">PLAY&lt;/button>
+	&lt;button onclick="gFrame.remove('player')">STOP&lt;/button>	
+	&lt;button onclick="gFrame.show('player')">SHOW&lt;/button>		
+	&lt;button onclick="gFrame.hide('player')">HIDE&lt;/button>	
+</pre>
+</div>
+</body>
+</html>

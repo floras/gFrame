@@ -8,7 +8,10 @@
 	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" /> 
 	<link href="style.css" rel="stylesheet" type="text/css" /> 
 	<script type="text/javascript" src="../resource/jquery.js"></script>
+	<script type="text/javascript" src="../resource/DD_belatedPNG_0.0.8a-min.js"></script>
 	<script type="text/javascript" src="demo.js"></script>
+	<style>
+	</style>
 </head>
 <body id="api">
 <a href="http://github.com/floras/gFrame" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;z-index:50;" src="https://d3nwyuy0nl342s.cloudfront.net/img/6429057dfef9e98189338d22e7f6646c6694f032/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
@@ -20,15 +23,15 @@
 			<span class="red">g</span><span id="host">host </span><span class="red">Frame</span>
 		</span><br/>
 		<span id="ver"></span> 
-		<div id="pages">
-			<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="">DEMO2</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
+		<div id="pages">				
+				<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
 		</div>
 	</div>
 </h1>
 <div id="container">
 	<ul>
 		<li> gFrame.main - outter frame window </li>
-		<li> gFrame.content - original document window </li>
+		<li> gFrame.content - original source window </li>
 		<li> gFrame.alive </li>
 	</ul>
 	<h4> gFrame : start | stop </h4>
@@ -45,6 +48,7 @@
 		<li> gFrame.load(function, global)</li>
 		<li> gFrame.unload(function, global)</li>
 		<li> gFrame.trigger(type)</li>
+		<li> gFrame.removeEvent(type, func)</li>
 	</ul>
 	<h4> gLayer : create | remove </h4>
 	<ul>
@@ -53,10 +57,12 @@
 		<li> gFrame.remove(id)</li>
 		<li> gFrame.get(id) - It returns gLayer </li>
 		<li> gFrame(id).remove()</li>
+		<li> gFrame.has(id)</li>
 		<li> gFrame.size()</li>
 		<li> gFrame.list()</li>
 	</ul>
-	Don't worry about creating same id of gLayer. Same id is ignored.
+	Don't worry about creating same id of gLayer. Same id is ignored. <br/>
+	Use 'gFrame.has' for checking existence. 
 	<h4> gLayer : dimension </h4>
 	<ul>
 		<li> gLayer.top(val) </li>
@@ -76,29 +82,16 @@
 	<h4> gFrame : once </h4>
 	<ul>
 		<li> gFrame.once(id, code or function)</li>
+		<li> gFrame.once.remove(id) </li>
 		<li> gFrame.once.empty() </li>
 		<li> gFrame.once.size() </li>
 		<li> gFrame.once.list() </li>
 	</ul>
 	If you excute small code written in the document. Once is useful.
-	<h4> gFrame : memory </h4>
-	<ul>
-		<li> gFrame.memory(id, code or function, desc)</li>
-		<li> gFrame.memory.register(id, code or function)</li>
-		<li> gFrame.memory.unregister(id)</li>
-		<li> gFrame.memory.excute(id)</li>
-		<li> gFrame.memory.list()</li>
-		<li> gFrame.memory.size()</li>
-		<li> gFrame.memory.get(id)</li>
-	</ul>
 	<h4> etc </h4>
 	<ul>
-		<li> gFrame.eval(code or function) - excute code in the gFrame</li>
+		<li> gFrame.eval(code or function) - excute code in the gFrame.main</li>
 	</ul>
-	Becareful about using style. It matchs style attribute of element. Don't omit other value.
-	<br />
-	<br />
-	<br />
 	<br />
 </div>
 </body>

@@ -1,4 +1,9 @@
-
+html,body {
+	margin:0;
+	padding:0;
+	height:100%;
+	width:100%;
+}
 body {
   font-family: Helvetica, Arial, FreeSans, san-serif;
   font-size: 16px;
@@ -23,11 +28,11 @@ body {
 #title {
 	text-align:center;font-size:24px;
 	margin:0;line-height:10px;
-	min-width:960px;		
+	min-width:960px;
+	border-bottom:1px solid #fff;		
 	-moz-box-shadow: 0 0 5px #888;
 	-webkit-box-shadow: 0 0 5px #888;
 	box-shadow: 0 0 5px #888; 
-	border-bottom:1px solid #fff;
 }
 #wrapwrap {
 	padding:15px 0 10px;
@@ -52,12 +57,29 @@ h4 {border-bottom:1px solid #DEDEDE;padding: 5px 10px; font-size:16px}
 div.pre {font-size:14px}
 span.desc {color:#B6B6B6;font-size:14px;}
 button { 
-	display:inline-block;vertical-align:middle; 
-	height:1.75em;line-height:1.75em;
-	padding:0 3px;
+	display:inline-block;
+	vertical-align:middle;
+	background:#F3F3F3;
+	border:1px solid #E6E6E6;
+	margin: 1px 2px;
+	line-height:24px;
+	padding:3px 3px;
 	font:14px 'Courier New';
+	border-radius:3px;
+}
+button.enabled {
+	border-color:#F4D738;
 }
 button.bWidth {width:270px}
+
+button.hover {
+	border-color:#D98001;
+	background:#F4D738;
+	cursor:pointer;
+	padding:4px 3px 2px;
+	color:#000;
+}
+
 #download a{
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
@@ -75,6 +97,7 @@ button.bWidth {width:270px}
 #pages {position:absolute;right:0;top:3px;padding:5px;margin:0}
 #pages a {position:relative;display:inline-block;font:14px georgia;padding:5px 5px;border:1px solid #DEDEDE;text-align:center;margin-left:-1px;cursor:pointer}
 #pages span.hover a{
+	display:inline-block;
 	z-index:10;
 	border-color: #CCCCCC;
 	background: #E7FDC5;
@@ -87,3 +110,13 @@ button.bWidth {width:270px}
 { text-decoration:none; 
 	color: #3C6200;}
 input {display:inline-block}
+div.info {
+	text-align:center;
+	border:2px solid #DBD12E;
+	padding:10px;
+	width:550px;
+	background:#FFFDE2;
+	margin:10px auto;
+	font:14px/1.75em arial;
+	border-radius:5px;
+}
