@@ -110,7 +110,7 @@
 
 			window.music = function() { 
 				gFrame.once('player', function(){
-					var code = '<embed src="http://www.youtube.com/p/8B2C3091F8C77A5F?hl=en_US&fs=1&autoplay=1&loop=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true"></embed>';
+					var code = '<iframe title="YouTube video player" width="100%" height="100%" src="http://www.youtube.com/embed/41mpCwZrCOw?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>';
 					gFrame('player', code, {top:10, left:10, width:240, height:185, style:'border:3px solid #f00'}).hide();
 				});
 			};
