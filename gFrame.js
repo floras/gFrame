@@ -1,5 +1,5 @@
 /* 
-*  gFrame v0.1.01pa
+*  gFrame v0.1.02pa
 *
 * Copyright (c) 2011 50ndd1n6@gmail.com, 50ndd1n6.tistory.com
 * Dual licensed under the MIT and GPL licenses:
@@ -486,17 +486,17 @@
 	};
 		
 	gFrame.store = {
-		style  : 'html, body{ height:100%;margin:0;padding:0;}\n '
-			+'#debug {position:absolute;color:#5E5E5E;z-index:500;font:10px arial;left:5px;bottom:15px;border:1px solid #f00;border-radius:3px;padding:3px;cursor:default}'
-			+'div.gLayer {position:absolute;z-index:100}\n',
+		style  : 'html, body{ height:100%;margin:0;padding:0;}\n '+ '#debug {position:absolute;color:#5E5E5E;z-index:500;font:10px arial;left:5px;bottom:15px;border:1px solid #f00;border-radius:3px;padding:3px;cursor:default}' + 'div.gLayer {position:absolute;z-index:100}\n',
 		scripts : [],
-		html	: ""
+		head	: "",
+		body	: ""
 	};
 
 	if (window.gFSETUP) {
-		gFrame.store.style = gFrame.store.styles + gFSETUP.styles;
+		gFrame.store.style = gFrame.store.styles + gFSETUP.style;
 		gFrame.store.scripts = gFrame.store.styles.concat(gFSETUP.scripts);
-		gFrame.store.html = gFrame.store.html + gFSETUP.html;		
+		gFrame.store.head = gFrame.store.head + gFSETUP.head;		
+		gFrame.store.body = gFrame.store.body + gFSETUP.body;		
 	}
 
 	gFrame.mReady = function(a, b) {
@@ -512,8 +512,9 @@
 	};
 	// Main Frame Text Escape
 	var body  = '<!doctype html><html><head><title>main Frame</title>';
-	body += '<script type=`text/javascript`>document.write(`<style>`+top.gFrame.store.style+`<\/style>`);<\/script></head>';
-	body += '<body id=`gBody`><div id=`debug` class=`gLayer`>gFrame</div><script>document.write(``+top.gFrame.store.html)</script>';
+	body += '<script type=`text/javascript`>document.write(`<style>`+top.gFrame.store.style+`<\/style>`);<\/script>';
+	body += '<script type=`text/javascript`>document.write(top.gFrame.store.head);<\/script></head>';
+	body += '<body id=`gBody`><div id=`debug` class=`gLayer`>gFrame</div><script>document.write(top.gFrame.store.body)</script>';
 	body += '<iframe id=`cFrame` name=`cFrame` frameBorder=`0` scrolling=`yes`  style=`margin:0;padding:0;overflow:visible;border:0;width:100%;height:100%;` allowtransparency=`true`></iframe><script type=`text/javascript`>window.gFrame = top.gFrame.mReady(self, frames[`cFrame`]);</script>';
 	body += '</body></html>';
 

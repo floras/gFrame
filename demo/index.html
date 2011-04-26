@@ -4,6 +4,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<script type="text/javascript" src="../gFrame.js"></script>
 	<title> gFrame </title>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'/>
+	<link href='http://fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css'/>
 	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
 	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" /> 
 	<link href="style.css" rel="stylesheet" type="text/css" /> 
@@ -20,20 +22,20 @@
 
 	<h1 id="title" style="position:relative;">
 		<div id="wrapwrap">
-			<span id="titleWrap">
+			<div id="titleWrap">
 				<span class="red">g</span><span id="host">host </span><span class="red">Frame</span>
-			</span><br/>
-			<span id="ver"></span> 
-			<div id="pages">
-				<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
 			</div>
+			<div id="ver"></div> 
 		</div>
 	</h1>
+	<div id="pages">
+		<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
+	</div>
 	<div id="container">
 		<div id="notice"> gFrame is <span id="gState"> </span><br /><span class="desc"></span></div>
 		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for instantly inserting frame at the current document by javascript. Although many skins(or templates) can be modified, one can't easily make a plain html page for using the frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers and old one(from IE5.5 to IE10). Moreover gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts.<br/>
 		<button onclick="gFrame('player').remove();">remove player</button>
-		<button onclick="gFrame.once.remove('player');gFrame.content.music();">create player(autoplay, hidden)</button>
+		<button class="bWidth" onclick="gFrame.once.remove('player');gFrame.content.music();">create player(auto, hidden)</button>
 		<button onclick="gFrame('player').show();">show player</button>
 		<button onclick="gFrame('player').hide();">hide player</button>
 		<h3> USAGE </h3>
@@ -79,7 +81,8 @@
 		&lt;script/>
 		gFSETUP = {
 			style    : "body{font:12px georiga}...",
-			html     : "&lt;div> HELLO WORLD&lt;/div>",
+			head     : " ",
+			body     : "&lt;div> HELLO WORLD&lt;/div>",
 			scripts  : ['alert("hi");', function(){alert("hello"}]
 		};
 		&lt;/script>

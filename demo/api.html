@@ -4,12 +4,16 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<script type="text/javascript" src="../gFrame.js"></script>
 	<title> gFrame (API)</title>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css'>
 	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
 	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" /> 
 	<link href="style.css" rel="stylesheet" type="text/css" /> 
 	<script type="text/javascript" src="../resource/jquery.js"></script>
-	<script type="text/javascript" src="../resource/DD_belatedPNG_0.0.8a-min.js"></script>
 	<script type="text/javascript" src="demo.js"></script>
+	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js"></script>
 	<style>
 	</style>
 </head>
@@ -17,17 +21,17 @@
 <a href="http://github.com/floras/gFrame" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;z-index:50;" src="https://d3nwyuy0nl342s.cloudfront.net/img/6429057dfef9e98189338d22e7f6646c6694f032/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
 
 
-<h1 id="title" style="position:relative;">
-	<div id="wrapwrap">
-		<span id="titleWrap">
-			<span class="red">g</span><span id="host">host </span><span class="red">Frame</span>
-		</span><br/>
-		<span id="ver"></span> 
-		<div id="pages">				
-				<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
+	<h1 id="title" style="position:relative;">
+		<div id="wrapwrap">
+			<span id="titleWrap">
+				<span class="red">g</span><span id="host">host </span><span class="red">Frame</span>
+			</span><br/>
+			<span id="ver"></span> 
 		</div>
+	</h1>
+	<div id="pages">
+		<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
 	</div>
-</h1>
 <div id="container">
 	<ul>
 		<li> gFrame.main - outter frame window </li>
@@ -65,12 +69,13 @@
 	Use 'gFrame.has' for checking existence. 
 	<h4> gLayer : dimension </h4>
 	<ul>
-		<li> gLayer.top(val) </li>
-		<li> gLayer.bottom(val)</li>
-		<li> gLayer.left(val)</li>
-		<li> gLayer.right(val)</li>
-		<li> gLayer.width(val)</li>
-		<li> gLayer.height(val)</li>
+		<li> gLayer.top([val]) </li>
+		<li> gLayer.bottom([val])</li>
+		<li> gLayer.left([val])</li>
+		<li> gLayer.right([val])</li>
+		<li> gLayer.width([val])</li>
+		<li> gLayer.height([val])</li>
+		<li> gLayer.zIndex([val])</li>
 	</ul>
 	It returns gLayer instance or value.
 	<h4> gLayer : etc </h4>
@@ -87,12 +92,28 @@
 		<li> gFrame.once.size() </li>
 		<li> gFrame.once.list() </li>
 	</ul>
-	If you excute small code written in the document. Once is useful.
+	If you excute small code written in the document. Once is useful. 
 	<h4> etc </h4>
 	<ul>
 		<li> gFrame.eval(code or function) - excute code in the gFrame.main</li>
 	</ul>
-	<br />
+	<h4> gFSETUP </h4>
+	<div class="pre">
+	<pre class="brush: js;html-script: true">
+	&lt;script/>
+	gFSETUP = {
+		style    : "body{font:12px georiga}...",
+		head     : " ",
+		body     : "&lt;div> HELLO WORLD&lt;/div>",
+		scripts  : ['alert("hi");', function(){alert("hello"}]
+	};
+	&lt;/script>
+	&lt;script type="text/javascript" src="gFrame.js">&lt;/script>
+	</pre>
+	</div>
+	<br/>
+	<br/>
+	<br/>
 </div>
 </body>
 </html>

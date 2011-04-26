@@ -4,9 +4,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<script type="text/javascript" src="../gFrame.js"></script>
 	<title> gFrame (EXAMPLE)</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script type="text/javascript" src="../gFrame.js"></script>
-	<title> gFrame </title>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css' />
+	<link href='http://fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css' />
 	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
 	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" /> 
 	<link href="style.css" rel="stylesheet" type="text/css" /> 
@@ -25,11 +24,11 @@
 			<span class="red">g</span><span id="host">host </span><span class="red">Frame</span>
 		</span><br/>
 		<span id="ver"></span> 
-		<div id="pages">				
-				<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
-		</div>
 	</div>
 </h1>
+<div id="pages">
+	<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
+</div>
 <div id="container">
 <div style="text-align:center">
 	<img src="icons/blogger.png" />
@@ -69,11 +68,11 @@ music();
 </div>
 Check the script
  <ul>
-	<li> If you always use the youtube player, 1~2line and 5~7line would be removed. </li>
-	<li> I use gFrame.once for on/off player </li>
+	<li> If you dont want remove the player, 1~2line and 5~7line would be removed. </li>
+	<li> 'gFrame.once' is for on/off player. </li>
 	<li> Change value of src (www.youtube.com<span style="color:red">/p/8B2C3091F8C77</span>)</li>
-	<li> I want to play the music in the background. So I added '.hide()'</li>
-	<li> If you need opacity at the flash. add 'wmode="transparnent" in the 'embed' element.</li>
+	<li> '.hide()' makes play in the background</li>
+	<li> If you need opacity of the flash. add 'wmode="transparnent" in the 'embed' element.</li>
 	<li> autoplay : autoplay=1, loop : loop=1 check <a href="http://code.google.com/intl/en/apis/youtube/player_parameters.html" target="_blank">this</a> </li>
 	<li> Check the option : top, left, right, bottom, width, height, style </li>
 	<li> Line 7, Excute the code. If you don't want play immediately, delete this line. </li>

@@ -5,15 +5,15 @@ html,body {
 	width:100%;
 }
 body {
-  font-family: Helvetica, Arial, FreeSans, san-serif;
-  font-size: 16px;
+  font-family: 'Droid Serif', Helvetica, Arial, FreeSans, san-serif;
+  font-size: 14px;
   line-height: 1.75em;
   color:#434343;
   margin:0;
   padding:0;
 }
 #notice {
-	font:bold 14px/22px georgia; 
+	font:bold 18px/22px 'Droid Serif'; 
 	text-align:center;
 	padding:10px;
 	margin:5px auto;
@@ -54,7 +54,18 @@ span.red {color:red}
 h3 {border-bottom:1px solid #DEDEDE;padding: 5px 0 5px 10px;}
 h4 {border-bottom:1px solid #DEDEDE;padding: 5px 10px; font-size:16px}
 #imgDesc {text-align:center}
-div.pre {font-size:14px}
+
+.syntaxhighlighter a, 
+.syntaxhighlighter div, 
+.syntaxhighlighter code, 
+.syntaxhighlighter table, 
+.syntaxhighlighter table td, 
+.syntaxhighlighter table tr, 
+.syntaxhighlighter table tbody, 
+.syntaxhighlighter table thead, 
+.syntaxhighlighter table caption, 
+.syntaxhighlighter textarea
+{font-size:14px !important;font-family:'Cousine' !important}
 span.desc {color:#B6B6B6;font-size:14px;}
 button { 
 	display:inline-block;
@@ -64,8 +75,8 @@ button {
 	margin: 1px 2px;
 	line-height:24px;
 	padding:3px 3px;
-	font:14px 'Courier New';
-	border-radius:3px;
+	font:14px 'Cousine';
+	border-radius:5px;
 }
 button.enabled {
 	border-color:#F4D738;
@@ -81,21 +92,27 @@ button.hover {
 }
 
 #download a{
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 8px;
 }
 #home a{
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
+	border-bottom-left-radius: 8px;
 }
 /* API DOCUMENTS */
 
-#api ul {font:12px/1.5em 'Courier New'}
-#api #container {font:12px/1.5em georgia}
+#api ul {font:12px/1.75em 'Droid Serif'}
 
 /*  MENU ITEMS */
-#pages {position:absolute;right:0;top:3px;padding:5px;margin:0}
-#pages a {position:relative;display:inline-block;font:14px georgia;padding:5px 5px;border:1px solid #DEDEDE;text-align:center;margin-left:-1px;cursor:pointer}
+#pages   {width:100%;text-align:center;}
+#pages a {
+	position:relative;
+	display:inline-block;
+	font:14px georgia;padding:5px;
+	border:1px solid #DEDEDE;
+	width:120px;
+	text-align:center;
+	background:#fff;
+	margin-left:-1px;
+	cursor:pointer}
 #pages span.hover a{
 	display:inline-block;
 	z-index:10;
