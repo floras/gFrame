@@ -494,7 +494,7 @@
 
 	if (window.gFSETUP) {
 		gFrame.store.style = gFrame.store.styles + gFSETUP.style;
-		gFrame.store.scripts = gFrame.store.styles.concat(gFSETUP.scripts);
+		gFrame.store.scripts = gFrame.store.scripts.concat(gFSETUP.scripts);
 		gFrame.store.head = gFrame.store.head + gFSETUP.head;		
 		gFrame.store.body = gFrame.store.body + gFSETUP.body;		
 	}
