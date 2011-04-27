@@ -493,7 +493,7 @@
 	};
 
 	if (window.gFSETUP) {
-		gFrame.store.style = (gFSETUP.style) ? gFrame.store.styles + gFSETUP.style : gFrame.store.styles;
+		gFrame.store.style = (gFSETUP.style) ? gFrame.store.style + gFSETUP.style : gFrame.store.style;
 		gFrame.store.scripts = gFrame.store.scripts.concat(gFSETUP.scripts);
 		gFrame.store.head = (gFSETUP.head) ? gFrame.store.head + gFSETUP.head : gFrame.store.head;		
 		gFrame.store.body = (gFSETUP.body) ? gFrame.store.body + gFSETUP.body : gFrame.store.body;		
