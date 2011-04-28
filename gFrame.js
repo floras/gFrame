@@ -432,7 +432,10 @@
 	var scriptList = [];
 	
 	gFrame.loadScript = function(src, callback/*, charset*/) {
-		if (scriptList.indexOf(src) > -1 ) return callback();
+		if (scriptList.indexOf(src) > -1 ) {
+			if (callback) callback();
+			return true;
+		}
 		var script = gFrame.main.document.createElement('script');
 		script.type = 'text/javascript';
 		script.onload = callback;
