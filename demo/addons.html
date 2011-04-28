@@ -63,6 +63,8 @@ player('http://www.youtube-nocookie.com/v/41mpCwZrCOw?fs=1&amp;hl=en_US');
 <script>
 $(document).ready(function(){
 
+if (gFrame.yPlayer) window.player = gFrame.yPlayer;
+
 $('#loader').click(function(){
 	gFrame.yReady = function() {
 		window.player = gFrame.yPlayer;
