@@ -191,7 +191,8 @@
 		return gFrame;
 	};
 	gFrame.full = function(id) {
-		var target = gFrame.main.document.getElementById(id);		
+		var target = gFrame.main.document.getElementById(id);
+		if (target.originalDimension) return gFrame;
 		var dimension = {width: gFrame(id).width(), height:gFrame(id).height()};
 		var top = target.style.top, bottom = target.style.bottom, left = target.style.left, right = target.style.right;
 		if (top&&(bottom!='auto')&&bottom) dimension.bottom = bottom; else dimension.top = top;
