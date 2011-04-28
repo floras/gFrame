@@ -170,6 +170,7 @@ div.info {
 	font:14px/1.75em arial;
 	border-radius:5px;
 }
-#WonButton {position:absolute;top:10px;right:10px;z-index:1000;border: 3px solid #43C881;border-radius:5px;text-align:center;}
-#onButton {display:block;background:#43C881;color:#fff;cursor:pointer;width:35px;height:20px;padding:15px;font:bold 14px arial}
-#onButton:hover{border:1px solid #66D399}
+#WoffButton {position:absolute;top:10px;right:10px;z-index:1000;border: 3px solid #FF5656;border-radius:5px;text-align:center;}
+#offButton {display:block;background:#FF5656;color:#fff;cursor:pointer;width:35px;height:20px;padding:15px;font:bold 14px arial}
+#offButton:hover{border:1px solid #FFAFAF}
+

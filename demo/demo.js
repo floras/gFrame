@@ -12,5 +12,5 @@ $(function(){
 	$("button:enabled").addClass('enabled');
 	$("<div class='overlay'></div>").appendTo($("#container"));
 	$("<div id='overlay-header' class='overlay'></div>").appendTo($("#title"));
-	if (!gFrame.alive) $("<div id='WonButton'><div id='onButton'onclick='gFrame.start();'>ON</div></div>").prependTo($("body"));
+	if (!gFrame.alive) $("<div id='WoffButton'><div id='offButton'onclick='gFrame.start();'>OFF</div></div>").prependTo($("body"));
 });
