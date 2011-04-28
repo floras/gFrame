@@ -28,9 +28,11 @@ body {
 	position:relative;
 	text-align:center;
 };
+h1 {margin:0;}
 #title {
 	text-align:center;font-size:24px;
 	margin:0;line-height:10px;
+	padding-top:20px;
 	min-width:960px;
 	border-bottom:1px solid #fff;		
 	-moz-box-shadow: 0 0 5px #888;
@@ -47,7 +49,7 @@ body {
 }
 #titleWrap #host {display:none}
 #titleWrap.hover #host {display:inline}
-#ver {position:relative;font:11px georgia; z-index:5;}
+#ver {position:relative;font:11px georgia; z-index:5;padding-bottom:20px;}
 span.red {color:red}
 #container {
 	position:relative;
