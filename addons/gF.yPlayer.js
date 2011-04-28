@@ -4,9 +4,9 @@
 *  2011-04-28
 */
 
-
 gFrame("yplayer", '<div id="ytapiplayer">Youtube Packed</div></div>', 
 	{top:20, left:20, width:400, height:325, style: 'border:3px solid #f00;'});
+
 
 function onYouTubePlayerReady(playerId) {
   var ytplayer = document.getElementById("myytplayer");
@@ -29,7 +29,7 @@ var _createYPlayer = function(ytplayer) {
 		if (id.indexOf('youtube.com') > -1 || id.indexOf('youtube-nocookie.com') > -1) { 
 			if (id.indexOf('watch')>0) id = id.split('v=')[1].split('&')[0];
 			else if (id.indexOf('embed/')>0) id = id.split('embed/')[1].split('?')[0].split('&')[0];
-		    else if (id.indexOf('v/') > -1)  id = id.split('v/')[1].split('?')[0].split('&')[0];
+			else if (id.indexOf('v/') > -1)  id = id.split('v/')[1].split('?')[0].split('&')[0];
 		} 	
 		return {id: id, start:target.start, quality:target.quality};
 	};
@@ -80,10 +80,10 @@ var _createYPlayer = function(ytplayer) {
 	return yPlayer;
 
 };
-gFrame.loadScript("https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js", function(){
-    var params = { allowScriptAccess: "always", wmode : 'transparent', allowfullscreen : 'true' };
-    var atts = { id: "myytplayer" };
-    swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3&playerapiid=ytplayer&autoplay=1",
-                       "ytapiplayer", "100%", "100%", "8", null, null, params, atts);
 
+gFrame.loadScript("https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js", function(){
+	var params = { allowScriptAccess: "always", wmode : 'transparent', allowfullscreen : 'true' };
+	var atts = { id: "myytplayer" };
+	swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3&playerapiid=ytplayer&autoplay=1",
+					   "ytapiplayer", "100%", "100%", "8", null, null, params, atts);
 });

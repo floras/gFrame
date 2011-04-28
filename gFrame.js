@@ -431,21 +431,19 @@
 
 	var scriptList = [];
 	
-	gFrame.loadScript = function(src, callback/*, charset*/) {
-		if (scriptList.indexOf(src) > -1 ) {
-			if (callback) callback();
-			return true;
-		}
+	gFrame.loadScript = function(src, callback) {
 		var script = gFrame.main.document.createElement('script');
 		script.type = 'text/javascript';
-		script.onload = callback;
+		if (callback) {
+			script.onload = callback;
+			if (document.all&&!window.Storage) { // ie6&ie7
+				script.onreadystatechange = function() {
+					if (this.readyState == 'complete') return callback();
+				}
+			}		
+		};
+		if (scriptList.indexOf(src) == -1) scriptList.push(src);
 		script.src = src;
-		scriptList.push(src);
-		if (document.all&&!window.Storage) { // ie6&ie7
-			script.onreadystatechange = function() {
-				if (this.readyState == 'complete') return callback();
-			}
-		}
 		gFrame.main.document.body.appendChild(script);
 	};
 
