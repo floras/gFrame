@@ -64,11 +64,11 @@
 		<h3> SIMPLE EXAMPLE (Creating gLayer) </h3>
 		<div class="pre">
 		<pre class="brush: js">gFrame("exam1", 
-		'&lt;embed src="http://www.youtube.com/p/43D504D7EA57919D?hl=ko_KR&amp;fs=1"
+		'&lt;embed src="http://www.youtube.com/p/43D504D7EA57919D?autoplay=1"
 		    type="application/x-shockwave-flash" width="100%" height="100%"
 			allowscriptaccess="always" allowfullscreen="true" wmode="transparent">
 		&lt;/embed>', 
-		{top:30, left:30, width: 240, height: 185, style:'border: 3px solid #f00'});</pre></div>
+		{top:50, left:50, width: 480, height: 385, style:'border: 3px solid #f00'});</pre></div>
 		gFrame give you simple short-hand function. Sometimes this wrapper function is useful. This fuction is chainable. <br/>
 		<button id="EXAM1-ON" class="bWidth av">gFrame('exam1','code',options)</button>
 		<button class="bWidth av" onclick="gFrame('exam1').remove()">gFrame('exam1').remove()</button><br/>
@@ -142,7 +142,7 @@
 		};
 		$("#EXAM1-ON").click(function(){
 			gFrame("exam1", '<embed src="http://www.youtube.com/p/43D504D7EA57919D?autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>', 
-			{top:30, left:30, width: 480, height: 280, style:'border:0'}).fullBack();
+			{top:50, left:50, width: 480, height: 298, style:'border: 3px solid #f00'});
 		});
 	});
 	</script>
