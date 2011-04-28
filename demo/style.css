@@ -53,7 +53,7 @@ h1 {margin:0;}
 	cursor:pointer; z-index:10;
 	text-shadow:1px 1px #000, 0 0 5px #fff;
 }
-#titleWrap #host {display:inline-block;width:0;line-height:1em;overflow:hidden;}
+#titleWrap #host {display:inline-block;width:0;line-height:1em;overflow:hidden;padding:1px;}
 #titleWrap.hover #host {width:58px;text-align:left;}
 #ver {position:relative;font:11px georgia; z-index:5;padding-bottom:20px;color:#F1F1F1}
 span.red {color:red}
@@ -61,6 +61,7 @@ span.red {color:red}
 	position:relative;
 	padding:30px 20px 5px;
 	width:960px;margin:-27px auto 0;
+	text-shadow:1px 1px #fff,0 0 3px #fff;
 }
 div.overlay {
 	position:absolute;
@@ -69,8 +70,8 @@ div.overlay {
 	border-left:1px solid #959595;
 	border-right: 1px solid #959595;
 	background:#fff;
-	filter:alpha(opacity=45);
-	opacity:0.45;
+	filter:alpha(opacity=35);
+	opacity:0.35;
 }
 #header #overlay-header {
 	background:#000;
@@ -83,6 +84,9 @@ h3 {border-bottom:1px solid #DEDEDE;padding: 5px 0 5px 10px;}
 h4 {border-bottom:1px solid #DEDEDE;padding: 5px 10px; font-size:16px}
 #imgDesc {text-align:center}
 
+.syntaxhighlighter {
+	background:transparent !important;
+}
 .syntaxhighlighter a, 
 .syntaxhighlighter div, 
 .syntaxhighlighter code, 
@@ -93,7 +97,8 @@ h4 {border-bottom:1px solid #DEDEDE;padding: 5px 10px; font-size:16px}
 .syntaxhighlighter table thead, 
 .syntaxhighlighter table caption, 
 .syntaxhighlighter textarea
-{font-size:14px !important;font-family:'Cousine' !important}
+{font-size:14px !important;font-family:'Cousine' !important;
+	background:transparent !important;}
 span.desc {color:#B6B6B6;font-size:14px;}
 button { 
 	display:inline-block;

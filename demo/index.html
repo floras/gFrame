@@ -64,7 +64,7 @@
 		<h3> SIMPLE EXAMPLE (Creating gLayer) </h3>
 		<div class="pre">
 		<pre class="brush: js">gFrame("exam1", 
-		'&lt;embed src="http://www.youtube.com/p/D6142C77D6649A20?hl=ko_KR&amp;fs=1"
+		'&lt;embed src="http://www.youtube.com/p/43D504D7EA57919D?hl=ko_KR&amp;fs=1"
 		    type="application/x-shockwave-flash" width="100%" height="100%"
 			allowscriptaccess="always" allowfullscreen="true" wmode="transparent">
 		&lt;/embed>', 
@@ -120,18 +120,17 @@
 	$(function(){
 		if (gFrame && gFrame.alive) {
 			
-			gFrame('hi', "HI <br/> <button onclick=\"gFrame('hi').remove()\">close</button>", {right:20, top:90, width:"120", height:"60", style: "border:5px solid #f00;backgorund:#fff;font:14px/1.7em georgia;text-align:center;"});
 
 			window.music = function() { 
 				gFrame.once('player', function(){
-					var code = '<embed src="http://www.youtube.com/p/8B2C3091F8C77A5F?hl=ko_KR&fs=1&autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>';
-					gFrame('player', code, {top:10, left:10, width:240, height:185, style:'border:3px solid #f00'});
+					var code = '<embed src="http://www.youtube.com/p/8B2C3091F8C77A5F?hl=ko_KR&hd=1&autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>';
+					gFrame('player', code, {top:30, left:30, width: 240, height: 185, style:'border: 3px solid #f00'});
 				});
 			};
 
 			//music();
-			var onOff = "<button onclick='gFrame.exit();'>OFF</button>";	
-			var style = "padding:10px;border: 3px solid #FF5656;";			
+			var onOff = "<style>#offButton:hover{border:1px solid #FFAFAF}</style><div id='offButton'onclick='gFrame.exit();' style='display:block;height:100%;background:#FF5656;color:#fff;cursor:pointer;padding:15px;font:bold 14px arial'>OFF</div>";	
+			var style = "border: 3px solid #FF5656;border-radius:5px;";			
 			gFrame('switch', onOff, {top:10, right:20, style:style});
 
 
@@ -142,8 +141,8 @@
 			$("#notice span.desc").html("This document is not in the frame.(original document)");
 		};
 		$("#EXAM1-ON").click(function(){
-			gFrame("exam1", '<embed src="http://www.youtube.com/v/41mpCwZrCOw?autoplay=1&hd=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>', 
-			{top:30, left:30, width: 240, height: 185, style:'border: 3px solid #f00'}).fullBack();
+			gFrame("exam1", '<embed src="http://www.youtube.com/p/43D504D7EA57919D?autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>', 
+			{top:30, left:30, width: 480, height: 280, style:'border:0'}).fullBack();
 		});
 	});
 	</script>
