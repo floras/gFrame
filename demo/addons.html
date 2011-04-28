@@ -74,7 +74,7 @@ $('#loader').click(function(){
 
 $('#remove').click(function(){
 	player.remove();
-	gFrame.yplayer = undefined;
+	gFrame.yPlayer = undefined;
 	$("button.yplayer").addClass("enabled").attr("disabled", null);
 	$("button.nplayer").removeClass("enabled").attr("disabled", "disabled");
 	$("#remove").removeClass("hover");
@@ -102,7 +102,7 @@ $('button.pButtonH3').click(function(){
 	var val = $(this).parent().children()[0].value;	player(val, 0, 'highres');
 });
 
-if (!gFrame.yplayer) {
+if (!gFrame.yPlayer) {
 	$("button.nplayer").attr("disabled", "disabled");
 	$("button.nplayer").removeClass("enabled");
 } else {
