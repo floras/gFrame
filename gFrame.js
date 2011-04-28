@@ -428,12 +428,16 @@
 		if (target > -1) once.remove(target);
 		return gFrame;
 	};
+
+	var scriptList = [];
 	
 	gFrame.loadScript = function(src, callback/*, charset*/) {
+		if (scriptList.indexOf(src) > -1 ) return callback();
 		var script = gFrame.main.document.createElement('script');
 		script.type = 'text/javascript';
 		script.onload = callback;
 		script.src = src;
+		scriptList.push(src);
 		if (document.all&&!window.Storage) { // ie6&ie7
 			script.onreadystatechange = function() {
 				if (this.readyState == 'complete') return callback();
