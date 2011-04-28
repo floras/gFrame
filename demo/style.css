@@ -2,6 +2,7 @@ html, body {
 	margin:0;
 	padding:0;
 	height:100%;
+	overflow:auto;
 }
 body {
   font-family: 'Droid Serif', Helvetica, Arial, FreeSans, san-serif;
@@ -52,8 +53,8 @@ h1 {margin:0;}
 	cursor:pointer; z-index:10;
 	text-shadow:1px 1px #000, 0 0 5px #fff;
 }
-#titleWrap #host {display:none}
-#titleWrap.hover #host {display:inline}
+#titleWrap #host {display:inline-block;width:0;line-height:1em;overflow:hidden;}
+#titleWrap.hover #host {width:58px;text-align:left;}
 #ver {position:relative;font:11px georgia; z-index:5;padding-bottom:20px;color:#F1F1F1}
 span.red {color:red}
 #container {
@@ -74,6 +75,7 @@ div.overlay {
 #header #overlay-header {
 	background:#000;
 	z-index:-1;	
+	border:0;
 };
 
 #maker {text-align:right; font:12px georgia;padding:0.25em 2em}

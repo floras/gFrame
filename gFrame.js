@@ -565,7 +565,7 @@
 	};
 		
 	gFrame.store = {
-		style  : 'html, body{height:100%;margin:0;padding:0;}\n '+ '#debug {position:absolute;color:#5E5E5E;z-index:500;font:10px arial;left:5px;bottom:15px;border:1px solid #f00;border-radius:3px;padding:3px;cursor:default}' + 'div.gLayer {position:absolute;z-index:100}\n',
+		style  : 'html, body{height:100%;margin:0;padding:0;overflow:visible;width:100%;}\n '+ '#debug {position:absolute;color:#5E5E5E;z-index:500;font:10px arial;left:5px;bottom:15px;border:1px solid #f00;border-radius:3px;padding:3px;cursor:default}' + 'div.gLayer {position:absolute;z-index:100}\n' + 'iframe ',
 		scripts : [],
 		head	: "",
 		body	: ""
@@ -596,7 +596,7 @@
 	body += top.gFrame.store.head+'</head>';
 	body += '<body id="gBody">';
 	body += '<div id="debug" class="gLayer">gFrame</div>';
-	body += '<iframe id="cFrame" name="cFrame" frameBorder="0" scrolling="auto"  style="margin:0;padding:0;border:0;width:100%;height:100%;" allowtransparency="true"></iframe>';
+	body += '<iframe id="cFrame" name="cFrame" frameBorder="0" style="margin:0;padding:0;border:0;width:100%;height:100%;" marginwidth=0 marginheight=0 scrolling="yes" allowtransparency="true"></iframe>';
 	body +=  top.gFrame.store.body;
 	body += '<script type="text/javascript">gFrame.mReady(self, frames["cFrame"]);</script>';
 	body += '</body></html>';
