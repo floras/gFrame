@@ -11,5 +11,5 @@ $(function(){
 	else $("button.Rav").attr("disabled", "disabled");
 	$("button:enabled").addClass('enabled');
 	$("<div class='overlay'></div>").appendTo($("#container"));
-	$("<div class='overlay'></div>").appendTo($("#header"));
+	$("<div id='overlay-header' class='overlay'></div>").appendTo($("#title"));
 });
