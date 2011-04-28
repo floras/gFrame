@@ -121,7 +121,7 @@ button.hover {
 #api ul {font:12px/1.75em 'Droid Serif'}
 
 /*  MENU ITEMS */
-#pages   {width:100%;text-align:center;}
+#pages   {text-align:center;position:relative;z-index:10;}
 #pages a {
 	position:relative;
 	display:inline-block;
