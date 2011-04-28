@@ -601,8 +601,11 @@
 	body += '<script type="text/javascript">gFrame.mReady(self, frames["cFrame"]);</script>';
 	body += '</body></html>';
 
+	gFrame.check = false;
+
 	// Wrapper : frame Wrapper text 
 	gFrame.phase1 = function() {
+		if (gFrame.check)	{ return false}
 		gFrame.self.document.getElementById('mFrame').onload = null;
 		gFrame.main = frames['mFrame'];
 		if (gFrame.browser == "firefox") {  // URL HOOK (flash script)
@@ -611,6 +614,7 @@
 			gFrame.main.document.write(body);
 			gFrame.main.document.close();
 		};
+		gFrame.check = true;
 	};
 
 	gFrame.phase2 = function() {
