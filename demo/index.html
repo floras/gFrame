@@ -18,22 +18,33 @@
 
 </head>
 <body>
+<style>
+#start {
+	background:#C2FCB3;
+	border-color : #68B42A;
+};
+#start.hover {
+	border-color:#4C9014;
+};
+</style>
 <a href="http://github.com/floras/gFrame" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;z-index:50;" src="https://d3nwyuy0nl342s.cloudfront.net/img/6429057dfef9e98189338d22e7f6646c6694f032/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
 
+<div id='header'>
 	<h1 id="title" style="position:relative;">
-		<div id="wrapwrap">
-			<div id="titleWrap">
-				<span class="red">g</span><span id="host">host </span><span class="red">Frame</span>
+			<div id="wrapwrap">
+				<div id="titleWrap">
+					<span class="red">g</span><span id="host">host </span><span class="red">Frame</span>
+				</div>
+				<div id="ver"></div> 
 			</div>
-			<div id="ver"></div> 
-		</div>
-	</h1>
+		</h1>
 	<div id="pages">
-		<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
+		<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span><a href="addons.html">ADDONS</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
 	</div>
+</div>
 	<div id="container">
 		<div id="notice"> gFrame is <span id="gState"> </span><br /><span class="desc"></span></div>
-		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame is for instantly inserting frame at the current document by javascript. Although many skins(or templates) can be modified, one can't easily make a plain html page for using the frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers and old one(from IE5.5 to IE10). Moreover gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts.<br/>
+		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame makes a new frame and insert current document in the frame by javascript. Although many skins(or templates) could be modified, one can't easily make outter frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers and old one(from IE5.5 to IE10). Moreover gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts.<br/>
 		<button onclick="gFrame('player').remove();">remove player</button>
 		<button class="bWidth" onclick="gFrame.once.remove('player');gFrame.content.music();">create player(auto, hidden)</button>
 		<button onclick="gFrame('player').show();">show player</button>
@@ -46,7 +57,7 @@
 		<pre class="brush: html">&lt;script src='http://floras.github.com/gFrame/gFrame.js' type='text/javascript'/></pre></div>
 		<ul>
 			<li>gFrame instantly makes a frame and inserts original documents in the frame without any modification.</li>
-			<li>You can start or not with gFrame freely. Just use&nbsp;<button onclick="gFrame.exit()" class="av">gFrame.exit()</button>&nbsp;or&nbsp;<button onclick="gFrame.start()" class="Rav">gFrame.start()</button></li>
+			<li>You can start or not with gFrame freely. Just use&nbsp;<button onclick="gFrame.exit()" class="av">gFrame.exit()</button>&nbsp;or&nbsp;<button id="start" onclick="gFrame.start()" class="Rav">gFrame.start()</button></li>
 			<li>Now you can get the background window frame&nbsp;(<button onclick="alert(gFrame.main)" class="av">gFrame.main</button>) and his document object(<button onclick="alert(gFrame.main.document)" class="av">gFrame.main.document</button>)</li>
 		</ul>
 		<h3> SIMPLE EXAMPLE (Creating gLayer) </h3>
@@ -64,6 +75,8 @@
 		<button class="bWidth av" onclick="gFrame('exam1').show()">gFrame('exam1').show()</button><br/>
 		<button class="bWidth av" onclick="gFrame('exam1').toBack()">gFrame('exam1').toBack()</button>
 		<button class="bWidth av" onclick="gFrame('exam1').toFront()">gFrame('exam1').toFront()</button><br/>
+		<button class="bWidth av" onclick="gFrame('exam1').fullBack()">gFrame('exam1').fullBack()</button>
+		<button class="bWidth av" onclick="gFrame('exam1').original()">gFrame('exam1').original()</button><br/>
 		<button class="bWidth av" onclick="gFrame('exam1').opacity('0.3')">gFrame('exam1').opacity(0.3)</button>
 		<button class="bWidth av" onclick="gFrame('exam1').opacity('0.6')">gFrame('exam1').opacity(0.6)</button>
 		<button class="bWidth av" onclick="gFrame('exam1').opacity('1')">gFrame('exam1').opacity(1)</button>
@@ -106,7 +119,7 @@
 	$(function(){
 		if (gFrame && gFrame.alive) {
 			
-			gFrame('hi', "HI <br/> <button onclick=\"gFrame('hi').remove()\">close</button>", {right:20, top:50, width:"120", height:"60", style: "border:5px solid #f00;backgorund:#fff;font:14px/1.7em georgia;text-align:center;"});
+			gFrame('hi', "HI <br/> <button onclick=\"gFrame('hi').remove()\">close</button>", {right:20, top:90, width:"120", height:"60", style: "border:5px solid #f00;backgorund:#fff;font:14px/1.7em georgia;text-align:center;"});
 
 			window.music = function() { 
 				gFrame.once('player', function(){
@@ -114,7 +127,12 @@
 					gFrame('player', code, {top:10, left:10, width:240, height:185, style:'border:3px solid #f00'}).hide();
 				});
 			};
-			music();
+
+			//music();
+			var onOff = "<button onclick='gFrame.exit();'>OFF</button>";	
+			var style = "padding:10px;border: 3px solid #FF5656;";			
+			gFrame('switch', onOff, {top:10, right:20, style:style});
+
 
 			$("#gState").html('ON').addClass("alive");
 			$("#notice span.desc").html("This document is moved into the frame by gFrame script.");

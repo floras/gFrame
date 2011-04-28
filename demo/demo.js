@@ -10,4 +10,6 @@ $(function(){
 	if (!gFrame.alive) $("button.av").attr("disabled", "disabled");
 	else $("button.Rav").attr("disabled", "disabled");
 	$("button:enabled").addClass('enabled');
+	$("<div class='overlay'></div>").appendTo($("#container"));
+	$("<div class='overlay'></div>").appendTo($("#header"));
 });

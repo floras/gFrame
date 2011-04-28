@@ -70,11 +70,10 @@
 	/*
 	*  START gFrame script
 	*/
-	if (document.location.href.indexOf('#__gFrame__') > 0) {
-		document.write('</head><frameset col="*"><frame onload="top.gFrame.phase2();"/></frameset></html>');
-	    document.close();
-		return true;
-	}
+
+	// EXCUTE : first break(frameset) - onload(1) -> seconde break(frameset) -> onload(2) -> loading original document
+
+	// gFrame.exit();
 
 	if (cookies('gFOUT')) {
 		var gFrame = window.gFrame = function() {
@@ -88,46 +87,39 @@
 		gFrame.ver = ver;
 		gFrame.exit = function() {return gFrame}; // dummy function;
 		return undefined;
-	} else if (top.gFrame) { 
+	} 
+	// Breaker : background gFrame (Cuz, Don't lost URL)
+	else if (document.location.href.indexOf("#__gFrame__") > 5) {
+		document.write('</head><frameset rows="*" frameborder=no border="0" framespacing="0" frameborder="no"><frame  onload="top.gFrame.phase2();"/></frameset></html>');
+		return void "leave gFrame";
+	}
+	// Original Document
+	else if (top.gFrame) { 
 		if (top!=self) { 
 			var gFrame = window.gFrame = top.gFrame; 
 			gFrame.content = self;
 			gFrame.initEvent();
-		}
+		} 
 		return undefined; 
 	};
+
+	// Declaration gFrame at the top window once
 
 	// gFrame : short-hand handler
 	var gFrame = top.gFrame = function(id, code, option) { 
 		if (code) return gFrame.create(id,code,option);
 		else return gFrame.get(id);
 	};
-	gFrame.self = self;
+	gFrame.status = "init";
 	gFrame.start = function() {return gFrame}; // dummy function;
 	gFrame.cookie = cookies;
 	gFrame.loaded = false;
 	gFrame.alive = true;
 	gFrame.ver = ver;
-
-	// detect Browser;
-	gFrame.browser = (function(){
-		if (window.opera) return "opera";
-		else if (window.chrome) return "chrome";
-		else if (document.all&&window.DOMParser)       return "ie9";
-		else if (document.all&&window.Storage)         return "ie8";
-		else if (document.all&&window.XMLHttpRequest)  return "ie7";
-		else if (document.all&&!window.XMLHttpRequest) return "ie6";
-		else if (navigator.userAgent.indexOf('Firefox') > -1) return "firefox";
-		else if (navigator.userAgent.indexOf('Safari') > -1) return "safari";
-		else if (document.all)    return "iec";
-		return undefined;
-	})();	
-	
 	gFrame.test = function() {
 		gFrame('debug').show();
 		return gFrame;
 	};
-
 	gFrame.id = function(id) {
 		return gFrame.main.document.getElementById(id);
 	};
@@ -162,7 +154,7 @@
 		if (!target) return undefined;
 		if (target.savePosition) return undefined;
 		target.savePosition = {left: target.style.left, right: target.style.right};
-		gFrame.left(id, "-3000");
+		gFrame.left(id, "-1000");
 		return gFrame;
 	};
 	gFrame.show = function(id) {
@@ -188,47 +180,6 @@
 	gFrame.toFront = function(id) {
 		var target = gFrame.main.document.getElementById(id);
 		target.style.zIndex = "10";
-		return gFrame;
-	};
-	gFrame.full = function(id) {
-		var target = gFrame.main.document.getElementById(id);		
-		var dimension = {width: gFrame(id).width(), height:gFrame(id).height()};
-		var top = target.style.top, bottom = target.style.bottom, left = target.style.left, right = target.style.right;
-		if (top&&(bottom!='auto')&&bottom) dimension.bottom = bottom; else dimension.top = top;
-		if (left&&(right!='auto')&&right) dimension.right = right; else dimension.left = left;
-		dimension.border  = target.style.border;
-		dimension.margin  = target.style.margin;
-		dimension.padding = target.style.padding;
-		dimension.zIndex  = target.style.zIndex || 100;
-		target.originalDimension = dimension;
-		target.style.border  = "0";
-		target.style.margin  = "0";
-		target.style.padding = "0";
-		target.style.top  = "0";
-		target.style.left = "0";
-		target.style.width = "100%";
-		target.style.height = "100%";
-		return gFrame;
-	};
-	gFrame.original = function(id) {
-		var target = gFrame.main.document.getElementById(id);
-		var dimension = target.originalDimension;
-		if (dimension){
-			if (dimension.top&&dimension.bottom) gFrame.bottom(id, dimension.bottom); else gFrame.top(id,  dimension.top );
-			if (dimension.left&&dimension.right) gFrame.right(id,  dimension.right ); else gFrame.left(id, dimension.left);
-			if (dimension.width  )   gFrame(id).width(dimension.width);
-			if (dimension.height )  gFrame(id).height(dimension.height);
-			if (dimension.border )  target.style.border = dimension.border;
-			if (dimension.padding) target.style.padding = dimension.padding;
-			if (dimension.margin )  target.style.margin = dimension.margin;
-			if (dimension.zIndex )  target.style.zIndex = dimension.zIndex;
-			target.originalDimension = undefined;
-		}
-		return gFrame;
-	};
-	gFrame.fullBack = function(id) {
-		gFrame.full(id);
-		gFrame.toBack(id);
 		return gFrame;
 	};
 
@@ -367,12 +318,9 @@
 			opacity : function(v) {
 					gFrame.opacity(this.id, v);  return this;
 			},
-			toBack   : function()  {gFrame.toBack(this.id);         return this;},
-			toFront  : function()  {gFrame.toFront(this.id);        return this;},  
-			full     : function()  {gFrame.full(this.id);           return this;},
-			fullBack : function()  {gFrame.fullBack(this.id);       return this;},
-			original : function()  {gFrame.original(this.id);       return this;},  
-			zIndex   : function(v) {
+			toBack : function()  {gFrame.toBack(this.id);         return this;},
+			toFront : function() {gFrame.toFront(this.id);        return this;},  
+			zIndex  : function(v) {
 				if (v !== undefined) { gFrame.zIndex(this.id, v); return this;
 				} else return gFrame.zIndex(this.id);
 			},
@@ -426,19 +374,6 @@
 		var target = once.indexOf(id);
 		if (target > -1) once.remove(target);
 		return gFrame;
-	};
-	
-	gFrame.loadScript = function(src, callback/*, charset*/) {
-		var script = gFrame.main.document.createElement('script');
-		script.type = 'text/javascript';
-		script.onload = callback;
-		script.src = src;
-		if (document.all&&!window.Storage) { // ie6&ie7
-			script.onreadystatechange = function() {
-				if (this.readyState == 'complete') return callback();
-			}
-		}
-		gFrame.main.document.body.appendChild(script);
 	};
 
 	/*
@@ -552,6 +487,19 @@
 		top.location.href = target;
 	};
 
+	gFrame.loadScript = function(src, callback/*, charset*/) {
+		var script = gFrame.main.document.createElement('script');
+		script.type = 'text/javascript';
+		script.onload = callback;
+		script.src = src;
+		if (document.all&&!window.Storage) { // ie6&ie7
+			script.onreadystatechange = function() {
+				if (this.readyState == 'complete') return callback();
+			}
+		}
+		gFrame.main.document.body.appendChild(script);
+	};
+
 	/*
 	*  HTML TEXT
 	*/
@@ -565,7 +513,7 @@
 	};
 		
 	gFrame.store = {
-		style  : 'html, body{height:100%;margin:0;padding:0;}\n '+ '#debug {position:absolute;color:#5E5E5E;z-index:500;font:10px arial;left:5px;bottom:15px;border:1px solid #f00;border-radius:3px;padding:3px;cursor:default}' + 'div.gLayer {position:absolute;z-index:100}\n',
+		style  : 'html, body{ height:100%;margin:0;padding:0;}\n '+ '#debug {position:absolute;color:#5E5E5E;z-index:500;font:10px arial;left:5px;bottom:15px;border:1px solid #f00;border-radius:3px;padding:3px;cursor:default}' + 'div.gLayer {position:absolute;z-index:100}\n' + "#cFrame{position:absolute;top:0;left:0}",
 		scripts : [],
 		head	: "",
 		body	: ""
@@ -589,39 +537,39 @@
 		return gFrame;
 		
 	};
+	
 	// Main Frame Text Escape
-	var body  = '<!doctype html><html><head><title>main Frame</title>';
-	body += '<script type="text/javascript">gFrame = top.gFrame; gFrame.main = window; </script>';
-	body += '<style>' + gFrame.store.style + '</style>';
-	body += top.gFrame.store.head+'</head>';
-	body += '<body id="gBody">';
-	body += '<div id="debug" class="gLayer">gFrame</div>';
-	body += '<iframe id="cFrame" name="cFrame" frameBorder="0" scrolling="auto"  style="margin:0;padding:0;border:0;width:100%;height:100%;" allowtransparency="true"></iframe>';
-	body +=  top.gFrame.store.body;
+
+	var body  = '<!DOCTYPE html><head><title>main Frame</title>';
+	body += '<script type="text/javascript">var gFrame = top.gFrame;gFrame.main =self;</script>';
+	body += "<style>"+gFrame.store.style+"</style>";
+	body += gFrame.store.head+'</head>';
+	body += '<body id="gBody"><div id="debug" class="gLayer">gFrame</div>';
+	body += '<div style="position:absolute;top:0;z-index:100"><embed id="ytplayer"  src="http://www.youtube-nocookie.com/v/8sgycukafqQ?enablejsapi=1&version=3&playerapiid=ytplayer" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="349"></embed><button onclick="document.getElementById(\'ytplayer\').playVideo();">play</button></div>';
+	body += '<script>top.history.replaceState({foo:"bar"}, "test", top.location.href);alert(document.location.href)</script>';
+	body += '<iframe id="cFrame" name="cFrame" frameBorder="0" scrolling="yes"  style="margin:0;padding:0;overflow:visible;border:0;width:100%;height:100%;" allowtransparency="true"></iframe>';
 	body += '<script type="text/javascript">gFrame.mReady(self, frames["cFrame"]);</script>';
+	body += '<script>document.write(gFrame.store.body)</script>';
 	body += '</body></html>';
 
-	// Wrapper : frame Wrapper text 
-	gFrame.phase1 = function() {
-		gFrame.self.document.getElementById('mFrame').onload = null;
-		gFrame.main = frames['mFrame'];
-		if (gFrame.browser == "firefox") {  // URL HOOK (flash script)
-			gFrame.main.document.location.href = document.location.href + "#__gFrame__";
-		} else { // ABOUT:BLANK (flash script)
-			gFrame.main.document.write(body);
-			gFrame.main.document.close();
-		};
-	};
-
-	gFrame.phase2 = function() {
+	gFrame.phase2 = function () {
 		gFrame.main.document.write(body);
 		gFrame.main.document.close();
-		return true;
 	};
 
-	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
-	wrap += '<title>gFrame init</title></head><frameset rows="*" frameborder="no" border="0" framespacing="0">';
-	wrap += '<frame id="mFrame" name="mFrame" frameborder="no" style="margin:0;padding:0;"frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" noresize onload="gFrame.phase1();"/>';
+	gFrame.loaded = false;
+	gFrame.phase1 = function() {
+		if (gFrame.loaded) return true;
+		gFrame.main = frames['mFrame'];
+		frames['mFrame'].document.location.href = document.location.href + "#__gFrame__";
+		gFrame.loaded = true;
+	};
+
+	// Wrapper : frame Wrapper text 
+
+	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />'; // current window
+	wrap += '<title>gFrame init</title></head><frameset rows="*" frameborder=no border="0" framespacing="0" frameborder="no">';
+	wrap += '<frame id="mFrame" name="mFrame" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO style="margin:0;padding:0" onload="gFrame.phase1();"/>';
 	wrap += '</frameset></html>';
 
 	// LET'S START

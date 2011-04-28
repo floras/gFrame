@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="../gFrame.js"></script>
+	<title> gFrame (ADDONS)</title>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css' />
+	<link href='http://fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css' />
+	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
+	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" /> 
+	<link href="style.css" rel="stylesheet" type="text/css" /> 
+	<script type="text/javascript" src="../resource/jquery.js"></script>
+	<script type="text/javascript" src="demo.js"></script>
+	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js"></script>
+</head>
+<body id="api">
+<a href="http://github.com/floras/gFrame" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;z-index:50;" src="https://d3nwyuy0nl342s.cloudfront.net/img/6429057dfef9e98189338d22e7f6646c6694f032/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+
+<style>
+#loader.enabled {
+	background:#B7F386;
+	border:1px solid #68B42A;
+};
+</style>
+<h1 id="title" style="position:relative;">
+	<div id="wrapwrap">
+		<span id="titleWrap">
+			<span class="red">g</span><span id="host">host </span><span class="red">Frame</span>
+		</span><br/>
+		<span id="ver"></span> 
+	</div>
+</h1>
+<div id="pages">
+	<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span><a href="addons.html">ADDONS</a></span><span id="download"><a href="../addons/gFrame.js" target="_blank">DOWNLOAD</a></span>
+</div>
+<div id="container">
+
+<h3>1. yPlayer (TEST)</h3>
+<a href='../addons/gF.yPlayer.js' target="_blank">DOWNLOAD</a>
+<div class="pre">
+<pre class="brush: js">
+
+// LOAD (type :  pSETUP)
+pSETUP = {
+	scripts : ['gFrame.loadScript("gF.yPlaers.js");']
+};
+// LOAD (type : script)
+gFrame.loadScript("gF.yPlaers.js");
+
+// ADD READY EVENT
+gFrame.yReady = function() {
+	alert("i'm ready to play ");
+};
+// ACCESSS
+var player = gFrame.yPlayer;
+
+// PLAY
+player('http://www.youtube-nocookie.com/v/41mpCwZrCOw?fs=1&amp;hl=en_US');
+</pre>
+</div>
+<script>
+$(document).ready(function(){
+
+$('#loader').click(function(){
+	gFrame.yReady = function() {
+		window.player = gFrame.yPlayer;
+		$("button.nplayer").addClass("enabled").attr("disabled", null);
+		$("button.yplayer").removeClass("enabled").attr("disabled", "disabled");
+	};
+	gFrame.loadScript('../addons/gF.yPlayer.js');
+});
+
+$('#remove').click(function(){
+	player.remove();
+	gFrame.yplayer = undefined;
+	$("button.yplayer").addClass("enabled").attr("disabled", null);
+	$("button.nplayer").removeClass("enabled").attr("disabled", "disabled");
+	$("#remove").removeClass("hover");
+});
+
+$('button.pButton').click(function(){
+	var val = $(this).parent().children()[0].value;	player(val);
+});
+$('button.pButtonS').click(function(){
+	var val = $(this).parent().children()[0].value;	player(val, 0, 'small');
+});
+$('button.pButtonM').click(function(){
+	var val = $(this).parent().children()[0].value;	player(val, 0, 'middle');
+});
+$('button.pButtonL').click(function(){
+	var val = $(this).parent().children()[0].value;	player(val, 0, 'large');
+});
+$('button.pButtonH1').click(function(){
+	var val = $(this).parent().children()[0].value;	player(val, 0, 'hd720');
+});
+$('button.pButtonH2').click(function(){
+	var val = $(this).parent().children()[0].value;	player(val, 0, 'hd1080');
+});
+$('button.pButtonH3').click(function(){
+	var val = $(this).parent().children()[0].value;	player(val, 0, 'highres');
+});
+
+if (!gFrame.yplayer) {
+	$("button.nplayer").attr("disabled", "disabled");
+	$("button.nplayer").removeClass("enabled");
+} else {
+
+	$("button.nplayer").addClass("enabled").attr("disabled", null);
+	$("button.yplayer").removeClass("enabled").attr("disabled", "disabled");
+}
+
+
+});
+
+</script>
+<style>
+input.pList {width:380px;font-size:12px;}
+</style>
+
+<button id='loader' class="yplayer">Load Player</button>
+<button id='remove'  class="nplayer">remove Player</button><br/>
+
+<button onclick="gFrame.yPlayer.play();"  class="nplayer">play</button>
+<button onclick="gFrame.yPlayer.pause();"  class="nplayer">pause</button>
+<button onclick="gFrame.yPlayer.stop();"  class="nplayer">stop</button>
+<button onclick="gFrame.yPlayer.next();" class="nplayer">next</button>
+<button onclick="gFrame.yPlayer.prev();" class="nplayer">prev</button>
+<button onclick="gFrame.yPlayer.mute();" class="nplayer">mute</button>
+<button onclick="gFrame.yPlayer.unMute();" class="nplayer">unMute</button>
+<button onclick="gFrame.yPlayer.toggleMute();" class="nplayer">toggleMute</button><br/>
+<button onclick="gFrame.yPlayer.toBack();" class="nplayer">back</button>
+<button onclick="gFrame.yPlayer.toFront();" class="nplayer">front</button>
+<button onclick="gFrame.yPlayer.fullBack();" class="nplayer">fullBack</button>
+<button onclick="gFrame.yPlayer.original();" class="nplayer">original</button>
+
+<ol>
+<li> <span><input class="pList" value="http://www.youtube-nocookie.com/v/41mpCwZrCOw?fs=1&amp;hl=en_US" disabled="disabled" /> <button  class="pButton nplayer">PLAY</button><button class="pButtonS nplayer">small</button><button class="pButtonM nplayer">medium</button><button class="pButtonL nplayer">large</button><button class="pButtonH1 nplayer">hd720</button></span></li>
+<li> <span><input class="pList" value="fzzjgBAaWZw" disabled="disabled" /> <button  class="pButton  nplayer" alt="gFrame.yPlayer('fzzjgBAaWZw')" title="gFrame.yPlayer('fzzjgBAaWZw')">PLAY</button></span></li>
+<li> <span><input class="pList" value="http://www.youtube.com/watch?v=51iquRYKPbs&feature=feedwll&list=WL" disabled="disabled" /> <button  class="pButton nplayer">PLAY</button></span></li>
+<li> <span><input class="pList" value="http://www.youtube.com/embed/rdQ0i3v_KVY?rel=0" disabled="disabled" /> <button  class="pButton nplayer">PLAY</button><button class="pButtonS nplayer">small</button><button class="pButtonM nplayer">medium</button><button class="pButtonL nplayer">large</button><button class="pButtonH1 nplayer">hd720</button><button class="pButtonH2 nplayer">hd1080</button><button class="pButtonH3 nplayer">highres</button></span></li>
+<li> <span><input class="pList" style="border-color:#f00"value=" " /> <button  class="pButton nplayer">PLAY</button></span></li>
+
+</ol>
+
+</div>
+
+</body>
+</html>
