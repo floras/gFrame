@@ -192,7 +192,6 @@
 	};
 	gFrame.full = function(id) {
 		var target = gFrame.main.document.getElementById(id);
-		if (target.originalDimension) return gFrame;
 		var dimension = {width: gFrame(id).width(), height:gFrame(id).height()};
 		var top = target.style.top, bottom = target.style.bottom, left = target.style.left, right = target.style.right;
 		if (top&&(bottom!='auto')&&bottom) dimension.bottom = bottom; else dimension.top = top;
@@ -201,7 +200,6 @@
 		dimension.margin  = target.style.margin;
 		dimension.padding = target.style.padding;
 		dimension.zIndex  = target.style.zIndex || 100;
-		target.originalDimension = dimension;
 		target.style.border  = "0";
 		target.style.margin  = "0";
 		target.style.padding = "0";
@@ -209,6 +207,7 @@
 		target.style.left = "0";
 		target.style.width = "100%";
 		target.style.height = "100%";
+		if (!target.originalDimension) target.originalDimension = dimension;
 		return gFrame;
 	};
 	gFrame.original = function(id) {
@@ -428,22 +427,17 @@
 		if (target > -1) once.remove(target);
 		return gFrame;
 	};
-
-	var scriptList = [];
 	
-	gFrame.loadScript = function(src, callback) {
+	gFrame.loadScript = function(src, callback/*, charset*/) {
 		var script = gFrame.main.document.createElement('script');
 		script.type = 'text/javascript';
-		if (callback) {
-			script.onload = callback;
-			if (document.all&&!window.Storage) { // ie6&ie7
-				script.onreadystatechange = function() {
-					if (this.readyState == 'complete') return callback();
-				}
-			}		
-		};
-		if (scriptList.indexOf(src) == -1) scriptList.push(src);
+		script.onload = callback;
 		script.src = src;
+		if (document.all&&!window.Storage) { // ie6&ie7
+			script.onreadystatechange = function() {
+				if (this.readyState == 'complete') return callback();
+			}
+		}
 		gFrame.main.document.body.appendChild(script);
 	};
 
