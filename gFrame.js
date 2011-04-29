@@ -60,8 +60,9 @@
 	if (window.name == 'initFrame') {
 		window.name = 'mFrame';
 		parent.gFrame.main = self;
-		window.onload = parent.gFrame.phase2();
-		document.write('</head><frameset col="*"><frame src="javascript:void 0"/></frameset></html>');
+		// Keep this. 
+		document.write('</head><frameset col="*"><frame src="about:blank" onload="parent.gFrame.phase2();"/></frameset></html>'); // IE6 handle this;
+		window.onload = parent.gFrame.phase2(); // Chrome handle this & IE6 buggy
 	    document.close();
 		return true;
 	}
