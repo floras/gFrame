@@ -55,14 +55,12 @@
 		return undefined; 
 	};
 	
-	// CASE : FIREFOX WITH FLASH (in the mFrame & break HTML Render);
-
-	if (window.name == 'initFrame') {
+	// CASE : FIX FIREFOX WITH FLASH SCRIPT
+	if (window.name == 'initFrame') { // BUT Buggy IE6 also want excute this. AS you wish, do it.
 		window.name = 'mFrame';
 		parent.gFrame.main = self;
-		// Keep this. 
-		document.write('</head><frameset col="*"><frame src="about:blank" onload="parent.gFrame.phase2();"/></frameset></html>'); // IE6 handle this;
-		window.onload = parent.gFrame.phase2(); // Chrome handle this & IE6 buggy
+		try {window.onload = parent.gFrame.phase2();}catch (err){} // FOR IE6
+		document.write('</head><frameset><frame/></frameset></html>'); 
 	    document.close();
 		return true;
 	}
@@ -440,13 +438,11 @@
 		var script = gFrame.main.document.createElement('script');
 		var callback = function() {gFrame.eval(callfunc)};
 		script.type = 'text/javascript';
-		script.onload = callback;
 		script.src = src;
-		if (document.all&&!window.Storage) { // ie6&ie7
-			script.onreadystatechange = function() {
-				if (this.readyState == 'complete') return callback();
-			}
-		}
+		script.onreadystatechange = function() {
+			if (this.readyState == 'complete') return callback();
+		};
+		script.onload = callback;
 		gFrame.main.document.body.appendChild(script);
 	};
 
@@ -574,10 +570,10 @@
 	};
 
 	if (window.gFSETUP) {
-		gFrame.store.style = (gFSETUP.style) ? gFrame.store.style + gFSETUP.style : gFrame.store.style;
+		gFrame.store.style   = (gFSETUP.style) ? gFrame.store.style + gFSETUP.style : gFrame.store.style;
 		gFrame.store.scripts = gFrame.store.scripts.concat(gFSETUP.scripts);
-		gFrame.store.head = (gFSETUP.head) ? gFrame.store.head + gFSETUP.head : gFrame.store.head;		
-		gFrame.store.body = (gFSETUP.body) ? gFrame.store.body + gFSETUP.body : gFrame.store.body;		
+		gFrame.store.head    = (gFSETUP.head) ? gFrame.store.head + gFSETUP.head : gFrame.store.head;		
+		gFrame.store.body    = (gFSETUP.body) ? gFrame.store.body + gFSETUP.body : gFrame.store.body;		
 	}
 
 	gFrame.mReady = function(a, b) {
@@ -588,8 +584,7 @@
 			gFrame.eval(scripts[i]);
 		}
 		gFrame.content.location.href = self.location.href;
-		return gFrame;
-		
+		return gFrame;		
 	};
 	// Main Frame Text Escape
 	var body  = '<!doctype html><html><head><title>main Frame</title>';
@@ -607,23 +602,16 @@
 
 	// Wrapper : frame Wrapper text 
 	gFrame.phase1 = function() {
-		
-		gFrame.wrapper.document.getElementById('initFrame').removeAttribute('onload');
-		gFrame.wrapper.document.getElementById('initFrame').onload = null;
 		if (gFrame.check)	{ return false}
-
 		gFrame.main = frames['initFrame'];
-		//if (true /*gFrame.browser == "firefox"*/) {  // URL HOOK (flash script)
+		if (gFrame.browser = 'firefox') { // FIX FIREFOX for flash script;  
 			gFrame.main.document.location.href = document.location.href;
-		/*} else { // ABOUT:BLANK (flash script)
-			gFrame.main.document.write(body);
-			gFrame.main.document.close();
+		} else {
+			gFrame.main.name = 'mFrame'; 
+			gFrame.main.document.write(body); gFrame.main.document.close();
 		};
-		*/
-
 		gFrame.check = true;
 	};
-
 	gFrame.phase2 = function() {
 		gFrame.main.document.write(body);
 		gFrame.main.document.close();

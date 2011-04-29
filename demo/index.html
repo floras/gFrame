@@ -45,11 +45,15 @@
 </div>
 	<div id="container">
 		<div id="notice"> gFrame is <span id="gState"> </span><br /><span class="desc"></span></div>
-		<img src="browser_icons.jpg" align="left" style="margin-right:3px;"/>gFrame makes a new frame and insert current document in the frame by javascript. Although many skins(or templates) could be modified, one can't easily make outter frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers and old one(from IE5.5 to IE10). Moreover gFrame gives you another useful thing. You can handle element(gLayer) without painful scripts.<br/>
-		<button onclick="gFrame.once.remove('player');gFrame.content.music();" class="av">create player</button>
-		<button onclick="gFrame('player').remove();" class="av">remove player</button>
-		<button onclick="gFrame('player').show();" class="av">show player</button>
-		<button onclick="gFrame('player').hide();" class="av">hide player</button>
+		<img src="browser_icons.jpg" align="left" style="margin-right:5px;"/>gFrame makes a new frame and insert current document in the frame by javascript. Although many skins(or templates) could be modified, one can't easily make outter frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers. Moreover this gives you another useful thing. You can handle element(gLayer) without painful scripts.<br/>
+		<address>TESETED : IE6, IE7, IE8, IE9, IE10, FIREFOX4, OPERA11, CHROME10, SAFARI5</address> 
+		<br/>
+		<div style="text-align:right">
+		<button onclick="gFrame.once.remove('player');gFrame.content.music();" class="av">create layer1</button>
+		<button onclick="gFrame('player').remove();" class="av">remove layer1</button>
+		<button onclick="gFrame('player').show();" class="av">show layer1</button>
+		<button onclick="gFrame('player').hide();" class="av">hide layer1</button>
+		</div>
 		<h3> USAGE </h3>
 		<div id="imgDesc">
 			<img src="image.png" alt="image description"/>
@@ -58,7 +62,7 @@
 		<pre class="brush: html">&lt;script src='http://floras.github.com/gFrame/gFrame.js' type='text/javascript'/></pre></div>
 		<ul>
 			<li>gFrame instantly makes a frame and inserts original documents in the frame without any modification.</li>
-			<li>You can start or not with gFrame freely. Just use&nbsp;<button onclick="gFrame.exit()" class="av">gFrame.exit()</button>&nbsp;or&nbsp;<button id="start" onclick="gFrame.start()" class="Rav">gFrame.start()</button></li>
+			<li>You can start or finish instantly. Just use&nbsp;<button onclick="gFrame.exit()" class="av">gFrame.exit()</button>&nbsp;or&nbsp;<button id="start" onclick="gFrame.start()" class="Rav">gFrame.start()</button></li>
 			<li>Now you can get the background window frame&nbsp;(<button onclick="alert(gFrame.main)" class="av">gFrame.main</button>) and his document object(<button onclick="alert(gFrame.main.document)" class="av">gFrame.main.document</button>)</li>
 		</ul>
 		<h3> SIMPLE EXAMPLE (Creating gLayer) </h3>
@@ -179,7 +183,7 @@
 			$("#notice span.desc").html("This document is moved into the frame by gFrame script.");
 		} else {
 			$("#gState").html('OFF').removeClass('alive');
-			$("#notice span.desc").html("This document is not in the frame.(original document)");
+			$("#notice span.desc").html("This document is original one without frame");
 		};
 		$("#EXAM1-ON").click(function(){
 			gFrame("exam1", '<embed src="http://www.youtube.com/p/43D504D7EA57919D?autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>', 
