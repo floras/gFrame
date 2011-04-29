@@ -59,7 +59,7 @@ span.red {color:red}
 #container {
 	position:relative;
 	padding:30px 20px 5px;
-	width:960px;margin:-27px auto 0;
+	width:920px;margin:-27px auto 0;
 	text-shadow:1px 1px #fff,0 0 3px #fff;
 }
 div.overlay {

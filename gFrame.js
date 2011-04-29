@@ -13,44 +13,78 @@
 	
 	var ver = "v0.1.02pa";
 
-	/**
-	 * from jQuery Cookie plugin
-	 *
-	 * Copyright (c) 2006 Klaus Hartl (stilbuero.de)
-	 * Dual licensed under the MIT and GPL licenses:
-	 * http://www.opensource.org/licenses/mit-license.php
-	 * http://www.gnu.org/licenses/gpl.html
-	 *
-	 */	
-	eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('4 d=x(9,b,2){6(f b!=\'y\'){2=2||{};6(b===m){b=\'\';2.3=-1}4 3=\'\';6(2.3&&(f 2.3==\'n\'||2.3.l)){6(f 2.3==\'n\'){4 a=v q();a.r(a.t()+(2.3*u*k*k*B))}o 4 a=2.3;3=\'; 3=\'+a.l()}4 8=2.8?\'; 8=\'+(2.8):\'\';4 7=2.7?\'; 7=\'+(2.7):\'\';4 e=2.e?\'; e\':\'\';c.5=[9,\'=\',E(b),3,8,7,e].A(\'\')}o{4 j=m;6(c.5&&c.5!=\'\'){4 d=c.5.G(\';\');C(4 i=0;i<d.h;i++){4 5=(d[i]).D(/^\\s+|\\s+$/g,"");6(5.p(0,9.h+1)==(9+\'=\')){j=F(5.p(9.h+1));w}}}z j}};',43,43,'||options|expires|var|cookie|if|domain|path|name|date|value|document|cookies|secure|typeof||length||cValue|60|toUTCString|null|number|else|substring|Date|setTime||getTime|24|new|break|function|undefined|return|join|1000|for|replace|encodeURIComponent|decodeURIComponent|split'.split('|'),0,{}));
+	/*  
+	*  INIT UTILS
+	*/
+	
+	// START, EXIT FUNCTION
 
-	 // Array.prototype.indexOf, Array.prototype.filter for ECMA5 browser - By MDC
-	if (!Array.prototype.indexOf) { Array.prototype.indexOf = function(searchElement /*, fromIndex */) {
-		if (this === void 0 || this === null)	throw new TypeError();
-		var t = Object(this);
-		var len = t.length >>> 0;
-		if (len === 0) return -1;
-		var n = 0;
-		if (arguments.length > 0) {
-			n = Number(arguments[1]);
-			if (n !== n) n = 0;
-			else if (n !== 0 && n !== (1 / 0) && n !== -(1 / 0)) n = (n > 0 || -1) * Math.floor(Math.abs(n));
-		}
-		if (n >= len) return -1;
-		var k = n >= 0 ? n : Math.max(len - Math.abs(n), 0);
-		for (; k < len; k++) {
-			if (k in t && t[k] === searchElement) return k;
-		}
-		return -1;
-		};
+	var START = function() {
+		document.cookie = "gFOUT= ;expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/";
+		gFrame.wrapper.location.href = self.location.href;
 	}
+	var EXIT  = function() {
+		document.cookie = "gFOUT=true ; path=/";	
+		gFrame.wrapper.location.href = gFrame.content.location.href;
+	};
+	var DUMMY = Function("return this");
+
+	/*
+	*  START gFrame script
+	*/
+
+	// PRIORITY : USER[COOKIE] > SERVER[gFSETUP] > DEFAULT(ON);
+
+	// CASE : USER WANTS DISABLE gFRAME	
+	if (document.cookie.indexOf('gFOUT') > -1) {
+		var gFrame = window.gFrame = DUMMY;
+		gFrame.wrapper = self;
+		gFrame.start = START;
+		gFrame.alive = false;
+		gFrame.ver   = ver;
+		gFrame.exit  = DUMMY; 
+		return undefined;
+	};
+
+
+	// CASE : PASS THE NORMAL DOCUMENT WITHIN gFrame ;		
+	if (window.name == 'cFrame') { 
+		var gFrame = window.gFrame = parent.gFrame; 
+		gFrame.content = self;
+		gFrame.initEvent();
+		return undefined; 
+	};
+	
+	// CASE : FIREFOX WITH FLASH (in the mFrame & break HTML Render);
+
+	if (window.name == 'initFrame') {
+		window.name = 'mFrame';
+		parent.gFrame.main = self;
+		document.write('</head><frameset col="*"><frame onload="parent.gFrame.phase2();"/></frameset></html>');
+	    document.close();
+		return true;
+	}
+
+	/*
+	*  INNER UTILS
+	*/
+
+	// Array.prototype.indexOf, Array.prototype.filter for ECMA5 browser - By MDC
+	if (!Array.prototype.indexOf) { Array.prototype.indexOf = function(searchElement /*, fromIndex */) {
+		if (this === void 0 || this === null) throw new TypeError();
+		var t = Object(this); var len = t.length >>> 0; if (len === 0) return -1; var n = 0;
+		if (arguments.length > 0) { n = Number(arguments[1]);
+			if (n !== n) n = 0; else if (n !== 0 && n !== (1 / 0) && n !== -(1 / 0)) n = (n > 0 || -1) * Math.floor(Math.abs(n));
+		};
+		if (n >= len) return -1; var k = n >= 0 ? n : Math.max(len - Math.abs(n), 0);
+		for (; k < len; k++) if (k in t && t[k] === searchElement) return k;
+		return -1;
+	};};
 	if (!Array.prototype.filter) { Array.prototype.filter = function(fun /*, thisp */) {
 		if (this === void 0 || this === null) throw new TypeError();
-		var t = Object(this);
-		var len = t.length >>> 0;
+		var t = Object(this); var len = t.length >>> 0;
 		if (typeof fun !== "function") throw new TypeError();
-		var res = [];
-		var thisp = arguments[1];
+		var res = []; var thisp = arguments[1];
 		for (var i = 0; i < len; i++) {
 		  if (i in t) {
 			var val = t[i]; // in case fun mutates this
@@ -58,8 +92,7 @@
 		  }
 		}
 		return res;
-	  };
-	}
+	};};
 	// Array Remove - By John Resig (MIT Licensed)
 	Array.prototype.remove = function(from, to) {
 	  var rest = this.slice((to || from) + 1 || this.length);
@@ -68,43 +101,16 @@
 	};
 
 	/*
-	*  START gFrame script
+	*  gFrame UTILS
 	*/
-	if (document.location.href.indexOf('#__gFrame__') > 0) {
-		document.write('</head><frameset col="*"><frame onload="top.gFrame.phase2();"/></frameset></html>');
-	    document.close();
-		return true;
-	}
-
-	if (cookies('gFOUT')) {
-		var gFrame = window.gFrame = function() {
-			return gFrame;
-		};
-		gFrame.start = function() {
-			cookies('gFOUT', null, {path:"/"});
-			top.location.href = self.location.href;
-		};
-		gFrame.alive = false;
-		gFrame.ver = ver;
-		gFrame.exit = function() {return gFrame}; // dummy function;
-		return undefined;
-	} else if (top.gFrame) { 
-		if (top!=self) { 
-			var gFrame = window.gFrame = top.gFrame; 
-			gFrame.content = self;
-			gFrame.initEvent();
-		}
-		return undefined; 
-	};
 
 	// gFrame : short-hand handler
-	var gFrame = top.gFrame = function(id, code, option) { 
+	var gFrame = window.gFrame = function(id, code, option) { 
 		if (code) return gFrame.create(id,code,option);
 		else return gFrame.get(id);
 	};
-	gFrame.self = self;
+	gFrame.wrapper = self;
 	gFrame.start = function() {return gFrame}; // dummy function;
-	gFrame.cookie = cookies;
 	gFrame.loaded = false;
 	gFrame.alive = true;
 	gFrame.ver = ver;
@@ -533,7 +539,7 @@
 		else gFrame.addEvent('ready', fun, global);
 		return gFrame;
 	};
-	gFrame.load = function(fun, global) {
+	gFrame.load  = function(fun, global) {
 		if (!fun) return gFrame.trigger('load');			 
 		else gFrame.addEvent('load', fun, global);
 		return gFrame;
@@ -544,24 +550,17 @@
 		return gFrame;
 	};
 	gFrame.target = undefined;
-
-	gFrame.exit = function() {
-		cookies('gFOUT', 'END', {path:"/"});		
-		var target =(""+gFrame.content.location.href).split(gFrame.content.location.host);
-		target[1] = target[1].replace(/\/+/, "/");
-		target = target.join(gFrame.content.location.host);
-		top.location.href = target;
-	};
+	gFrame.exit   = EXIT;
 
 	/*
 	*  HTML TEXT
 	*/
 	gFrame.title = function() {
 		var title = gFrame.content.document.title + " #";
-		if (window.history.replaceState) {
-			top.history.replaceState({foo:'bar'}, title, gFrame.content.location.href);
-		}
-		top.document.title = title
+		try	{ 
+			if (window.history.replaceState) top.history.replaceState({foo:'bar'}, title, gFrame.content.location.href);		
+			top.document.title = title;		
+		}catch (err){};
 		return gFrame
 	};
 		
@@ -592,13 +591,13 @@
 	};
 	// Main Frame Text Escape
 	var body  = '<!doctype html><html><head><title>main Frame</title>';
-	body += '<script type="text/javascript">gFrame = top.gFrame; gFrame.main = window; </script>';
+	body += '<script type="text/javascript">gFrame = parent.gFrame; gFrame.main = window; </script>';
 	body += '<style>' + gFrame.store.style + '</style>';
-	body += top.gFrame.store.head+'</head>';
+	body += gFrame.store.head+'</head>';
 	body += '<body id="gBody">';
 	body += '<div id="debug" class="gLayer">gFrame</div>';
 	body += '<iframe id="cFrame" name="cFrame" frameBorder="0" style="margin:0;padding:0;border:0;width:100%;height:100%;" marginwidth=0 marginheight=0 scrolling="auto" allowtransparency="true"></iframe>';
-	body +=  top.gFrame.store.body;
+	body +=  gFrame.store.body;
 	body += '<script type="text/javascript">gFrame.mReady(self, frames["cFrame"]);</script>';
 	body += '</body></html>';
 
@@ -606,15 +605,20 @@
 
 	// Wrapper : frame Wrapper text 
 	gFrame.phase1 = function() {
+		
+		gFrame.wrapper.document.getElementById('initFrame').removeAttribute('onload');
+		gFrame.wrapper.document.getElementById('initFrame').onload = null;
 		if (gFrame.check)	{ return false}
-		gFrame.self.document.getElementById('mFrame').onload = null;
-		gFrame.main = frames['mFrame'];
-		if (gFrame.browser == "firefox") {  // URL HOOK (flash script)
-			gFrame.main.document.location.href = document.location.href + "#__gFrame__";
-		} else { // ABOUT:BLANK (flash script)
+
+		gFrame.main = frames['initFrame'];
+		//if (true /*gFrame.browser == "firefox"*/) {  // URL HOOK (flash script)
+			gFrame.main.document.location.href = document.location.href;
+		/*} else { // ABOUT:BLANK (flash script)
 			gFrame.main.document.write(body);
 			gFrame.main.document.close();
 		};
+		*/
+
 		gFrame.check = true;
 	};
 
@@ -626,7 +630,7 @@
 
 	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
 	wrap += '<title>gFrame init</title></head><frameset rows="*" frameborder="no" border="0" framespacing="0">';
-	wrap += '<frame id="mFrame" name="mFrame" frameborder="no" style="margin:0;padding:0;"frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" noresize onload="gFrame.phase1();"/>';
+	wrap += '<frame id="initFrame" name="initFrame" frameborder="no" style="margin:0;padding:0;"frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" noresize onload="gFrame.phase1();"/>';
 	wrap += '</frameset></html>';
 
 	// LET'S START
