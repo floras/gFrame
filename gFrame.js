@@ -61,7 +61,7 @@
 		window.name = 'mFrame';
 		parent.gFrame.main = self;
 		window.onload = parent.gFrame.phase2();
-		document.write('</head><frameset col="*"><frame src="javascript:volid 0"/></frameset></html>');
+		document.write('</head><frameset col="*"><frame src="javascript:void 0"/></frameset></html>');
 	    document.close();
 		return true;
 	}
