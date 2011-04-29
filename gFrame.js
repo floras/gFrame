@@ -60,7 +60,8 @@
 	if (window.name == 'initFrame') {
 		window.name = 'mFrame';
 		parent.gFrame.main = self;
-		document.write('</head><frameset col="*"><frame onload="parent.gFrame.phase2();"/></frameset></html>');
+		window.onload = parent.gFrame.phase2();
+		document.write('</head><frameset col="*"><frame src="javascript:volid 0"/></frameset></html>');
 	    document.close();
 		return true;
 	}
