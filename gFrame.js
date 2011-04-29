@@ -93,6 +93,14 @@
 		}
 		return res;
 	};};
+	if (!Array.prototype.forEach) {  Array.prototype.forEach = function(fun /*, thisp */) {
+		if (this === void 0 || this === null) throw new TypeError();
+		var t = Object(this); var len = t.length >>> 0;
+		if (typeof fun !== "function")throw new TypeError();
+		var thisp = arguments[1];
+		for (var i = 0; i < len; i++) if (i in t) fun.call(thisp, t[i], i, t);
+	};};
+
 	// Array Remove - By John Resig (MIT Licensed)
 	Array.prototype.remove = function(from, to) {
 	  var rest = this.slice((to || from) + 1 || this.length);
@@ -147,18 +155,41 @@
 		gLayer.id = id;				
 		gLayer.className = 'gLayer';
 		gFrame.main.document.getElementById('gBody').appendChild(gLayer);
+		var source = {};
 		// set option
-		if (dimension.style) gFrame.style(id, dimension.style);
-		if (dimension.width) gFrame.width(id, dimension.width);
-		if (dimension.height) gFrame.height(id, dimension.height);
-		if (dimension.top) gFrame.top(id, dimension.top);
-		if (dimension.bottom) gFrame.bottom(id, dimension.bottom);
-		if (dimension.left) gFrame.left(id, dimension.left);
-		if (dimension.right) gFrame.right(id, dimension.right);
+		"style width height top bottom left right".split(" ").forEach(function(e){
+			var value = dimension[e];
+			if (value!==undefined) {
+				gFrame[e](id, value);
+				source[e] = value;
+			}
+		});
+		source.text    = text;
+		gLayer.source  = source;
 		return gFrame.get(gLayer.id);
 	};
+	gFrame.reset = function(id, option) {
+		var target = gFrame.main.document.getElementById(id);
+		var refer = {id : target.id, source : target.source}; 
+		if (option) {
+			gFrame.remove(id);
+			gFrame.create(target.id, refer.source.text, refer.source);
+			return gFrame;
+		} else {
+			var value  = refer.source;			
+			"style width height".split(" ").forEach(function(e){
+				if (value[e]!==undefined) gFrame[e](id, value[e]);
+			});
+			if (value.top  && value.bottom) gFrame.bottom(id, value.bottom);
+			else gFrame.top (id, value.top);
+			if (value.left && value.right ) gFrame.right (id, value.right);
+			else gFrame.left(id, value.left);
+			return gFrame;
+		}
+		return gFrame(id);	
+	};
 	gFrame.remove = function(id) {
-		var target = gFrame.main.document.getElementById(id)
+		var target = gFrame.main.document.getElementById(id);
 		if (!target) return undefined;
 		gFrame.main.document.body.removeChild(target);
 		return gFrame;
@@ -202,17 +233,12 @@
 		var top = target.style.top, bottom = target.style.bottom, left = target.style.left, right = target.style.right;
 		if (top&&(bottom!='auto')&&bottom) dimension.bottom = bottom; else dimension.top = top;
 		if (left&&(right!='auto')&&right) dimension.right = right; else dimension.left = left;
-		dimension.border  = target.style.border;
-		dimension.margin  = target.style.margin;
-		dimension.padding = target.style.padding;
-		dimension.zIndex  = target.style.zIndex || 100;
-		target.style.border  = "0";
-		target.style.margin  = "0";
-		target.style.padding = "0";
-		target.style.top  = "0";
-		target.style.left = "0";
-		target.style.width = "100%";
-		target.style.height = "100%";
+		dimension.border   = target.style.border;
+		dimension.margin   = target.style.margin;
+		dimension.padding  = target.style.padding;
+		dimension.zIndex   = target.style.zIndex || 100;
+		target.style.width = target.style.height = "100%";
+		"border margin padding top left".split(" ").forEach(function(e){ target.style[e] = "0";});
 		if (!target.originalDimension) target.originalDimension = dimension;
 		return gFrame;
 	};
@@ -222,12 +248,12 @@
 		if (dimension){
 			if (dimension.top&&dimension.bottom) gFrame.bottom(id, dimension.bottom); else gFrame.top(id,  dimension.top );
 			if (dimension.left&&dimension.right) gFrame.right(id,  dimension.right ); else gFrame.left(id, dimension.left);
-			if (dimension.width  )   gFrame(id).width(dimension.width);
+			if (dimension.width  )  gFrame(id).width(dimension.width);
 			if (dimension.height )  gFrame(id).height(dimension.height);
-			if (dimension.border )  target.style.border = dimension.border;
-			if (dimension.padding) target.style.padding = dimension.padding;
-			if (dimension.margin )  target.style.margin = dimension.margin;
-			if (dimension.zIndex )  target.style.zIndex = dimension.zIndex;
+			if (dimension.border )  target.style.border  = dimension.border;
+			if (dimension.padding)  target.style.padding = dimension.padding;
+			if (dimension.margin )  target.style.margin  = dimension.margin;
+			if (dimension.zIndex )  target.style.zIndex  = dimension.zIndex;
 			target.originalDimension = undefined;
 		}
 		return gFrame;
@@ -331,6 +357,22 @@
 	gFrame.has = function(id) {
 		var target = gFrame.main.document.getElementById(id);
 		return (target && target.id) ? true : false;
+	};	
+	gFrame.offset = function(id) {
+		var target = gFrame.main.document.getElementById(id);
+		return {x : target.offsetLeft, y :target.offsetTop};
+	};
+	gFrame.moveBy = function(id, x, y) {
+		var target = gFrame.main.document.getElementById(id);
+		var offset = gFrame.offset(id);
+		var x = (x !== undefined) ?  offset.x + x : undefined;
+		var y = (y !== undefined) ?  offset.y + y : undefined;
+		return gFrame.moveTo(id, x, y);
+	};
+	gFrame.moveTo = function(id, x, y) {
+		if (x!==undefined) gFrame(id).left(x);
+		if (y!==undefined) gFrame(id).top(y);
+		return gFrame;
 	};
 	gFrame.get = function(id) {
 		var target = gFrame.main.document.getElementById(id);
@@ -382,9 +424,13 @@
 				if (v !== undefined) { gFrame.zIndex(this.id, v); return this;
 				} else return gFrame.zIndex(this.id);
 			},
-			hide    : function( ) { gFrame.hide  (this.id);       return this}, 
-			show    : function( ) { gFrame.show  (this.id);       return this},
-			remove  : function( ) { gFrame.remove(this.id);       return this} 
+			hide    : function( )    { gFrame.hide  (this.id);       return this}, 
+			show    : function( )    { gFrame.show  (this.id);       return this},
+			remove  : function( )    { gFrame.remove(this.id);       return this},
+			reset   : function(v)    { return gFrame.reset(id, v);},
+			offset  : function( )    { return gFrame.offset(id);  },
+			moveTo  : function(x, y) { gFrame.moveTo(this.id, x, y); return this},
+			moveBy  : function(x, y) { gFrame.moveBy(this.id, x, y); return this}
 		};
 	};
 	gFrame.size = function() {

@@ -84,7 +84,13 @@
 		<button class="bWidth av" onclick="gFrame('exam1').original()">gFrame('exam1').original()</button><br/>
 		<button class="bWidth av" onclick="gFrame('exam1').opacity('0.3')">gFrame('exam1').opacity(0.3)</button>
 		<button class="bWidth av" onclick="gFrame('exam1').opacity('0.6')">gFrame('exam1').opacity(0.6)</button>
-		<button class="bWidth av" onclick="gFrame('exam1').opacity('1')">gFrame('exam1').opacity(1)</button>
+		<button class="bWidth av" onclick="gFrame('exam1').opacity('1')">gFrame('exam1').opacity(1)</button><br/>
+		<button class="bWidth av" onclick="gFrame('exam1').moveTo(50, 50)">gFrame('exam1').moveTo(50, 50)</button>
+		<button class="bWidth av" onclick="gFrame('exam1').moveBy(5, 5)">gFrame('exam1').moveBy(5, 5)</button>
+		<button class="bWidth av" onclick="gFrame('exam1').moveBy(-5, -5)">gFrame('exam1').moveBy(-5, -5)</button>
+		<button class="bWidth av" onclick="alert(gFrame('exam1').offset().x + ',' + gFrame('exam1').offset().y)">gFrame('exam1').offset()</button><br/>
+		<button class="bWidth av" onclick="gFrame('exam1').reset()">gFrame('exam1').reset()</button>
+		<button class="bWidth av" onclick="gFrame('exam1').reset(true)">gFrame('exam1').reset(true)</button>
 		<h3> gFrame EVENTS </h3>
 		<ul>
 		  <li>gFrame.ready(function, global)</li>
