@@ -428,8 +428,9 @@
 		return gFrame;
 	};
 	
-	gFrame.loadScript = function(src, callback/*, charset*/) {
+	gFrame.loadScript = function(src, callfunc/*, charset*/) {
 		var script = gFrame.main.document.createElement('script');
+		var callback = function() {gFrame.eval(callfunc)};
 		script.type = 'text/javascript';
 		script.onload = callback;
 		script.src = src;
@@ -493,10 +494,10 @@
 	gFrame.eval = function(code) {
 		 var result
 		try {
-				if (typeof code == "function") var result = code.apply(gFrame.main);
-				else result = gFrame.main.eval.call(null, code);
-				return result} 
-		catch (err)	{return err }		
+			if (typeof code == "function") var result = code.apply(gFrame.main);
+			else result = gFrame.main.eval.call(null, code);
+			return result;
+		} catch (err)	{return err }		
 	};
 
 	gFrame.initEvent = function() {

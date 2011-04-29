@@ -80,7 +80,6 @@ var _createYPlayer = function(ytplayer) {
 	return yPlayer;
 
 };
-
 gFrame.loadScript("https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js", function(){
 	var params = { allowScriptAccess: "always", wmode : 'transparent', allowfullscreen : 'true' };
 	var atts = { id: "myytplayer" };
