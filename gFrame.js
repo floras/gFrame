@@ -613,8 +613,8 @@
 	gFrame.pageCounter = 0;
 	gFrame.title = function() {
 		if (top != gFrame.wrapper) return false;
-		/*
 		var title = gFrame.content.document.title + " #";
+		/*
 		var gHistory = gFrame.wrapper.history;
 		if (gHistory.pushState) {
 			if (gHistory.state == null) {
