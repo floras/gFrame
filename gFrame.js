@@ -11,18 +11,25 @@
 
 (function() {
 	
+	
 	var ver = "v0.1.02pa";
 
-	/**
-	 * from jQuery Cookie plugin
-	 *
-	 * Copyright (c) 2006 Klaus Hartl (stilbuero.de)
-	 * Dual licensed under the MIT and GPL licenses:
-	 * http://www.opensource.org/licenses/mit-license.php
-	 * http://www.gnu.org/licenses/gpl.html
-	 *
-	 */	
-	eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('4 d=x(9,b,2){6(f b!=\'y\'){2=2||{};6(b===m){b=\'\';2.3=-1}4 3=\'\';6(2.3&&(f 2.3==\'n\'||2.3.l)){6(f 2.3==\'n\'){4 a=v q();a.r(a.t()+(2.3*u*k*k*B))}o 4 a=2.3;3=\'; 3=\'+a.l()}4 8=2.8?\'; 8=\'+(2.8):\'\';4 7=2.7?\'; 7=\'+(2.7):\'\';4 e=2.e?\'; e\':\'\';c.5=[9,\'=\',E(b),3,8,7,e].A(\'\')}o{4 j=m;6(c.5&&c.5!=\'\'){4 d=c.5.G(\';\');C(4 i=0;i<d.h;i++){4 5=(d[i]).D(/^\\s+|\\s+$/g,"");6(5.p(0,9.h+1)==(9+\'=\')){j=F(5.p(9.h+1));w}}}z j}};',43,43,'||options|expires|var|cookie|if|domain|path|name|date|value|document|cookies|secure|typeof||length||cValue|60|toUTCString|null|number|else|substring|Date|setTime||getTime|24|new|break|function|undefined|return|join|1000|for|replace|encodeURIComponent|decodeURIComponent|split'.split('|'),0,{}));
+	/*  
+	*  INIT UTILS
+	*/
+	
+	// START, EXIT FUNCTION
+
+	var START = function() {
+		document.cookie = "gFOUT= ;expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/";
+		gFrame.wrapper.location.href = self.location.href;
+	}
+	var EXIT  = function() {
+		document.cookie = "gFOUT=true ; path=/";	
+		gFrame.wrapper.location.href = gFrame.content.location.href;
+	};
+	var DUMMY = Function("return this");
+
 
 	 // Array.prototype.indexOf, Array.prototype.filter for ECMA5 browser - By MDC
 	if (!Array.prototype.indexOf) { Array.prototype.indexOf = function(searchElement /*, fromIndex */) {
@@ -76,24 +83,19 @@
 		return true;
 	}
 
-	if (cookies('gFOUT')) {
-		var gFrame = window.gFrame = function() {
-			return gFrame;
-		};
-		gFrame.start = function() {
-			cookies('gFOUT', null, {path:"/"});
-			top.location.href = self.location.href;
-		};
+	if (document.cookie.indexOf('gFOUT') > -1) {
+		var gFrame = window.gFrame = function() {return this};
+		gFrame.start = START;
 		gFrame.alive = false;
 		gFrame.ver = ver;
-		gFrame.exit = function() {return gFrame}; // dummy function;
+		gFrame.exit = function() {return this}; // dummy function;
 		return undefined;
 	} else if (top.gFrame) { 
 		if (top!=self) { 
 			var gFrame = window.gFrame = top.gFrame; 
 			gFrame.content = self;
 			gFrame.initEvent();
-		}
+		};
 		return undefined; 
 	};
 
@@ -104,7 +106,6 @@
 	};
 	gFrame.self = self;
 	gFrame.start = function() {return gFrame}; // dummy function;
-	gFrame.cookie = cookies;
 	gFrame.loaded = false;
 	gFrame.alive = true;
 	gFrame.ver = ver;
@@ -545,13 +546,7 @@
 	};
 	gFrame.target = undefined;
 
-	gFrame.exit = function() {
-		cookies('gFOUT', 'END', {path:"/"});		
-		var target =(""+gFrame.content.location.href).split(gFrame.content.location.host);
-		target[1] = target[1].replace(/\/+/, "/");
-		target = target.join(gFrame.content.location.host);
-		top.location.href = target;
-	};
+	gFrame.exit = EXIT;
 
 	/*
 	*  HTML TEXT
