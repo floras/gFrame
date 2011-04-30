@@ -9,8 +9,7 @@
 */
 
 
-(function() {
-	
+(function() {	
 	
 	var ver = "v0.1.02pa";
 

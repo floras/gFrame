@@ -71,7 +71,7 @@
 	body += '<script>gFrame = parent.gFrame;</script>';
 	body += '<style>html,body{height:100%;} div.gLayer{position:absolute;}</style></head>';
 	body += '<body>';
-	/*body += '<div id="debug" class="gLayer" style="right:5px;border:3px solid #f00;padding:5px;background:#fff">gFrame</div>';*/
+	body += '<div id="debug" class="gLayer" style="right:5px;border:3px solid #f00;padding:5px;background:#fff">gFrame</div>';
 	body += '<iframe id="content" name="content" frameborder=no border=0  style="border:0;width:100%;height:100%;" allowtransparency="true" onload="gFrame.load();"></iframe>';
 	body += '</body></html>';
 	gFrame.writeMain = function() {
@@ -80,6 +80,7 @@
 	};
 
 	/* Wrapper Frame */	
+	/* TYPE I 
 	check = false;
 	init = function() {
 		if (check) return false;
@@ -90,7 +91,10 @@
 	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
 	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
 	wrap += '<frame id="main" name="main" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO src="about:blank" onload="init();"/>';
-	wrap += '</frameset></html>';
+	wrap += '</frameset></html>'; */	
+	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />'; // buggy blogspot, use TYPE I
+	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
+	wrap += '<frame id="main" name="main" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO src="'+location.split(gFrame.host).join(gFrame.host+"/")+'#"/>';
 
 	/* LET'S START */
 	document.write(wrap);

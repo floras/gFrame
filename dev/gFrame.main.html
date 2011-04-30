@@ -4,7 +4,8 @@
 	<script type="text/javascript" src="gFrame.main.js"></script>
 	<title> gFrame.main Test Suite</title>
 	<style>
-	body {font: 16px georgia}
+	h1,h2,h3,h4,h5,h6 {padding:0.5em 1.25em}
+	body {font: 16px georgia; margin:5px 20px}
 	#info {
 		border-collapse:collapse;
 		margin:10px 0;
@@ -20,13 +21,16 @@
 		background: #858585;
 		width: 120px;
 	}
+	.green {color: #2DAA02}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 </head>
 <body>
 	<div>
+	<h2> gFrame.main.js (validation suite)</h2>
 		<table id="info">
 		<script>
+		parent.document.title = "gFrame.main.js (validation suite)";
 
 		var windows = "";
 		var target  = window;
@@ -37,8 +41,7 @@
 			target = target.parent;
 		};
 		var status = Boolean(window.gFrame&&gFrame.alive);
-		startus = (status) ? "<b style='color:#2DAA02'>true</b>" : "<b style='color:#D63D1F'>false</b>";
-		
+		startus = (status) ? "<b class='green'>true</b>" : "<b style='color:#D63D1F'>false</b>";		
 		document.write("<tr><th>UA</th><td>" + window.navigator.userAgent + "</td></tr>");
 		document.write("<tr><th>gFrame.alive</th><td>" + startus + "</td></tr>");
 		document.write("<tr><th>windows tree</th><td>" + windows + "</td></tr>");
@@ -52,6 +55,7 @@
 	<button onclick="gFrame.exit();">gFrame.exit();</button>
 	<h3> FLASH SCRIPT TEST </h3>
 	<div style="width:505px;height:185px"><div id="ytapiplayer">Youtube Packed</div></div>
+	<button onclick="ytplayer.loadVideoById('51iquRYKPbs');">test script</button>
 	<script>
 	var ytplayer;
 	function onYouTubePlayerReady(playerId) {
@@ -61,8 +65,13 @@
 	var atts = { id: "myytplayer" };	
 	swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3&playerapiid=ytplayer&autoplay=1","ytapiplayer", "100%", "100%", "8", null, null, params, atts);
 	</script>
-	<button onclick="ytplayer.loadVideoById('51iquRYKPbs');">test script</button>
-
+	<h3> CHECKED </h3>
+	<address>IE5.5 <b class='green'>O</b> | IE6<b class='green'>O</b> | IE7 <b class='green'>O</b> | IE8 <b class='green'>O</b> | IE9<b class='green'>O</b> | IE10 <b class='green'>O</b><br/>
+	FIREFOX4 <b class='green'>O</b><br/>
+	OPERA11 <b class='green'>O</b><br/>
+	SAFARI5 <b class='green'>O</b><br/>
+	CHROME11 <b class='green'>O</b>
+	</address>
 </body>
 </html>
  
