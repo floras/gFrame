@@ -1,44 +1,98 @@
 /* 
-*   gFrame.main  from First version fix
+*  gFrame.main.js v0.1.03pa
+*
+* Copyright (c) 2011 50ndd1n6@gmail.com, 50ndd1n6.tistory.com
+* Dual licensed under the MIT and GPL licenses:
+* http://www.opensource.org/licenses/mit-license.php
+* http://www.gnu.org/licenses/gpl.html
+*
 */
 
 (function() {
-	var ver = "v0.1.0pa";
 
-	if (top.gFrame) return undefined;
+	var ver = "v0.1.03pa";
 
-	var gFrame = top.gFrame = {
-		loaded : false, // check main ;
-		location : window.location.href,
-	    host     : window.location.host,
-		ver	     : ver
-	};	
-	
-	 // IE Cracked;
-	gFrame.bugFixLocation = gFrame.location.split(gFrame.host).join(gFrame.host+"/");
+	// START, EXIT FUNCTION
 
-	// Main Frame Text
-	var body  = '<!doctype html><html><head>';
-	body += '<script>gFrame = top.gFrame;</script>';
-	body += '<style>html,body{height:100%;} #debug {display:none} div.gLayer{position:absolute;}</style></head>';
-	body += '<body id="gBody"><div id="debug" style="position:absolute;border:3px solid #f00;padding:5px;margin:10px;">sss</div>';
-	body += '<iframe id="content" name="content" src="'+gFrame.bugFixLocation+'" frameborder=no border=0  style="border:0;width:100%;height:100%;" allowtransparency="true"></iframe>';
-	body += '</body></html>';
+	var START = function() {
+		document.cookie = "gFOUT= ;expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/";
+		gFrame.wrapper.location.replace(self.location.href);
+	}
+	var EXIT  = function() {
+		document.cookie = "gFOUT=true ; path=/";	
+		gFrame.wrapper.location.replace(gFrame.content.location.href);
+	};
+	var DUMMY = Function("return this");
 
-	gFrame.onLoad = function() {
-		if (gFrame.loaded) return false;
-		gFrame.main = frames['mFrame'];
-		gFrame.main.document.write(body);
-		gFrame.main.document.close();
-		gFrame.loaded = true;
+	/* DOC TYPE 0 : USER WANT DISABLE gFRAME */
+	if (document.cookie.indexOf('gFOUT') > -1) {
+		var gFrame = window.gFrame = function() {return this};
+		gFrame.wrapper = window; 
+		gFrame.start   = START;
+		gFrame.alive   = false;
+		gFrame.ver     = ver;
+		gFrame.exit    = function() {return this}; // dummy function;
+		return undefined;
+	}
+	/* DOC TYPE 1 : ##content## */
+	if (window.name == "content") {
+		window.gFrame = parent.gFrame;
+
+		return undefined;
+	};
+	/* DOC TYPE 2 : ##main## - write body	*/	
+	if (window.name == "main") { // main breaker
+		var mainBreak = '<script type="text/javascript">window.onload = parent.gFrame.writeMain;</script></head>'
+		mainBreak += '<frameset><frame /></frameset></html>';
+		document.write(mainBreak);
+		document.close();
+		return undefined;
 	};
 	
-	// Wrapper : frame Wrapper text 
+	/* DOC TYPE 3 : gFrame Init	*/
+	var gFrame = window.gFrame = function() {};
+	gFrame.wrapper = window;
+	gFrame.alive   = true;
+	gFrame.ver     = ver;
+	gFrame.exit    = EXIT;
+	gFrame.init    = function() {};
+	gFrame.start   = Function("return this");
+
+	gFrame.load = function() {
+		if (!gFrame.contentInit) { // firstMain loaded
+			gFrame.content = gFrame.main.frames['content'];
+			gFrame.content.location.replace(parent.document.location);
+			gFrame.contentInit = true;
+		};
+	};
+
+	/* WRITE DOC*/// Main Frame Text
+	var body  = '<!doctype html><html><head>';
+	body += '<script>gFrame = parent.gFrame;</script>';
+	body += '<style>html,body{height:100%;} div.gLayer{position:absolute;}</style></head>';
+	body += '<body>';
+	/*body += '<div id="debug" class="gLayer" style="right:5px;border:3px solid #f00;padding:5px;background:#fff">gFrame</div>';*/
+	body += '<iframe id="content" name="content" frameborder=no border=0  style="border:0;width:100%;height:100%;" allowtransparency="true" onload="gFrame.load();"></iframe>';
+	body += '</body></html>';
+	gFrame.writeMain = function() {
+		gFrame.main.document.write(body);
+		gFrame.main.document.close();
+	};
+
+	/* Wrapper Frame */	
+	check = false;
+	init = function() {
+		if (check) return false;
+		gFrame.main = frames['main'];
+		gFrame.main.location.replace(location.href);
+		check = true;
+	};	
 	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
 	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
-	wrap += '<frame id="mFrame" name="mFrame" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO src="" onload="gFrame.onLoad();"/>';
+	wrap += '<frame id="main" name="main" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO src="about:blank" onload="init();"/>';
 	wrap += '</frameset></html>';
-	// LET'S START
+
+	/* LET'S START */
 	document.write(wrap);
 
 })();

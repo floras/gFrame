@@ -7,6 +7,7 @@
 	body {font: 16px georgia}
 	#info {
 		border-collapse:collapse;
+		margin:10px 0;
 	}
 	#info td,
 	#info th {
@@ -20,19 +21,48 @@
 		width: 120px;
 	}
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 </head>
 <body>
 	<div>
 		<table id="info">
 		<script>
-			document.write("<tr><th>window</th><td>" + window.name + "</td></tr>");
-			document.write("<tr><th>window.name</th><td>" + window.name + "</td></tr>");
-			document.write("<tr><th>document.location</th><td>" + document.location + "</td></tr>");
+
+		var windows = "";
+		var target  = window;
+		while(true) {
+			var names = (target.name) ? target.name : "[ unnamed ]";
+			windows =  windows ? names + " > " + windows : names ;
+ 			if (target == top) break;
+			target = target.parent;
+		};
+		var status = Boolean(window.gFrame&&gFrame.alive);
+		startus = (status) ? "<b style='color:#2DAA02'>true</b>" : "<b style='color:#D63D1F'>false</b>";
+		
+		document.write("<tr><th>UA</th><td>" + window.navigator.userAgent + "</td></tr>");
+		document.write("<tr><th>gFrame.alive</th><td>" + startus + "</td></tr>");
+		document.write("<tr><th>windows tree</th><td>" + windows + "</td></tr>");
+		document.write("<tr><th>window.name</th><td>" + window.name + "</td></tr>");
+		document.write("<tr><th>document.location</th><td>" + document.location + "</td></tr>");
+		document.write("<tr><th>document.cookie</th><td>" + document.cookie + "</td></tr>");
 		</script>
 		</table>
 	</div>
 	<button onclick="gFrame.start();">gFrame.start();</button>
 	<button onclick="gFrame.exit();">gFrame.exit();</button>
+	<h3> FLASH SCRIPT TEST </h3>
+	<div style="width:505px;height:185px"><div id="ytapiplayer">Youtube Packed</div></div>
+	<script>
+	var ytplayer;
+	function onYouTubePlayerReady(playerId) {
+	  ytplayer = document.getElementById("myytplayer");
+	};	
+	var params = { allowScriptAccess: "always", wmode : 'transparent', allowfullscreen : 'true' };
+	var atts = { id: "myytplayer" };	
+	swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3&playerapiid=ytplayer&autoplay=1","ytapiplayer", "100%", "100%", "8", null, null, params, atts);
+	</script>
+	<button onclick="ytplayer.loadVideoById('51iquRYKPbs');">test script</button>
+
 </body>
 </html>
  
