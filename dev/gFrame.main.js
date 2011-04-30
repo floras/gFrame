@@ -80,7 +80,6 @@
 	};
 
 	/* Wrapper Frame */	
-	/* TYPE I 
 	check = false;
 	init = function() {
 		if (check) return false;
@@ -91,10 +90,7 @@
 	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
 	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
 	wrap += '<frame id="main" name="main" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO src="about:blank" onload="init();"/>';
-	wrap += '</frameset></html>'; */	
-	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />'; // buggy blogspot, use TYPE I
-	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
-	wrap += '<frame id="main" name="main" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO src="'+location.split(gFrame.host).join(gFrame.host+"/")+'#"/>';
+	wrap += '</frameset></html>'; 
 
 	/* LET'S START */
 	document.write(wrap);
