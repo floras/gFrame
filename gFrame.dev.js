@@ -1,5 +1,5 @@
 /* 
-*  gFrame v0.1.02pa
+*  gFrame v0.1.03pa
 *
 * Copyright (c) 2011 50ndd1n6@gmail.com, 50ndd1n6.tistory.com
 * Dual licensed under the MIT and GPL licenses:
@@ -8,10 +8,12 @@
 *
 */
 
+// BUGGY, DON'T USE THIS FILE
 
 (function() {
 	
-	var ver = "v0.1.02pa";
+	
+	var ver = "v0.1.03pa";
 
 	/*  
 	*  INIT UTILS
@@ -29,64 +31,34 @@
 	};
 	var DUMMY = Function("return this");
 
-	/*
-	*  START gFrame script
-	*/
 
-	// PRIORITY : USER[COOKIE] > SERVER[gFSETUP] > DEFAULT(ON);
-
-	// CASE : USER WANTS DISABLE gFRAME	
-	if (document.cookie.indexOf('gFOUT') > -1) {
-		var gFrame = window.gFrame = DUMMY;
-		gFrame.wrapper = self;
-		gFrame.start = START;
-		gFrame.alive = false;
-		gFrame.ver   = ver;
-		gFrame.exit  = DUMMY; 
-		return undefined;
-	};
-
-
-	// CASE : PASS THE NORMAL DOCUMENT WITHIN gFrame ;		
-	if (window.name == 'cFrame') { 
-		var gFrame = window.gFrame = parent.gFrame; 
-		gFrame.content = self;
-		gFrame.initEvent();
-		return undefined; 
-	};
-	
-	// CASE : FIREFOX WITH FLASH (in the mFrame & break HTML Render);
-
-	if (window.name == 'initFrame') {
-		window.name = 'mFrame';
-		parent.gFrame.main = self;
-		// Keep this. 
-		document.write('</head><frameset col="*"><frame src="about:blank" onload="parent.gFrame.phase2();"/></frameset></html>'); // IE6 handle this;
-		window.onload = parent.gFrame.phase2(); // Chrome handle this & IE6 buggy
-	    document.close();
-		return true;
-	}
-
-	/*
-	*  INNER UTILS
-	*/
-
-	// Array.prototype.indexOf, Array.prototype.filter for ECMA5 browser - By MDC
+	 // Array.prototype.indexOf, Array.prototype.filter for ECMA5 browser - By MDC
 	if (!Array.prototype.indexOf) { Array.prototype.indexOf = function(searchElement /*, fromIndex */) {
-		if (this === void 0 || this === null) throw new TypeError();
-		var t = Object(this); var len = t.length >>> 0; if (len === 0) return -1; var n = 0;
-		if (arguments.length > 0) { n = Number(arguments[1]);
-			if (n !== n) n = 0; else if (n !== 0 && n !== (1 / 0) && n !== -(1 / 0)) n = (n > 0 || -1) * Math.floor(Math.abs(n));
-		};
-		if (n >= len) return -1; var k = n >= 0 ? n : Math.max(len - Math.abs(n), 0);
-		for (; k < len; k++) if (k in t && t[k] === searchElement) return k;
+		if (this === void 0 || this === null)	throw new TypeError();
+		var t = Object(this);
+		var len = t.length >>> 0;
+		if (len === 0) return -1;
+		var n = 0;
+		if (arguments.length > 0) {
+			n = Number(arguments[1]);
+			if (n !== n) n = 0;
+			else if (n !== 0 && n !== (1 / 0) && n !== -(1 / 0)) n = (n > 0 || -1) * Math.floor(Math.abs(n));
+		}
+		if (n >= len) return -1;
+		var k = n >= 0 ? n : Math.max(len - Math.abs(n), 0);
+		for (; k < len; k++) {
+			if (k in t && t[k] === searchElement) return k;
+		}
 		return -1;
-	};};
+		};
+	}
 	if (!Array.prototype.filter) { Array.prototype.filter = function(fun /*, thisp */) {
 		if (this === void 0 || this === null) throw new TypeError();
-		var t = Object(this); var len = t.length >>> 0;
+		var t = Object(this);
+		var len = t.length >>> 0;
 		if (typeof fun !== "function") throw new TypeError();
-		var res = []; var thisp = arguments[1];
+		var res = [];
+		var thisp = arguments[1];
 		for (var i = 0; i < len; i++) {
 		  if (i in t) {
 			var val = t[i]; // in case fun mutates this
@@ -94,7 +66,8 @@
 		  }
 		}
 		return res;
-	};};
+	  };
+	}
 	// Array Remove - By John Resig (MIT Licensed)
 	Array.prototype.remove = function(from, to) {
 	  var rest = this.slice((to || from) + 1 || this.length);
@@ -103,15 +76,36 @@
 	};
 
 	/*
-	*  gFrame UTILS
+	*  START gFrame script
 	*/
+	if (document.location.href.indexOf('#__gFrame__') > 0) {
+		document.write('</head><frameset col="*"><frame onload="top.gFrame.phase2();"/></frameset></html>');
+	    document.close();
+		return true;
+	}
+
+	if (document.cookie.indexOf('gFOUT') > -1) {
+		var gFrame = window.gFrame = function() {return this};
+		gFrame.start = START;
+		gFrame.alive = false;
+		gFrame.ver = ver;
+		gFrame.exit = function() {return this}; // dummy function;
+		return undefined;
+	} else if (top.gFrame) { 
+		if (top!=self) { 
+			var gFrame = window.gFrame = top.gFrame; 
+			gFrame.content = self;
+			gFrame.initEvent();
+		};
+		return undefined; 
+	};
 
 	// gFrame : short-hand handler
-	var gFrame = window.gFrame = function(id, code, option) { 
+	var gFrame = top.gFrame = function(id, code, option) { 
 		if (code) return gFrame.create(id,code,option);
 		else return gFrame.get(id);
 	};
-	gFrame.wrapper = self;
+	gFrame.self = self;
 	gFrame.start = function() {return gFrame}; // dummy function;
 	gFrame.loaded = false;
 	gFrame.alive = true;
@@ -541,7 +535,7 @@
 		else gFrame.addEvent('ready', fun, global);
 		return gFrame;
 	};
-	gFrame.load  = function(fun, global) {
+	gFrame.load = function(fun, global) {
 		if (!fun) return gFrame.trigger('load');			 
 		else gFrame.addEvent('load', fun, global);
 		return gFrame;
@@ -552,17 +546,22 @@
 		return gFrame;
 	};
 	gFrame.target = undefined;
-	gFrame.exit   = EXIT;
+
+	gFrame.exit = EXIT;
 
 	/*
 	*  HTML TEXT
 	*/
 	gFrame.title = function() {
-		var title = gFrame.content.document.title + " #";
-		try	{ 
-			if (window.history.replaceState) top.history.replaceState({foo:'bar'}, title, gFrame.content.location.href);		
-			top.document.title = title;		
-		}catch (err){};
+		if (top.gFrame) {
+			var title = gFrame.content.document.title + " #";
+			/*
+			if (window.history.replaceState) {
+				top.history.replaceState({foo:'bar'}, title, gFrame.content.location.href);
+			}
+			*/
+			top.document.title = title;
+		}
 		return gFrame
 	};
 		
@@ -593,13 +592,13 @@
 	};
 	// Main Frame Text Escape
 	var body  = '<!doctype html><html><head><title>main Frame</title>';
-	body += '<script type="text/javascript">gFrame = parent.gFrame; gFrame.main = window; </script>';
+	body += '<script type="text/javascript">gFrame = top.gFrame; gFrame.main = window; </script>';
 	body += '<style>' + gFrame.store.style + '</style>';
-	body += gFrame.store.head+'</head>';
+	body += top.gFrame.store.head+'</head>';
 	body += '<body id="gBody">';
 	body += '<div id="debug" class="gLayer">gFrame</div>';
 	body += '<iframe id="cFrame" name="cFrame" frameBorder="0" style="margin:0;padding:0;border:0;width:100%;height:100%;" marginwidth=0 marginheight=0 scrolling="auto" allowtransparency="true"></iframe>';
-	body +=  gFrame.store.body;
+	body +=  top.gFrame.store.body;
 	body += '<script type="text/javascript">gFrame.mReady(self, frames["cFrame"]);</script>';
 	body += '</body></html>';
 
@@ -607,20 +606,15 @@
 
 	// Wrapper : frame Wrapper text 
 	gFrame.phase1 = function() {
-		
-		gFrame.wrapper.document.getElementById('initFrame').removeAttribute('onload');
-		gFrame.wrapper.document.getElementById('initFrame').onload = null;
 		if (gFrame.check)	{ return false}
-
-		gFrame.main = frames['initFrame'];
-		//if (true /*gFrame.browser == "firefox"*/) {  // URL HOOK (flash script)
-			gFrame.main.document.location.href = document.location.href;
-		/*} else { // ABOUT:BLANK (flash script)
+		gFrame.self.document.getElementById('mFrame').onload = null;
+		gFrame.main = frames['mFrame'];
+		if (gFrame.browser == "firefox") {  // URL HOOK (flash script)
+			gFrame.main.document.location.href = document.location.href + "#__gFrame__";
+		} else { // ABOUT:BLANK (flash script)
 			gFrame.main.document.write(body);
 			gFrame.main.document.close();
 		};
-		*/
-
 		gFrame.check = true;
 	};
 
@@ -632,7 +626,7 @@
 
 	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
 	wrap += '<title>gFrame init</title></head><frameset rows="*" frameborder="no" border="0" framespacing="0">';
-	wrap += '<frame id="initFrame" name="initFrame" frameborder="no" style="margin:0;padding:0;"frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" noresize onload="gFrame.phase1();"/>';
+	wrap += '<frame id="mFrame" name="mFrame" frameborder="no" style="margin:0;padding:0;"frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" noresize onload="gFrame.phase1();"/>';
 	wrap += '</frameset></html>';
 
 	// LET'S START

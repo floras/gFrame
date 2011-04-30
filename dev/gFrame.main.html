@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<script type="text/javascript" src="gFrame.main.js"></script>
+	<title> gFrame.main Test Suite</title>
+	<style>
+	body {font: 16px georgia}
+	#info {
+		border-collapse:collapse;
+	}
+	#info td,
+	#info th {
+		font:14px 'courier new';
+		padding:5px;
+		border:1px solid #D0D0D0;
+	}
+	#info th {
+		color: #E9F5B7;
+		background: #858585;
+		width: 120px;
+	}
+	</style>
+</head>
+<body>
+	<div>
+		<table id="info">
+		<script>
+			document.write("<tr><th>window</th><td>" + window.name + "</td></tr>");
+			document.write("<tr><th>window.name</th><td>" + window.name + "</td></tr>");
+			document.write("<tr><th>document.location</th><td>" + document.location + "</td></tr>");
+		</script>
+		</table>
+	</div>
+	<button onclick="gFrame.start();">gFrame.start();</button>
+	<button onclick="gFrame.exit();">gFrame.exit();</button>
+</body>
+</html>
+ 
