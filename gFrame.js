@@ -504,7 +504,18 @@
 		load   : [],
 		unload : [],
 		ready  : []
-	};	
+	};
+	
+	// window.onpopstate Event
+
+	/*
+	gFrame.wrapper.onpopstate = function() {
+		alert(gFrame.wrapper.hisotry.state.page);
+		if (gFrame.wrapper.hisotry.state.page) {
+			gFrame.main.document.location.href = document.location;
+		}
+	};*/
+
 	var eventCheck = function(type, func, global) {
 		var target = (global) ? gEvent[type] :  pEvent[type];
 		for (var i=0; i < target.length ; i++ ) {
@@ -599,12 +610,23 @@
 	/*
 	*  HTML TEXT
 	*/
+	gFrame.pageCounter = 0;
 	gFrame.title = function() {
+		if (top != gFrame.wrapper) return false;
+		/*
 		var title = gFrame.content.document.title + " #";
-		try	{ 
-			if (window.history.replaceState) top.history.replaceState({foo:'bar'}, title, gFrame.content.location.href);		
-			top.document.title = title;		
-		}catch (err){};
+		var gHistory = gFrame.wrapper.history;
+		if (gHistory.pushState) {
+			if (gHistory.state == null) {
+				gHistory.replaceState({page : gFrame.pageCounter}, undefined, gFrame.content.location.href);
+				return false;
+			} else {
+				if (gHistory.state.page == gFrame.pageCounter)
+				gHistory.pushState({page:++gFrame.pageCounter}, undefined, gFrame.content.location.href);
+			}
+		}
+		*/
+		top.document.title = title;		
 		return gFrame
 	};
 		
