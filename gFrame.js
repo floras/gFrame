@@ -557,11 +557,15 @@
 	*  HTML TEXT
 	*/
 	gFrame.title = function() {
-		var title = gFrame.content.document.title + " #";
-		if (window.history.replaceState) {
-			top.history.replaceState({foo:'bar'}, title, gFrame.content.location.href);
+		if (top.gFrame) {
+			var title = gFrame.content.document.title + " #";
+			/*
+			if (window.history.replaceState) {
+				top.history.replaceState({foo:'bar'}, title, gFrame.content.location.href);
+			}
+			*/
+			top.document.title = title;
 		}
-		top.document.title = title
 		return gFrame
 	};
 		
