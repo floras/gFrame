@@ -39,3 +39,4 @@ Change your page. (Skin or template)
 
 See the demo and manual : http://floras.github.com/gFrame/
 Test : http://floras.github.com/gFrame/dev/gFrame.main.js
+contact : http://50ndd1n6.tistory.com/guestbook 50ndd1n6@gmail.com

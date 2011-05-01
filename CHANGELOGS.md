@@ -1,9 +1,7 @@
-v0.1.02pa
+v0.1.03a
 ===
 
-*  [NEW] gFrame.loadScript(src, callback) 
-*  [CHG] gFrame.main.head (gFrame.main at the first script); 
-*  [CHG] Pseudo script -> onload Event; 
+ 
 
 v0.1.02pa
 ===

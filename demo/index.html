@@ -40,25 +40,27 @@
 			</div>
 	</h1>
 	<div id="pages">
-		<span id="home"><a href="index.html">HOME</a></span><span><a href="">DEMO1</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span><a href="addons.html">ADDONS</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
+		<span id="home"><a href="index.html">HOME</a></span><span><a href="example.html">EXAMPLE</a></span><span><a href="api.html">API</a></span><span id="download"><a href="../gFrame.js" target="_blank">DOWNLOAD</a></span>
 	</div>
 </div>
 	<div id="container">
 		<div id="notice"> gFrame is <span id="gState"> </span><br /><span class="desc"></span></div>
 		<img src="browser_icons.jpg" align="left" style="margin-right:5px;"/>gFrame makes a new frame and insert current document in the frame by javascript. Although many skins(or templates) could be modified, one can't easily make outter frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers. Moreover this gives you another useful thing. You can handle element(gLayer) without painful scripts.<br/>
-		<address>TESETED : IE6, IE7, IE8, IE9, IE10, FIREFOX4, OPERA11, CHROME10, SAFARI5</address>
+		<address>TESETED : IE5.5, IE6, IE7, IE8, IE9, IE10, FIREFOX4, OPERA11, CHROME11, SAFARI5</address>
 		<div style="text-align:right">
 		<button onclick="gFrame.once.remove('player');gFrame.content.music();" class="av">create layer1</button>
 		<button onclick="gFrame('player').remove();" class="av">remove layer1</button>
 		<button onclick="gFrame('player').show();" class="av">show layer1</button>
 		<button onclick="gFrame('player').hide();" class="av">hide layer1</button>
 		</div>
-		<h3> temporary link </h3>
+		<h3> link </h3>
 		<ul>
-			<li><a href="../dev/" target="_blank">DEV</a></li>
-			<li><a href="http://github.com/floras/gFrame" target="_blank">GITHUB</a></li>
-			<li><a href="../gFrame.js" target="_blank">DOWNLOAD</a></li>
-			<li><a href="../gFrame.dev.js" target="_blank">DOWNLOAD(DEV)</a></li>
+			<li> MINI VERSION  [for only frame] : <a href="../dev/gFrame.main.html" target="_blank">DEMO</a> <a href="../dev/gFrame.main.js" target="_blank">gFrame.main.js</a></li>
+			<li> LITE VERSION [without gLayer] : <a href="../dev/gFrame.lite.html" target="_blank">DEMO</a> <a href="../dev/gFrame.lite.js" target="_blank">gFrame.lite.js</a> &lt;- MINI + EVENT + gFSETUP</li>
+			<li> FULL VERSION [with gLayer]: <a href="../gFrame.js" target="_blank">gFrame.js</a></li>
+			<li><a href="http://50ndd1n6.tistory.com/guestbook" target="_blank">contact</a> 50ndd1n6&lt;at>gmail&lt;dot>com</li>
+			<li><a href="http://github.com/floras/gFrame" target="_blank">Github</a></li>
+			<li><a href="../testSuite.html" target="_blank">test</a></li>
 		</ul>
 		<br/>
 		<h3> USAGE </h3>
@@ -89,7 +91,6 @@
 		<button class="bWidth av" onclick="gFrame('exam1').toFront()">gFrame('exam1').toFront()</button><br/>
 		<button class="bWidth av" onclick="gFrame('exam1').fullBack()">gFrame('exam1').fullBack()</button>
 		<button class="bWidth av" onclick="gFrame('exam1').original()">gFrame('exam1').original()</button><br/>
-		<!--
 		<button class="bWidth av" onclick="gFrame('exam1').opacity('0.3')">gFrame('exam1').opacity(0.3)</button>
 		<button class="bWidth av" onclick="gFrame('exam1').opacity('0.6')">gFrame('exam1').opacity(0.6)</button>
 		<button class="bWidth av" onclick="gFrame('exam1').opacity('1')">gFrame('exam1').opacity(1)</button><br/>
@@ -99,7 +100,6 @@
 		<button class="bWidth av" onclick="alert(gFrame('exam1').offset().x + ',' + gFrame('exam1').offset().y)">gFrame('exam1').offset()</button><br/>
 		<button class="bWidth av" onclick="gFrame('exam1').reset()">gFrame('exam1').reset()</button>
 		<button class="bWidth av" onclick="gFrame('exam1').reset(true)">gFrame('exam1').reset(true)</button>
-		-->
 		<h3> gFrame EVENTS </h3>
 		<ul>
 		  <li>gFrame.ready(function, global)</li>
@@ -124,7 +124,7 @@
 		</div>
 		This option is for gFrame.main window.<br/>	<br/> 
 		<h3> Licesne (MIT/GPL) </h3>
-		<pre style="display:block;height:200px;overflow:auto;font:14px/1.5em 'Cousine';border:2px solid #F2F2F2;border-radius:5px;padding:5px;">
+		<pre style="display:block;height:60px;overflow:auto;font:12px/1.5em 'Cousine';border:2px solid #F2F2F2;border-radius:5px;padding:5px;">
 
 		Copyright (c) 2011 50ndd1n6@gmail.com, 50ndd1n6.tistory.com
 
@@ -149,7 +149,7 @@
 		FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 		OTHER DEALINGS IN THE SOFTWARE.
 		</pre>
-		<pre style="display:block;height:200px;overflow:auto;font:14px/1.5em 'Cousine';border:2px solid #F2F2F2;border-radius:5px;padding:1.5em 5px;">
+		<pre style="display:block;height:60px;overflow:auto;font:12px/1.5em 'Cousine';border:2px solid #F2F2F2;border-radius:5px;padding:1.5em 5px;">
 		Copyright (C) 2011 50ndd1n6@gmail.com, 50ndd1n6.tistory.com
 
 		This program is free software: you can redistribute it and/or modify
@@ -171,13 +171,10 @@
 		<br/>	<br/>
 		
 		<div style="text-align:center">
-			<img src="HTML5_Logo_128.png" alt="puststate" style="vertical-align:middle" /> <a href="http://dev.w3.org/html5/spec-author-view/history.html" target="_blank">Pushstate</a>
+			<img src="HTML5_Logo_128.png" alt="puststate" style="vertical-align:middle" /> <a href="http://dev.w3.org/html5/spec-author-view/history.html" target="_blank">history</a>
 		</div>
 		<br/>	<br/> 
 
-		<address>These code are very tough and unmatured.<br/> 
-		Code will be frozen in the next week.
-		</address><br/> <br/>
 
 	</div>
 	<script>

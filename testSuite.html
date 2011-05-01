@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript" src="gFrame.js"></script>
+<style>
+
+#info {
+	border-collapse:collapse;
+	margin:10px 0;
+}
+#info td,
+#info th {
+	font:14px 'courier new';
+	padding:5px;
+	border:1px solid #D0D0D0;
+}
+#info th {
+	color: #E9F5B7;
+	background: #858585;
+	width: 120px;
+}
+.green {color: #2DAA02}
+button {display:inline-block;padding:3px 2px}
+</style>
+</head>
+<body>
+<h2>Test Suite</h2>
+
+
+<table id="info">
+<script>
+var windows = "";
+var target  = window;
+while(true) {
+	var names = (target.name) ? target.name : "[ unnamed ]";
+	windows =  windows ? names + " > " + windows : names ;
+	if (target == top) break;
+	target = target.parent;
+};
+var status = Boolean(window.gFrame&&gFrame.alive);
+startus = (status) ? "<b class='green'>true</b>" : "<b style='color:#D63D1F'>false</b>";		
+document.write("<tr><th>UA</th><td>" + window.navigator.userAgent + "</td></tr>");
+document.write("<tr><th>gFrame.alive</th><td>" + startus + "</td></tr>");
+document.write("<tr><th>windows tree</th><td>" + windows + "</td></tr>");
+document.write("<tr><th>window.name</th><td>" + window.name + "</td></tr>");
+document.write("<tr><th>document.location</th><td>" + document.location + "</td></tr>");
+document.write("<tr><th>document.cookie</th><td>" + document.cookie + "</td></tr>");
+document.write("<tr><th>document.referrer</th><td>" + document.referrer + "</td></tr>");
+</script>
+</table>
+<h3> start/exit </h3>
+<button onclick="gFrame.exit();">gFrame.exit();</button>
+<button onclick="gFrame.start();">gFrame.start();</button> 
+<h3> create/remove/reset </h3>
+<button onclick='clickExam1();'>gFrame("exam1"...)</button>
+<button onclick='gFrame.remove("exam1");'>gFrame.remove("exam1")</button>
+<button onclick='gFrame.reset("exam1");'>gFrame.reset("exam1")</button>
+<button onclick='gFrame.reset("exam1", true);'>gFrame.reset("exam1", true)</button>
+<h3> position </h3>
+<button onclick='t=gFrame.offset("exam1");alert(t.x + "," + t.y);'>gFrame.offset("exam1")</button>
+<button onclick='gFrame.toBack("exam1");'>gFrame.toBack("exam1")</button>
+<button onclick='gFrame.toFront("exam1");'>gFrame.toFront("exam1")</button>
+<button onclick='gFrame.fullBack("exam1");'>gFrame.fullBack("exam1")</button>
+<button onclick='gFrame.original("exam1");'>gFrame.original("exam1")</button>
+<button onclick='gFrame("exam1").moveTo(20,20);'>gFrame("exam1").moveTo(20,20)</button>
+<button onclick='gFrame("exam1").moveTo(-20,20);'>gFrame("exam1").moveTo(-20,20)</button>
+<button onclick='gFrame("exam1").moveBy(20,20);'>gFrame("exam1").moveBy(20,20)</button>
+<button onclick='gFrame("exam1").moveBy(-20,-20);'>gFrame("exam1").moveBy(-20,-20)</button>
+<button onclick='gFrame("exam1").top(30);'>gFrame("exam1").top(30);</button>
+<button onclick='gFrame("exam1").bottom(30);'>gFrame("exam1").bottom(30);</button>
+<button onclick='gFrame("exam1").left(30);'>gFrame("exam1").left(30);</button>
+<button onclick='gFrame("exam1").right(30);'>gFrame("exam1").right(30);</button>
+<h3> size </h3>
+<button onclick='alert(gFrame("exam1").width());'>gFrame("exam1").width();</button>
+<button onclick='alert(gFrame("exam1").height());'>gFrame("exam1").height();</button>
+<button onclick='gFrame("exam1").width(227);'>gFrame("exam1").width(227);</button>
+<button onclick='gFrame("exam1").width(505);'>gFrame("exam1").width(505);</button>
+<button onclick='gFrame("exam1").height(105);'>gFrame("exam1").height(105);</button>
+<button onclick='gFrame("exam1").height(210);'>gFrame("exam1").height(210);</button>
+<button onclick='gFrame("exam1").resizeTo(227,105);'>gFrame("exam1").resizeTo(227,105);</button>
+<button onclick='gFrame("exam1").resizeTo(505,210);'>gFrame("exam1").resizeTo(227,105);</button>
+<button onclick='gFrame("exam1").resizeBy(15,15);'>gFrame("exam1").resizeBy(15,15);</button>
+<button onclick='gFrame("exam1").resizeBy(-15,-15);'>gFrame("exam1").resizeBy(-15, -15);</button>
+<h3> info </h3>
+<button onclick='alert(gFrame.size());'>gFrame.size()</button>
+<button onclick='alert(gFrame.list());'>gFrame.list()</button>
+<script>
+var clickExam1 = function(){
+	gFrame("exam1", '<embed src="http://www.youtube.com/v/51iquRYKPbs?autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>', 
+	{top:50, right:30, width: 505, height: 210, style:'border: 3px solid #f00;'});
+};
+</script>
+</body>
+</html>

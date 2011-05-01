@@ -1,0 +1,62 @@
+<!doctype html>
+	<head>
+		<title> test</title>
+		<style>
+		div {width:100px;height:100px;border:1px solid #f00;}
+		.D1o {position:relative;background-color:#fcc;}
+		.D2o {position:relative;background-color:#ccf;}
+		.D1i {position:absolute;background-color:#ffc;top:40px;left:50px}
+		.D1o {}
+		.D1i {z-index:20}
+		.D2o {z-index:10}
+		</style>
+	</head>
+	<body>
+		<div style="position:relative;z-index:20;top:15px;left:20px;background:#fff"></div>
+		<div id='D1o' class="D1o">D1o<br /> relative <br/>none
+			<div id='D1i' class="D1i">D1i<br />absolute<br/>z index 20 </div>
+		</div>
+		<div id='D2o' class="D2o" style="top:-10px;right:5px;">D2o<br />relatvie<br />zindex 10</div>
+		<script>
+			document.write(document.getElementById('D1o').currentStyle.zIndex);
+		</script>
+	</body>
+</html>
+<!--
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+		<title>IE z-index bug</title>
+		<style type="text/css">
+
+			body { margin: 0; padding: 0; }
+			#container { position: relative; }
+			#box1 { position: absolute; top: 100px; left: 510px; width: 200px; height: 200px; background-color: yellow; z-index: 20; }
+			#box2 { position: absolute; top: 50px; left: 460px; width: 200px; height: 200px; background-color: lime; z-index: 10; }
+			#content { width: 420px; padding: 20px; }
+
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div id="box1">This box should be on top</div>
+		</div>
+		<div id="box2">This box should not be on top; IE however seems to create a new stacking context for positioned elements, even when the computed z-index of that element is 'auto'.</div>
+		<div id="content">
+			<h1>IE z-index bug</h1>
+			<p>To the right are 2 boxes that are absolutely positioned; the lime-green box has a z-index value of 10 and the yellow box has a z-index of 20. The only difference between the boxes is that the yellow box is wrapped in a division that has position:relative and is the first box defined in the sourcecode.</p>
+			<p>Basically the fact that the yellow box is wrapped in a relative positioned element should not effect the stacking order: <a href="http://www.w3.org/TR/CSS21/visuren.html#z-index">the CSS specification</a> clearly states that only positioned elements that have a computed z-index value other than 'auto' generate a new stacking context. The relative positioned element does not have a z-index value defined, so it should not influence the stacking order of it's child-elements.</p>
+			<p>It appears that in Internet Explorer (windows) positioned elements <em>do</em> generate a new stacking context, starting with a z-index value of 0, causing the lime-green box to appear above the yellow box.</p>
+			<p>This is a serious violation of the CSS specifications, causing headages and a lot of misunderstanding of what z-index really does.</p>
+			<p>This bug is still present in IE7, IE8 fixes it in it's standards compliant mode.</p>
+			<p><small>Updated 17-04-2009, crisp@xs4all.nl</small></p>
+		</div>
+		<script>
+			var target1 = document.getElementById('box1')
+			var value = window.getComputedStyle(target1,null).getPropertyValue("z-index");
+			document.write(value);
+		</script>
+	</body>
+</html>
+-->

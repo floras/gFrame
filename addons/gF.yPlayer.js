@@ -4,13 +4,14 @@
 *  2011-04-28
 */
 
-gFrame("yplayer", '<div id="ytapiplayer">Youtube Packed</div>', 
+gFrame("yplayer", '<div><div id="ytapiplayer">Youtube Packed</div></div>', 
 	{top:20, left:20, width:400, height:325, style: 'border:3px solid #f00;'});
 function onYouTubePlayerReady(playerId) {
   var ytplayer = document.getElementById("myytplayer");
   gFrame.yPlayer = _createYPlayer(ytplayer);
   gFrame.yReady(gFrame.yPlayer);
 };
+
 var _createYPlayer = function(ytplayer) {
 	var player = ytplayer;	
 	window.yPlayer = gFrame.yPlayer = function(id, start, quality) {

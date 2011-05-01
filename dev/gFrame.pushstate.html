@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+	<title>pushstate test in iframe</title>
+	<style>
+	#info {
+		border-collapse:collapse;
+		margin:10px 0;
+	}
+	#info td,
+	#info th {
+		font:14px 'courier new';
+		padding:5px;
+		border:1px solid #D0D0D0;
+	}
+	#info th {
+		color: #E9F5B7;
+		background: #858585;
+		width: 120px;
+	}
+	</style>
+</head>
+<body>
+	<h3> pushstate test in iframe</h3>
+
+<table id="info">
+<tr><th>history.length</th><td id="length"></td></tr>
+<tr><th>history.state</th><td id="state"></td></tr>
+<tr><th></th><td></td></tr>
+</table>
+	<div style="width:500px;margin:40px auto;">
+		<iframe src="gFrame.pushstate.inner.html" style="width:500px;height:450px;"></iframe>
+	</div>
+	<script>
+	var update = function() {
+		var $ = function(id){return document.getElementById(id)};
+		$('length').innerHTML   = history.length;
+		$('state').innerHTML = JSON.stringify(history.state);
+	};
+	</script>
+</body>
+</html>

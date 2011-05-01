@@ -17,7 +17,7 @@
 	var START = function() {
 		document.cookie = "gFOUT= ;expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/";
 		gFrame.wrapper.location.replace(self.location.href);
-	}
+	};
 	var EXIT  = function() {
 		document.cookie = "gFOUT=true ; path=/";	
 		gFrame.wrapper.location.replace(gFrame.content.location.href);
@@ -34,13 +34,13 @@
 		gFrame.exit    = function() {return this}; // dummy function;
 		return undefined;
 	}
-	/* DOC TYPE 1 : ##content## */
+	/* PHASE 1st : ##content## */
 	if (window.name == "content") {
 		window.gFrame = parent.gFrame;
 
 		return undefined;
 	};
-	/* DOC TYPE 2 : ##main## - write body	*/	
+	/* PHASE 2nd : ##main## - write body	*/	
 	if (window.name == "main") { // main breaker
 		var mainBreak = '<script type="text/javascript">window.onload = parent.gFrame.writeMain;</script></head>'
 		mainBreak += '<frameset><frame /></frameset></html>';
@@ -49,8 +49,9 @@
 		return undefined;
 	};
 	
-	/* DOC TYPE 3 : gFrame Init	*/
+	/* PHASE 3rd : Create gFrame	*/
 	var gFrame = window.gFrame = function() {};
+	//window.name    = "wrapper";
 	gFrame.wrapper = window;
 	gFrame.alive   = true;
 	gFrame.ver     = ver;
@@ -65,6 +66,8 @@
 			gFrame.contentInit = true;
 		};
 	};
+
+	/******* FINISH *******/
 
 	/* WRITE DOC*/// Main Frame Text
 	var body  = '<!doctype html><html><head>';
