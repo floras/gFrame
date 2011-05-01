@@ -45,7 +45,7 @@
 </div>
 	<div id="container">
 		<div id="notice"> gFrame is <span id="gState"> </span><br /><span class="desc"></span></div>
-		<img src="browser_icons.jpg" align="left" style="margin-right:5px;"/>gFrame makes a new frame and insert current document in the frame by javascript. Although many skins(or templates) could be modified, one can't easily make outter frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers. Moreover this gives you another useful thing. You can handle element(gLayer) without painful scripts.<br/>
+		<img src="browser_icons.jpg" align="left" style="margin-right:5px;"/>gFrame makes a new frame and inserts current document in the frame by javascript. Although many skins(or templates) could be modified, one can't easily make outter frame. If you play the music in the blog without stopping, gFrame helps you. Also gFrame is available in the mordern browsers. Moreover this gives you another useful thing. You can handle element(gLayer) without painful scripts.<br/>
 		<address>TESETED : IE5.5, IE6, IE7, IE8, IE9, IE10, FIREFOX4, OPERA11, CHROME11, SAFARI5</address>
 		<div style="text-align:right">
 		<button onclick="gFrame.once.remove('player');gFrame.content.music();" class="av">create layer1</button>
@@ -180,8 +180,6 @@
 	<script>
 	$(function(){
 		if (window.gFrame && gFrame.alive) {
-			
-
 			window.music = function() { 
 				gFrame.once('player', function(){
 					var code = '<embed src="http://www.youtube.com/p/8B2C3091F8C77A5F?hl=ko_KR&hd=1&autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>';

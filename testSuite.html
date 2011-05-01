@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<script type="text/javascript" src="gFrame.js"></script>
+<script type="text/javascript" src="gFrame.dev.js"></script>
 <style>
 
 #info {
@@ -84,11 +84,33 @@ document.write("<tr><th>document.referrer</th><td>" + document.referrer + "</td>
 <h3> info </h3>
 <button onclick='alert(gFrame.size());'>gFrame.size()</button>
 <button onclick='alert(gFrame.list());'>gFrame.list()</button>
+<h3> scrollbar </h3>
+<button onclick='scrollOn();'>scroll bar On</button>
+<button onclick='scrollOff();'>scroll bar Off</button>
+<button onclick='scrollOn2();'>scroll bar On2</button>
+<button onclick='scrollOff2();'>scroll bar Off2</button>
 <script>
+gFrame.ready(function(){
+
+	parent.document.getElementById('content').style.height = document.body.scrollHeight + "px";
+});
 var clickExam1 = function(){
 	gFrame("exam1", '<embed src="http://www.youtube.com/v/51iquRYKPbs?autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>', 
 	{top:50, right:30, width: 505, height: 210, style:'border: 3px solid #f00;'});
 };
+scrollOn = function() {
+	gFrame.wrapper.document.getElementById('main').setAttribute('scrolling', 'yes');
+};
+scrollOff = function() {
+	gFrame.wrapper.document.getElementById('main').setAttribute('scrolling', 'no');
+};
+scrollOn2 = function() {
+	gFrame.main.document.getElementById('content').setAttribute('scrolling', 'yes');
+};
+scrollOff2 = function() {
+	gFrame.main.document.getElementById('content').setAttribute('scrolling', 'no');
+};
 </script>
+
 </body>
 </html>
