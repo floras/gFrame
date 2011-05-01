@@ -81,7 +81,8 @@
 		return result
 	};
 	gFrame.title = function() {
-		if (!gFrame.wrapper == top) return false;
+		try {if (!gFrame.wrapper == top) return false;}
+		catch (err)	{return false};
 		gFrame.wrapper.document.title = gFrame.content.document.title;
 		if (window.history.replaceState) {
 			gFrame.wrapper.history.replaceState({}, undefined, gFrame.content.location.href);
