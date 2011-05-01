@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
 <head>
-<script type="text/javascript" src="gFrame.dev.js"></script>
+<script type="text/javascript" src="gFrame.js"></script>
 <style>
-
+html, body {margin:0;height:100%;}
 #info {
 	border-collapse:collapse;
 	margin:10px 0;
@@ -23,7 +23,7 @@
 button {display:inline-block;padding:3px 2px}
 </style>
 </head>
-<body>
+<body style="width:960px;margin:0 auto">
 <h2>Test Suite</h2>
 
 
@@ -85,30 +85,46 @@ document.write("<tr><th>document.referrer</th><td>" + document.referrer + "</td>
 <button onclick='alert(gFrame.size());'>gFrame.size()</button>
 <button onclick='alert(gFrame.list());'>gFrame.list()</button>
 <h3> scrollbar </h3>
-<button onclick='scrollOn();'>scroll bar On</button>
-<button onclick='scrollOff();'>scroll bar Off</button>
-<button onclick='scrollOn2();'>scroll bar On2</button>
-<button onclick='scrollOff2();'>scroll bar Off2</button>
+<button onclick='scrollOn();'>[main] scroll bar On</button>
+<button onclick='scrollAuto();'>[main] scroll bar Auto</button>
+<button onclick='scrollOff();'>[main] scroll bar Off</button>
+<button onclick='scrollOn2();'>[content] scroll bar On2</button>
+<button onclick='scrollAuto2();'>[content] scroll bar Auto</button>
+<button onclick='scrollOff2();'>[content] scroll bar Off2</button>
+<button onclick='Height1();'>[content]Height 100%</button>
+<button onclick='Height2();'>[content]Height  = scrollHeight </button>
 <script>
 gFrame.ready(function(){
 
-	parent.document.getElementById('content').style.height = document.body.scrollHeight + "px";
+	parent.document.getElementById('content').height = document.body.scrollHeight + "px";
 });
 var clickExam1 = function(){
 	gFrame("exam1", '<embed src="http://www.youtube.com/v/51iquRYKPbs?autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed>', 
 	{top:50, right:30, width: 505, height: 210, style:'border: 3px solid #f00;'});
 };
 scrollOn = function() {
-	gFrame.wrapper.document.getElementById('main').setAttribute('scrolling', 'yes');
+	gFrame.wrapper.document.getElementById('main').scrolling='yes';
+};
+scrollAuto = function() {
+	gFrame.wrapper.document.getElementById('main').scrolling='auto';
 };
 scrollOff = function() {
-	gFrame.wrapper.document.getElementById('main').setAttribute('scrolling', 'no');
+	gFrame.wrapper.document.getElementById('main').scrolling='no';
 };
 scrollOn2 = function() {
-	gFrame.main.document.getElementById('content').setAttribute('scrolling', 'yes');
+	gFrame.main.document.getElementById('content').scrolling='yes';
+};
+scrollAuto2 = function() {
+	gFrame.main.document.getElementById('content').scrolling='auto';
 };
 scrollOff2 = function() {
-	gFrame.main.document.getElementById('content').setAttribute('scrolling', 'no');
+	gFrame.main.document.getElementById('content').scrolling='no';
+};
+Height1 = function() {
+	gFrame.main.document.getElementById('content').style.height = "100%";
+};
+Height2 = function() {
+	gFrame.main.document.getElementById('content').style.height = document.body.scrollHeight+"px";
 };
 </script>
 

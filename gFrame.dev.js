@@ -500,7 +500,7 @@
 	body += store.head + '</head>';
 	body += '<body id="gBody">' + store.body;
 	body += '<div id="debug" class="gLayer">gFrame</div>';
-	body += '<iframe id="content" name="content" frameborder=no border=0  style="border:0;width:100%;height:100%;" allowtransparency="true" onload="gFrame.mReady();"></iframe>';
+	body += '<iframe id="content" name="content" frameborder=no border=0 scrolling="auto" style="border:0;width:100%;height:100%;" allowtransparency="true" onload="gFrame.mReady();"></iframe>';
 	body += '</body></html>';
 
 	gFrame.writeMain = function() {
@@ -517,8 +517,8 @@
 		check = true;
 	};
 	var wrap = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
-	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
-	wrap += '<frame id="main" name="main" src="about:blank" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=YES onload="firstEnter()"/>';
+	wrap += '<title>gFrame init</title></head><frameset cols="100%" border="0" framespacing="0" frameborder="no">';
+	wrap += '<frame id="main" name="main" src="about:blank" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling="auto" onload="firstEnter()"/>';
 	wrap += '</frameset></html>';
 
 	/* LET'S START */
