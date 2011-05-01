@@ -486,7 +486,7 @@
 			gFrame.content = gFrame.main.frames['content'];
 			var scripts = store.scripts;
 			for (var i=0; i< scripts.length; i++ ) gFrame.eval(scripts[i]);
-			gFrame.content.location.replace(parent.document.location);
+			gFrame.content.location.replace(self.document.location);
 			gFrameLoaded = true;
 		};
 		return gFrame;
