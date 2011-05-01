@@ -92,7 +92,7 @@
 	};	
 	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />';
 	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
-	wrap += '<frame id="main" name="main" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO src="javascript:void 0"/>';
+	wrap += '<frame id="main" name="main" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO />';
 	wrap += '</frameset></html>'; 
 
 	/* LET'S START */
