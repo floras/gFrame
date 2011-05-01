@@ -97,5 +97,6 @@
 
 	/* LET'S START */
 	document.write(wrap);
+	document.close();
 
 })();
