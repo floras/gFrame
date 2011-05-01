@@ -510,19 +510,16 @@
 
 	/* Wrapper Frame */	
 	var check = false;
-	var firstEnter = function() {
+	window.firstEnter = function() {
 		if (check) return false;
 		gFrame.main = frames['main'];
 		gFrame.main.location.replace(location.href);
 		check = true;
-	};	
-	if (window.addEventListener) window.addEventListener('load', firstEnter, false);
-	else window.attachEvent('onload', firstEnter);
-	
-	var wrap  = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
+	};
+	var wrap = '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
 	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
-	wrap += '<frame id="main" name="main" src="about:blank" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO />';
-	wrap += '</frameset></html>'; 
+	wrap += '<frame id="main" name="main" src="about:blank" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO onload="firstEnter()"/>';
+	wrap += '</frameset></html><!--';
 
 	/* LET'S START */
 	document.write(wrap);
