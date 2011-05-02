@@ -30,23 +30,13 @@
 		gFrame.ver     = ver;
 		gFrame.exit    = function() {return this}; // dummy function;
 		return undefined;
-	};
-	/* PHASE 1st : ##content## */
+	};	
 	if (window.name == "content") {
 		var gFrame = window.gFrame = parent.gFrame;
 		gFrame.content = window;
 		gFrame.initEvent();
 		return undefined;
 	};
-	/* PHASE 2nd : ##main## - write body */	
-	if (window.name == "main") { // main breaker
-		var mainBreak = '<script type="text/javascript">window.onload = parent.gFrame.writeMain;</script></head>'
-		mainBreak += '<frameset><frame /></frameset></html>';
-		document.write(mainBreak);
-		document.close();
-		return undefined;
-	};	
-	/* PHASE 3rd : Create gFrame */
 	//window.name = "wrapper";
 	var gFrame     = window.gFrame = {};
 	gFrame.wrapper = window;
@@ -188,13 +178,14 @@
 	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
 	wrap += '<frame id="main" name="main" frameborder="no" border="0" marginwidth="0" marginheight="0" noresize scrolling="no" />';
 	wrap += '</frameset></html>';
+
 	document.write(wrap);
 	gFrame.main = frames['main'];
 	gFrame.main.location.replace(location.href);
 	document.close();
 	gFrame.main.document.write(body);
-	for (var i=0; i< store.scripts.length; i++ ) gFrame.eval(store.scripts[i]);
 	gFrame.content = gFrame.main.frames['content'];
 	gFrame.content.location.replace(self.document.location);
+	for (var i=0; i< store.scripts.length; i++ ) gFrame.eval(store.scripts[i]);
 	gFrame.main.document.close();
 })();

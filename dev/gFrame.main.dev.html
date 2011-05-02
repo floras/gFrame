@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<script type="text/javascript" src="gFrame.main.dev.js"></script>
+	<title> gFrame.main Test Suite</title>
+	<style>
+	h1,h2,h3,h4,h5,h6 {padding:0.5em 1.25em}
+	body {font: 16px georgia; margin:5px 20px}
+	#info {
+		border-collapse:collapse;
+		margin:10px 0;
+	}
+	#info td,
+	#info th {
+		font:14px 'courier new';
+		padding:5px;
+		border:1px solid #D0D0D0;
+	}
+	#info th {
+		color: #E9F5B7;
+		background: #858585;
+		width: 120px;
+	}
+	.green {color: #2DAA02}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+</head>
+<body>
+	<div>
+	<h2> gFrame.main.js (validation suite)</h2>
+		<table id="info">
+		<script>
+		parent.document.title = "gFrame.main.js (validation suite)";
+
+		var windows = "";
+		var target  = window;
+		while(true) {
+			var names = (target.name) ? target.name : "[ unnamed ]";
+			windows =  windows ? names + " > " + windows : names ;
+ 			if (target == top) break;
+			target = target.parent;
+		};
+		var status = Boolean(window.gFrame&&gFrame.alive);
+		startus = (status) ? "<b class='green'>true</b>" : "<b style='color:#D63D1F'>false</b>";		
+		document.write("<tr><th>UA</th><td>" + window.navigator.userAgent + "</td></tr>");
+		document.write("<tr><th>gFrame.alive</th><td>" + startus + "</td></tr>");
+		document.write("<tr><th>windows tree</th><td>" + windows + "</td></tr>");
+		document.write("<tr><th>window.name</th><td>" + window.name + "</td></tr>");
+		document.write("<tr><th>document.location</th><td>" + document.location + "</td></tr>");
+		document.write("<tr><th>document.cookie</th><td>" + document.cookie + "</td></tr>");
+		document.write("<tr><th>document.referrer</th><td>" + document.referrer + "</td></tr>");
+		</script>
+		</table>
+	</div>
+	<script> 
+	var text = (window.gFrame&&gFrame.alive) ? '"gFrame.exit();">gFrame.exit();' : '"gFrame.start();">gFrame.start();';
+	document.write("<button onclick=" + text +"</button>");
+	</script>
+	<h3> FLASH SCRIPT TEST </h3>
+	<div style="width:505px;height:185px"><div id="ytapiplayer">Youtube Packed</div></div>
+	<button onclick="ytplayer.loadVideoById('51iquRYKPbs');">test script</button>
+	<script>
+	var ytplayer;
+	function onYouTubePlayerReady(playerId) {
+	  ytplayer = document.getElementById("myytplayer");
+	};	
+	var params = { allowScriptAccess: "always", wmode : 'transparent', allowfullscreen : 'true' };
+	var atts = { id: "myytplayer" };	
+	swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3&playerapiid=ytplayer&autoplay=1","ytapiplayer", "100%", "100%", "8", null, null, params, atts);
+	</script>
+	<h3> CHECKED </h3>
+	<address>IE5.5 <b class='green'>O</b> | IE6<b class='green'>O</b> | IE7 <b class='green'>O</b> | IE8 <b class='green'>O</b> | IE9<b class='green'>O</b> | IE10 <b class='green'>O</b><br/>
+	FIREFOX4 <b class='green'>O</b><br/>
+	OPERA11 <b class='green'>O</b><br/>
+	SAFARI5 <b class='green'>O</b><br/>
+	CHROME11 <b class='green'>O</b>
+	</address>
+	<h3>DOWNLOAD</h3>
+	<a href="gFrame.main.js" target="_blank">gFrame.main.js</a>
+	<h3>DUAL LICENSE MIT/GPL</h3>
+	<h3>CONTACT</h3>
+	<a href="http://50ndd1n6.tistory.com/guestbook" target="_blank">BLOG</a><br/>
+	Made by <a href="http://50ndd1n6.tistory.com/" target="_blank">50ndd1n6</a>
+
+</body>
+</html>
+ 

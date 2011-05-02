@@ -9,7 +9,7 @@
 */
 
 (function() {
-	var ver = "v0.1.03pa";
+	var ver = "v0.1.03a";
 	var START = function() {
 		document.cookie = "gFOUT= ;expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/";
 		gFrame.wrapper.location.replace(self.location.href);
@@ -18,7 +18,6 @@
 		document.cookie = "gFOUT=true ; path=/";	
 		gFrame.wrapper.location.replace(gFrame.content.location.href);
 	};
-	var DUMMY = Function("return this");
 	if (document.cookie.indexOf('gFOUT') > -1) {
 		var gFrame = window.gFrame = function() {return this};
 		gFrame.wrapper = window; 
@@ -49,6 +48,7 @@
 	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
 	wrap += '<frame id="main" name="main" frameborder="no" border="0" marginwidth="0" marginheight="0" noresize scrolling="no" />';
 	wrap += '</frameset></html>';
+	
 	document.write(wrap);
 	gFrame.main = frames['main'];
 	gFrame.main.location.replace(location.href);

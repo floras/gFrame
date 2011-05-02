@@ -36,15 +36,12 @@
 		return undefined;
 	};
 
-	/* PHASE  : ##content## */
 	if (window.name == "content") {
 		var gFrame = window.gFrame = parent.gFrame;
 		gFrame.content = window;
 		gFrame.initEvent();
 		return undefined;
-	};
-	
-	/* PHASE  : Create gFrame	*/
+	};	
 
 	/******* START *******/
 	
@@ -458,8 +455,7 @@
 		else gFrame.addEvent('unload', fun, global);
 		return gFrame;
 	};
-	/******* FINISH *******/
-
+	/******* FINISH *******/	
 	var store = {
 		style  : 'html, body{height:100%;margin:0;padding:0;}\n '
 				+ '#debug {position:absolute;color:#5E5E5E;z-index:500;font:10px arial;left:5px;bottom:15px;border:1px solid #f00;border-radius:3px;padding:3px;cursor:default}\n' 
@@ -476,27 +472,31 @@
 		store.body    = (gFSETUP.body)  ? store.body +  gFSETUP.body  : store.body;		
 	};
 
+	/* WRITE DOC*/// Main Frame Text
 	var body  = '<!doctype html><html><head>';
 	body += '<script>window.gFrame = parent.gFrame;</script>';
 	body += '<style>' + store.style + '</style>';
 	body += store.head + '</head>';
 	body += '<body id="gBody">' + store.body;
 	body += '<div id="debug" class="gLayer">gFrame</div>';
-	body += '<iframe id="content" name="content" frameborder="no" border="0" style="border:0;width:100%;height:100%;" allowtransparency="true"></iframe>';
+	body += '<iframe id="content" name="content" frameborder=no border=0  style="border:0;width:100%;height:100%;" allowtransparency="true"></iframe>';
 	body += '</body></html>';
+
+	//* Wrapper Frame */	
 	var wrap = '<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />';
 	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
-	wrap += '<frame id="main" name="main" frameborder="no" border="0" marginwidth="0" marginheight="0" noresize scrolling="no" />';
+	wrap += '<frame id="main" name="main" src="about:blank" frameborder="no" border="0" marginwidth="0" marginheight="0" noresize scrolling="no"/>';
 	wrap += '</frameset></html>';
 
+	/* LET'S START */
 	document.write(wrap);
 	gFrame.main = frames['main'];
 	gFrame.main.location.replace(location.href);
 	document.close();
 	gFrame.main.document.write(body);
-	for (var i=0; i< store.scripts.length; i++ ) gFrame.eval(store.scripts[i]);
 	gFrame.content = gFrame.main.frames['content'];
 	gFrame.content.location.replace(self.document.location);
+	for (var i=0; i< store.scripts.length; i++ ) gFrame.eval(store.scripts[i]);
 	gFrame.main.document.close();
 
 })();
