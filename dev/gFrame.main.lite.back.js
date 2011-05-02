@@ -48,7 +48,7 @@
 	};	
 	/* PHASE 3rd : Create gFrame */
 	//window.name = "wrapper";
-	var gFrame     = window.gFrame = {};
+	var gFrame = window.gFrame = {};
 	gFrame.wrapper = window;
 	gFrame.alive   = true;
 	gFrame.ver     = ver;
@@ -176,25 +176,40 @@
 		store.head    = (gFSETUP.head)  ? store.head  + gFSETUP.head  : store.head;		
 		store.body    = (gFSETUP.body)  ? store.body  + gFSETUP.body  : store.body;		
 	};
+	var gFrameLoaded = false;
+	gFrame.mReady = function(a, b) {
+		if (!gFrameLoaded) { 
+			gFrame.content = gFrame.main.frames['content'];
+			var scripts = store.scripts;
+			for (var i=0; i< scripts.length; i++ ) gFrame.eval(scripts[i]);
+			gFrame.content.location.replace(parent.document.location);
+			gFrameLoaded = true;
+		};
+		return gFrame;
+	};
 	var body  = '<!doctype html><html><head>';
 	body += '<script>window.gFrame = parent.gFrame;</script>';
 	body += '<style>' + store.style + '</style>';
 	body += store.head + '</head>';
 	body += '<body id="gBody">' + store.body;
 	body += '<div id="debug" class="gLayer">gFrame</div>';
-	body += '<iframe id="content" name="content" frameborder="no" border="0" style="border:0;width:100%;height:100%;" allowtransparency="true"></iframe>';
+	body += '<iframe id="content" name="content" frameborder="no" border="0" style="border:0;width:100%;height:100%;" allowtransparency="true" onload="gFrame.mReady();"></iframe>';
 	body += '</body></html>';
-	var wrap = '<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />';
-	wrap += '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
-	wrap += '<frame id="main" name="main" frameborder="no" border="0" marginwidth="0" marginheight="0" noresize scrolling="no" />';
+	gFrame.writeMain = function() {
+		gFrame.main.document.write(body);
+		gFrame.main.document.close();
+	};
+	var check = false;
+	window.firstEnter = function() {
+		if (check) return false;
+		gFrame.main = frames['main'];
+		gFrame.main.location.replace(location.href);
+		check = true;
+	};
+	var wrap = '<title>gFrame init</title></head><frameset rows="*" border="0" framespacing="0" frameborder="no">';
+	wrap += '<frame id="main" name="main" src="about:blank" frameborder=no border=0 marginwidth=0 marginheight=0 noresize scrolling=NO onload="firstEnter()"/>';
 	wrap += '</frameset></html>';
+	/* LET'S START */
 	document.write(wrap);
-	gFrame.main = frames['main'];
-	gFrame.main.location.replace(location.href);
 	document.close();
-	gFrame.main.document.write(body);
-	for (var i=0; i< store.scripts.length; i++ ) gFrame.eval(store.scripts[i]);
-	gFrame.content = gFrame.main.frames['content'];
-	gFrame.content.location.replace(self.document.location);
-	gFrame.main.document.close();
 })();

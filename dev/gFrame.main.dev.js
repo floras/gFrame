@@ -21,7 +21,6 @@
 	var DUMMY = Function("return this");
 	if (document.cookie.indexOf('gFOUT') > -1) {
 		var gFrame = window.gFrame = function() {return this};
-		gFrame.wrapper = window; 
 		gFrame.start   = START;
 		gFrame.alive   = false;
 		gFrame.ver     = ver;
@@ -32,7 +31,7 @@
 		window.gFrame = parent.gFrame;
 		return undefined;
 	};
-	var gFrame = window.gFrame = function() {};
+	var gFrame = window.gFrame = Function();
 	gFrame.wrapper = window;
 	gFrame.alive   = true;
 	gFrame.ver     = ver;
@@ -42,7 +41,7 @@
 	body += '<script>gFrame = parent.gFrame;</script>';
 	body += '<style>html,body{height:100%;} div.gLayer{position:absolute;}</style></head>';
 	body += '<body>';
-	body += '<div id="debug" class="gLayer" style="right:5px;border:3px solid #f00;padding:5px;background:#fff">gFrame</div>';
+	body += '<div id="debug" class="gLayer" style="right:5px;border:3px solid #f00;padding:5px;background:#fff">gFrame dev</div>';
 	body += '<iframe id="content" name="content" frameborder=no border=0  style="border:0;width:100%;height:100%;" allowtransparency="true"></iframe>';
 	body += '</body></html>';
 	var wrap = '<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />';
